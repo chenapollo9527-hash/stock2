@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-06-29 08:00 盘前分析</title>
+  <style>
+:root {
+  color-scheme: light;
+  --bg: #f5f6f8;
+  --panel: #ffffff;
+  --text: #111827;
+  --muted: #667085;
+  --line: #d6dde8;
+  --accent: #0f5f9f;
+  --accent-soft: #e8f2fa;
+  --green: #0d7a4f;
+  --orange: #9a5b00;
+  --red: #a33a3a;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Segoe UI", "Microsoft YaHei", Arial, sans-serif;
+  line-height: 1.5;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.shell { max-width: 1180px; margin: 0 auto; padding: 24px 20px 44px; }
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 14px;
+  margin-bottom: 18px;
+}
+h1 { font-size: 28px; margin: 0 0 6px; letter-spacing: 0; }
+h2 { font-size: 20px; margin: 24px 0 10px; }
+h3 { font-size: 16px; margin: 16px 0 8px; }
+.muted { color: var(--muted); font-size: 13px; }
+.notice {
+  background: #fff8e8;
+  border: 1px solid #ead19a;
+  border-radius: 8px;
+  color: #7a4a00;
+  padding: 10px 12px;
+  margin: 12px 0 18px;
+}
+.date-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 10px;
+  padding: 0;
+  list-style: none;
+}
+.date-list a, .panel {
+  display: block;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 14px;
+}
+.stock-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.stock-table th, .stock-table td {
+  border-bottom: 1px solid var(--line);
+  padding: 10px 12px;
+  text-align: left;
+  vertical-align: middle;
+  font-size: 14px;
+}
+.stock-table th { background: var(--accent-soft); color: #24364a; }
+.stock-table tr:last-child td { border-bottom: 0; }
+.stock-name { font-weight: 700; font-size: 16px; }
+.code { color: var(--muted); font-size: 13px; margin-left: 4px; }
+.perf-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.perf-item {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 2px 7px;
+  background: #fff;
+  white-space: nowrap;
+}
+.perf-item strong { margin-left: 3px; }
+.tag {
+  display: inline-block;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 2px 8px;
+  margin: 2px 4px 2px 0;
+  font-size: 12px;
+  background: #fff;
+}
+.tag.good { color: var(--green); border-color: #b8dccd; background: #eef9f4; }
+.tag.watch { color: var(--orange); border-color: #ead19a; background: #fff8e8; }
+.tag.risk { color: var(--red); border-color: #e8b8b8; background: #fff1f1; }
+.scan-timeline {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+}
+.scan-timeline-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(12px, 1fr));
+  gap: 3px;
+  margin: 8px 0;
+}
+.scan-cell {
+  display: block;
+  height: 16px;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background: #eef0f3;
+}
+.scan-cell.good { background: #0d7a4f; border-color: #0d7a4f; }
+.scan-cell.risk { background: #d9822b; border-color: #d9822b; }
+.scan-cell.missing { background: #eef0f3; border-color: #cbd3df; }
+.scan-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+.scan-legend .scan-cell {
+  width: 14px;
+  display: inline-block;
+  margin-right: 4px;
+  vertical-align: -3px;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+.metric {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px;
+}
+.metric strong { display: block; font-size: 20px; margin-top: 4px; }
+.slot-card {
+  display: block;
+  color: inherit;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 14px;
+}
+.slot-card:hover { text-decoration: none; border-color: var(--accent); }
+.slot-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: baseline;
+}
+.slot-title { font-size: 18px; font-weight: 700; color: var(--accent); }
+.slot-count { color: var(--muted); font-size: 13px; white-space: nowrap; }
+.boundary {
+  border-left: 4px solid var(--accent);
+  padding: 10px 12px;
+  background: #fff;
+}
+.event {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px;
+  margin: 10px 0;
+}
+.event-title { font-weight: 700; margin-bottom: 4px; }
+.source-links a { margin-right: 12px; font-size: 13px; }
+ul.compact { padding-left: 20px; margin-top: 8px; }
+ul.compact li { margin: 4px 0; }
+@media (max-width: 760px) {
+  .shell { padding: 18px 12px 34px; }
+  .topbar { display: block; }
+  h1 { font-size: 23px; }
+  .stock-table, .stock-table tbody, .stock-table tr, .stock-table td { display: block; width: 100%; }
+  .stock-table thead { display: none; }
+  .stock-table tr { border-bottom: 1px solid var(--line); }
+  .stock-table td { border: 0; padding: 8px 10px; }
+}
+</style>
+</head>
+<body>
+  <main class="shell">
+    
+    <div class="topbar">
+      <div>
+        <h1>2026-06-29 08:00 盘前分析</h1>
+        <div class="muted">只显示该时间点当时生成的股票；点击股票名进入该时间点详情。</div>
+      </div>
+      <a href="../index.html">返回时间点</a>
+    </div>
+    <div class="notice">时间边界：08:00 前已保存过去24小时新闻预分析、事件、30日K线研究池和滚动备忘录；不得读取开盘后行情。</div>
+    
+    <h2>状态</h2>
+    <div class="grid">
+      <div class="metric"><span class="muted">市场姿态</span><strong>高外部风险下的少量公司级事件观察</strong></div>
+      <div class="metric"><span class="muted">快照生成时间</span><strong>2026-06-29T09:18:00+08:00</strong></div>
+      <div class="metric"><span class="muted">候选数量</span><strong>2</strong></div>
+    </div>
+    <h2>分析结论</h2><div class="panel"><ul class="compact"><li><strong>结论：</strong>09:00盘前综合分析完成：正式候选仅保留2只外部科技风险相关性较低、且有公司级或清晰事件催化的主板标的；半导体、AI硬件、券商、资源和商业航天均列为待开盘确认或剔除，等待09:45全A资金承接验证。</li><li><strong>市场情绪：</strong>本阶段未读取或使用2026-06-29开盘后行情，不写今日涨跌幅、成交额、主力净流入或盘口承接结论；所有正式候选都是盘前新闻假设，09:45必须二次过滤。</li><li><strong>信息背景：</strong>已读取daily_news、0900新闻预分析、0900外部市场风险和20日滚动备忘录。备忘录要求09:00少而精，外部风险是硬闸门，盘前高风险科技同链默认进入待09:45确认观察池。</li><li><strong>板块扩散：</strong>今日新闻硬催化集中在半导体涨价、订单、并购重组、业绩预告、回购、商业航天、物流和消费/文旅。半导体/PCB/光刻胶/AI算力命中外部风险，资源命中商品汇率风险，回购和泛政策弹性不足。</li><li><strong>候选规则：</strong>09:00不使用当日盘中行情；只纳入主板、非ST、非科创/创业/北交所，且不把外部高风险同链科技/资源/券商线索直接写成正式候选。候选数量服从质量，硬证据不足时少于6只并写insufficient_reason。</li><li><strong>风险：</strong>外部风险文件给出高严重度预警：日韩半导体链、商品与汇率、港股科技映射均需降权；美股科技链为中严重度但同样要求A股承接确认。科技、半导体、AI硬件、资源和券商盘前不直接作为正式候选。</li></ul></div>
+    
+    
+    
+    
+    <h2>主板可交易候选（偏未爆发/惯性）</h2>
+    <table class="stock-table">
+      <thead>
+        <tr><th>股票</th><th>概念</th><th>来源/确认</th><th>涨幅</th><th>详情</th></tr>
+      </thead>
+      <tbody>
+    <tr>
+      <td><a class="stock-name" href="../stocks/0900_002568.html">百润股份</a><span class="code">(002568)</span></td>
+      <td>食品饮料/半年报业绩预告</td>
+      <td><span class="tag good">news_event / 新闻直接披露预计半年报净利润为4.65亿元至4.9亿元，属于公司级业绩预告；与今日主要外部风险压制方向相关性低，适合作为盘前少量正式观察。</span></td>
+      <td><div class="perf-line"><span class="perf-item">开盘涨幅<strong>4.96%</strong></span><span class="perf-item">收盘涨幅<strong>9.98%</strong></span></div></td>
+      <td><a href="../stocks/0900_002568.html">查看详情</a></td>
+    </tr>
+    
+
+    <tr>
+      <td><a class="stock-name" href="../stocks/0900_600376.html">首开股份</a><span class="code">(600376)</span></td>
+      <td>北京国资重组/城市更新</td>
+      <td><span class="tag good">news_event / 证券时报公司新闻称大股东首开集团与北京建院战略重组、锚定城市更新赛道，属于相对独立的公司/股东层面重组事件；不直接命中今日外部高风险主题。</span></td>
+      <td><div class="perf-line"><span class="perf-item">开盘涨幅<strong>5%</strong></span><span class="perf-item">收盘涨幅<strong>1.25%</strong></span></div></td>
+      <td><a href="../stocks/0900_600376.html">查看详情</a></td>
+    </tr>
+    </tbody>
+    </table>
+    
+    <h2>风险提示（概念/个股）</h2>
+    <table class="stock-table">
+      <thead>
+        <tr><th>对象</th><th>类型</th><th>线索</th><th>风险</th><th>应对</th></tr>
+      </thead>
+      <tbody>
+    <tr>
+      <td><span class="stock-name">日韩半导体链高压</span></td>
+      <td><span class="tag risk">外部市场</span><span class="tag watch">高</span></td>
+      <td>韩国综合指数跌幅扩大至3%，三星电子下跌5%，SK海力士下跌；外部风险文件影响存储、HBM、半导体设备、材料、光刻胶、先进封装。</td>
+      <td>国内半导体涨价、存储、PCB和光刻胶利好不能自动覆盖外部同链证伪，09:00默认只能观察。</td>
+      <td>半导体/AI硬件同链全部等待09:45全A承接确认；没有独立公司级硬催化和override理由不进入正式候选。</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="stock-name">商品与汇率风险</span></td>
+      <td><span class="tag risk">外部市场</span><span class="tag watch">高</span></td>
+      <td>外部风险文件将商品与汇率列为高严重度，影响有色、贵金属、能源、化工、出口链。</td>
+      <td>资源和化工价格线可能被外部波动反向压制，盘前新闻热度不足以直接构成买点。</td>
+      <td>资源周期不进09:00正式候选；09:45后只有价格与A股资金同时确认再恢复。</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="stock-name">09:00无盘中承接确认</span></td>
+      <td><span class="tag risk">流程/数据</span><span class="tag watch">中</span></td>
+      <td>本slot只读取盘前新闻、新闻预分析、外部风险和滚动备忘录。</td>
+      <td>所有候选都可能因高开、近涨停、一字、超过6%或无承接而失去推荐点后空间。</td>
+      <td>09:45必须二次过滤：主板非ST、非科创/创业/北交、涨幅&lt;=6%、非涨停/近涨停/一字，并检查推荐点后空间。</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="stock-name">商品与汇率</span></td>
+      <td><span class="tag risk">外部市场</span><span class="tag watch">高</span></td>
+      <td>大跌30%又反弹，黄金还值得关注吗？；美股芯片股全线上涨，黄金白银、国际油价集体下挫</td>
+      <td>外部同产业链或风险偏好走弱会传导到A股，国内利好不能自动高权重覆盖外部证伪。</td>
+      <td>相关主题候选降权，等待A股全市场扫描和资金流入确认后再恢复。</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="stock-name">日韩半导体链</span></td>
+      <td><span class="tag risk">外部市场</span><span class="tag watch">高</span></td>
+      <td>两大芯片巨头大涨 韩国股市触发熔断；获利盘回吐还是杠杆爆仓 谁成了韩国股市暴跌的加...</td>
+      <td>外部同产业链或风险偏好走弱会传导到A股，国内利好不能自动高权重覆盖外部证伪。</td>
+      <td>相关主题候选降权，等待A股全市场扫描和资金流入确认后再恢复。</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="stock-name">港股科技映射</span></td>
+      <td><span class="tag risk">外部市场</span><span class="tag watch">高</span></td>
+      <td>越跌越买！腾讯、友邦、小米领衔回购 超900亿港元...</td>
+      <td>外部同产业链或风险偏好走弱会传导到A股，国内利好不能自动高权重覆盖外部证伪。</td>
+      <td>相关主题候选降权，等待A股全市场扫描和资金流入确认后再恢复。</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="stock-name">美股科技链</span></td>
+      <td><span class="tag risk">外部市场</span><span class="tag watch">高</span></td>
+      <td>美股盘前：三大股指期货涨跌不一 服务业PMI与消费...</td>
+      <td>外部同产业链或风险偏好走弱会传导到A股，国内利好不能自动高权重覆盖外部证伪。</td>
+      <td>相关主题候选降权，等待A股全市场扫描和资金流入确认后再恢复。</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="stock-name">内外信号冲突</span></td>
+      <td><span class="tag risk">外部市场</span><span class="tag watch">高</span></td>
+      <td>“韬定律”V2版正式发布！先进封装国产突围加速 多只概念股业绩有望倍增</td>
+      <td>国内利好与外部同产业链走弱冲突：先进封装。</td>
+      <td>国内利好降权为待验证，必须等待A股资金承接确认。</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="stock-name">内外信号冲突</span></td>
+      <td><span class="tag risk">外部市场</span><span class="tag watch">高</span></td>
+      <td>机构调研丨AIDC+液冷+字节概念 这家公司订单充足 将稳步拓展日韩、澳洲、欧美高端算力市场</td>
+      <td>国内利好与外部同产业链走弱冲突：液冷。</td>
+      <td>国内利好降权为待验证，必须等待A股资金承接确认。</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="stock-name">内外信号冲突</span></td>
+      <td><span class="tag risk">外部市场</span><span class="tag watch">高</span></td>
+      <td>期权智投播报 | AI电力接棒算力行情 Bloom Energy大涨；并购与指数纳入预期加持 SpaceX斩获三连涨</td>
+      <td>国内利好与外部同产业链走弱冲突：科技硬件/半导体链。</td>
+      <td>国内利好降权为待验证，必须等待A股资金承接确认。</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="stock-name">百润股份</span><span class="code">(002568)</span></td>
+      <td><span class="tag risk">个股</span><span class="tag watch">中</span></td>
+      <td>食品饮料/半年报业绩预告</td>
+      <td>消费业绩票短线弹性可能低于当日热门科技主线，不能用来扩大候选数量。</td>
+      <td>触发风险条件时从正式候选降级为观察。</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="stock-name">首开股份</span><span class="code">(600376)</span></td>
+      <td><span class="tag risk">个股</span><span class="tag watch">中</span></td>
+      <td>北京国资重组/城市更新</td>
+      <td>地产链和城市更新短线弹性不稳定，若只有单股新闻驱动，推荐点后空间有限。</td>
+      <td>触发风险条件时从正式候选降级为观察。</td>
+    </tr>
+    </tbody>
+    </table>
+    
+    <h2>剔除/仅观察</h2><div class="panel"><span class="tag risk">致欧科技 301376：301开头为创业板，用户不可交易，硬剔除；且回购本身不是足够强的盘前进攻催化。</span><span class="tag risk">国脉文化 600640：回购实施完毕偏存量事实，短线增量和推荐点后空间不足，不用于凑数。</span><span class="tag risk">沪电股份 002463：PCB/英伟达/液冷属于美股科技链和AI硬件受影响主题，09:00没有A股承接确认，不能作为正式候选。</span><span class="tag risk">锡业股份 000960：资源方向受商品与汇率高风险约束，盘前不直接推荐；需09:45或更长窗口确认价格和资金承接。</span><span class="tag risk">申通快递 002468：物流运行数据偏宏观行业事实，缺少公司级硬催化和短线弹性，不用于09:00补位。</span><span class="tag risk">岭南控股 000524：文旅消费是季节性和泛行业线索，历史复盘中弱文旅补位贡献不足；不作为正式候选。</span></div>
+    <h2>使用信息</h2>
+    <div class="panel"><ul class="compact"><li>docs/daily_news_YYYY-MM-DD.md</li><li>data/news_preanalysis/YYYY-MM-DD_0900_news_preanalysis.json</li><li>data/cleaned/events.jsonl</li><li>memory/rolling_20_trading_days.md</li><li>memory/bootstrap_20d_context.json</li><li>data/state/source_status.json</li></ul></div>
+    <h2>原始快照</h2>
+    <div class="panel source-links"><a href="../next_morning_review.md">收盘后复盘 Markdown</a></div>
+    
+  </main>
+</body>
+</html>

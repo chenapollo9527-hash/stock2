@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-06-29 股票候选</title>
+  <style>
+:root {
+  color-scheme: light;
+  --bg: #f5f6f8;
+  --panel: #ffffff;
+  --text: #111827;
+  --muted: #667085;
+  --line: #d6dde8;
+  --accent: #0f5f9f;
+  --accent-soft: #e8f2fa;
+  --green: #0d7a4f;
+  --orange: #9a5b00;
+  --red: #a33a3a;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Segoe UI", "Microsoft YaHei", Arial, sans-serif;
+  line-height: 1.5;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.shell { max-width: 1180px; margin: 0 auto; padding: 24px 20px 44px; }
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 14px;
+  margin-bottom: 18px;
+}
+h1 { font-size: 28px; margin: 0 0 6px; letter-spacing: 0; }
+h2 { font-size: 20px; margin: 24px 0 10px; }
+h3 { font-size: 16px; margin: 16px 0 8px; }
+.muted { color: var(--muted); font-size: 13px; }
+.notice {
+  background: #fff8e8;
+  border: 1px solid #ead19a;
+  border-radius: 8px;
+  color: #7a4a00;
+  padding: 10px 12px;
+  margin: 12px 0 18px;
+}
+.date-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 10px;
+  padding: 0;
+  list-style: none;
+}
+.date-list a, .panel {
+  display: block;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 14px;
+}
+.stock-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.stock-table th, .stock-table td {
+  border-bottom: 1px solid var(--line);
+  padding: 10px 12px;
+  text-align: left;
+  vertical-align: middle;
+  font-size: 14px;
+}
+.stock-table th { background: var(--accent-soft); color: #24364a; }
+.stock-table tr:last-child td { border-bottom: 0; }
+.stock-name { font-weight: 700; font-size: 16px; }
+.code { color: var(--muted); font-size: 13px; margin-left: 4px; }
+.perf-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.perf-item {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 2px 7px;
+  background: #fff;
+  white-space: nowrap;
+}
+.perf-item strong { margin-left: 3px; }
+.tag {
+  display: inline-block;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 2px 8px;
+  margin: 2px 4px 2px 0;
+  font-size: 12px;
+  background: #fff;
+}
+.tag.good { color: var(--green); border-color: #b8dccd; background: #eef9f4; }
+.tag.watch { color: var(--orange); border-color: #ead19a; background: #fff8e8; }
+.tag.risk { color: var(--red); border-color: #e8b8b8; background: #fff1f1; }
+.scan-timeline {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+}
+.scan-timeline-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(12px, 1fr));
+  gap: 3px;
+  margin: 8px 0;
+}
+.scan-cell {
+  display: block;
+  height: 16px;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background: #eef0f3;
+}
+.scan-cell.good { background: #0d7a4f; border-color: #0d7a4f; }
+.scan-cell.risk { background: #d9822b; border-color: #d9822b; }
+.scan-cell.missing { background: #eef0f3; border-color: #cbd3df; }
+.scan-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+.scan-legend .scan-cell {
+  width: 14px;
+  display: inline-block;
+  margin-right: 4px;
+  vertical-align: -3px;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+.metric {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px;
+}
+.metric strong { display: block; font-size: 20px; margin-top: 4px; }
+.slot-card {
+  display: block;
+  color: inherit;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 14px;
+}
+.slot-card:hover { text-decoration: none; border-color: var(--accent); }
+.slot-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: baseline;
+}
+.slot-title { font-size: 18px; font-weight: 700; color: var(--accent); }
+.slot-count { color: var(--muted); font-size: 13px; white-space: nowrap; }
+.boundary {
+  border-left: 4px solid var(--accent);
+  padding: 10px 12px;
+  background: #fff;
+}
+.event {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px;
+  margin: 10px 0;
+}
+.event-title { font-weight: 700; margin-bottom: 4px; }
+.source-links a { margin-right: 12px; font-size: 13px; }
+ul.compact { padding-left: 20px; margin-top: 8px; }
+ul.compact li { margin: 4px 0; }
+@media (max-width: 760px) {
+  .shell { padding: 18px 12px 34px; }
+  .topbar { display: block; }
+  h1 { font-size: 23px; }
+  .stock-table, .stock-table tbody, .stock-table tr, .stock-table td { display: block; width: 100%; }
+  .stock-table thead { display: none; }
+  .stock-table tr { border-bottom: 1px solid var(--line); }
+  .stock-table td { border: 0; padding: 8px 10px; }
+}
+</style>
+</head>
+<body>
+  <main class="shell">
+    
+    <div class="topbar">
+      <div>
+        <h1>2026-06-29 股票候选</h1>
+        <div class="muted">先选择时间点，再查看该时间点当时生成的股票候选。</div>
+      </div>
+      <a href="../index.html">返回日期索引</a>
+    </div>
+    <div class="notice">仅用于投研辅助和候选池整理；请结合确认条件和风险条件，不作为自动交易指令。</div>
+    <h2>流程健康状态</h2><div class="panel"><span class="tag good">滚动备忘录：OK</span><span class="tag good">回测清单：OK</span><span class="tag risk">SLA日报：缺失</span><span class="tag good">08:00新闻：OK</span><span class="tag good">08:00候选：OK</span><span class="tag risk">全天扫描部分40/68：缺失</span><span class="tag good">09:45新闻：OK</span><span class="tag risk">09:45预分析0行：缺失</span><span class="tag risk">09:45候选：缺失</span><span class="tag good">13:15新闻：OK</span><span class="tag good">13:15预分析：OK</span><span class="tag good">13:15候选：OK</span><span class="tag good">14:45新闻：OK</span><span class="tag good">14:45预分析：OK</span><span class="tag good">14:45候选：OK</span><span class="tag good">14:45新增2：OK</span><span class="tag good">收盘结果：OK</span>
+    <div class="scan-timeline">
+      <div class="muted">全天扫描时间轴（5分钟/格）：有效 40，失败 28，缺帧 0</div>
+      <div class="scan-timeline-grid"><span class="scan-cell risk" title="09:30: 0行"></span><span class="scan-cell risk" title="09:35: 0行"></span><span class="scan-cell risk" title="09:40: 0行"></span><span class="scan-cell risk" title="09:45: 0行"></span><span class="scan-cell risk" title="09:50: 0行"></span><span class="scan-cell risk" title="09:55: 0行"></span><span class="scan-cell risk" title="10:00: 0行"></span><span class="scan-cell risk" title="10:05: 0行"></span><span class="scan-cell risk" title="10:10: 0行"></span><span class="scan-cell risk" title="10:15: 0行"></span><span class="scan-cell risk" title="10:20: 0行"></span><span class="scan-cell risk" title="10:25: 0行"></span><span class="scan-cell risk" title="10:30: 0行"></span><span class="scan-cell risk" title="10:35: 0行"></span><span class="scan-cell risk" title="10:40: 0行"></span><span class="scan-cell risk" title="10:45: 0行"></span><span class="scan-cell risk" title="10:50: 0行"></span><span class="scan-cell risk" title="10:55: 0行"></span><span class="scan-cell risk" title="11:00: 0行"></span><span class="scan-cell risk" title="11:05: 0行"></span><span class="scan-cell risk" title="11:10: 0行"></span><span class="scan-cell risk" title="11:15: 0行"></span><span class="scan-cell risk" title="11:20: 0行"></span><span class="scan-cell risk" title="11:25: 0行"></span><span class="scan-cell risk" title="11:30: 0行"></span><span class="scan-cell risk" title="11:35: 0行"></span><span class="scan-cell risk" title="11:40: 0行"></span><span class="scan-cell risk" title="11:45: 0行"></span><span class="scan-cell good" title="11:50: 5867行"></span><span class="scan-cell good" title="11:55: 5867行"></span><span class="scan-cell good" title="12:00: 5867行"></span><span class="scan-cell good" title="12:05: 5867行"></span><span class="scan-cell good" title="12:10: 5867行"></span><span class="scan-cell good" title="12:15: 5867行"></span><span class="scan-cell good" title="12:20: 5867行"></span><span class="scan-cell good" title="12:25: 5867行"></span><span class="scan-cell good" title="12:30: 5867行"></span><span class="scan-cell good" title="12:35: 5867行"></span><span class="scan-cell good" title="12:40: 5867行"></span><span class="scan-cell good" title="12:45: 5867行"></span><span class="scan-cell good" title="12:50: 5867行"></span><span class="scan-cell good" title="12:55: 5867行"></span><span class="scan-cell good" title="13:00: 5575行"></span><span class="scan-cell good" title="13:05: 5763行"></span><span class="scan-cell good" title="13:10: 5753行"></span><span class="scan-cell good" title="13:15: 5757行"></span><span class="scan-cell good" title="13:20: 5763行"></span><span class="scan-cell good" title="13:25: 5770行"></span><span class="scan-cell good" title="13:30: 5660行"></span><span class="scan-cell good" title="13:35: 5724行"></span><span class="scan-cell good" title="13:40: 5708行"></span><span class="scan-cell good" title="13:45: 5732行"></span><span class="scan-cell good" title="13:50: 5711行"></span><span class="scan-cell good" title="13:55: 5666行"></span><span class="scan-cell good" title="14:00: 5706行"></span><span class="scan-cell good" title="14:05: 5694行"></span><span class="scan-cell good" title="14:10: 5783行"></span><span class="scan-cell good" title="14:15: 5708行"></span><span class="scan-cell good" title="14:20: 5746行"></span><span class="scan-cell good" title="14:25: 5721行"></span><span class="scan-cell good" title="14:30: 5641行"></span><span class="scan-cell good" title="14:35: 5722行"></span><span class="scan-cell good" title="14:40: 5727行"></span><span class="scan-cell good" title="14:45: 5663行"></span><span class="scan-cell good" title="14:50: 5808行"></span><span class="scan-cell good" title="14:55: 5630行"></span><span class="scan-cell good" title="15:00: 5574行"></span><span class="scan-cell good" title="15:05: 5867行"></span></div>
+      <div class="scan-legend muted">
+        <span><span class="scan-cell good"></span>有效全市场帧</span>
+        <span><span class="scan-cell risk"></span>空帧/失败</span>
+        <span><span class="scan-cell missing"></span>缺帧</span>
+      </div>
+    </div>
+    </div>
+    
+    <h2>分时点推荐</h2>
+    <div class="grid">
+            <a class="slot-card" href="slots/0900.html">
+              <div class="slot-top">
+                <div class="slot-title">08:00</div>
+                <div class="slot-count">2 只候选</div>
+              </div>
+              <strong>高外部风险下的少量公司级事件观察</strong>
+              <div class="muted">2026-06-29T09:18:00+08:00</div>
+              <div>09:00证据显示外部科技链、日韩半导体链、港股科技映射和商品汇率风险压力高；盘前没有A股资金承接确认，因此只保留与外部风险相关性较低的公司级/重组事件，热门科技链等待09:45确认。</div>
+              <div class="muted">边界：08:00 前已保存过去24小时新闻预分析、事件、30日K线研究池和滚动备忘录；不得读取开盘后行情。</div>
+            </a>
+            
+            <a class="slot-card" href="slots/0945.html">
+              <div class="slot-top">
+                <div class="slot-title">09:45</div>
+                <div class="slot-count">0 只候选</div>
+              </div>
+              <strong>data_unavailable_fail_closed</strong>
+              <div class="muted">2026-06-29T09:53:00+08:00</div>
+              <div>0945 market_preanalysis status=partial，latest_row_count=0，主板宽度和tradable_mainboard_under_6均为空；不能据此判断risk_off、窄幅涨停潮或强赚钱效应，只能按数据不可用保守处理。</div>
+              <div class="muted">边界：09:45 前已保存08:00新闻/观察池、轻量重大新闻增量、09:30/09:35/09:40/09:45 全A扫描帧、开盘行情预分析和滚动备忘录。</div>
+            </a>
+            
+            <a class="slot-card" href="slots/1315.html">
+              <div class="slot-top">
+                <div class="slot-title">13:15</div>
+                <div class="slot-count">7 只候选</div>
+              </div>
+              <strong>narrow_theme_strength</strong>
+              <div class="muted">2026-06-29T13:15:02+08:00</div>
+              <div>主板强势样本达到涨停潮阈值：pct_gt_6=132，limit_up_like=74。即使下跌家数占优，也应先识别热门概念和同链低位承接。</div>
+              <div class="muted">边界：13:15 前已保存08:00新闻/观察池、轻量重大新闻增量、上午全A扫描、午后13:00/13:05/13:10/13:15扫描、行情预分析和滚动备忘录。</div>
+            </a>
+            
+            <a class="slot-card" href="slots/1445.html">
+              <div class="slot-top">
+                <div class="slot-title">14:45</div>
+                <div class="slot-count">6 只候选</div>
+              </div>
+              <strong>narrow_theme_strength</strong>
+              <div class="muted">2026-06-29T14:45:09+08:00</div>
+              <div>主板强势样本达到涨停潮阈值：pct_gt_6=170，limit_up_like=92。即使下跌家数占优，也应先识别热门概念和同链低位承接。</div>
+              <div class="muted">边界：14:45 前已保存08:00新闻/观察池、轻量重大新闻增量、全日全A扫描、14:30/14:35/14:40/14:45尾盘行情预分析和滚动备忘录。</div>
+            </a>
+            </div>
+    
+    <h2>分析输入</h2>
+    <div class="panel">
+      <div class="boundary"><strong>滚动备忘录</strong> 四轮推荐都必须读取，用来约束主线生命周期、历史胜率、错因纠偏、外部风险硬闸门和“不能复读旧票/不能凑数”的长期规则；它不替代当轮新闻和行情，只负责把近期经验转成决策约束。</div>
+      <div class="boundary"><strong>08:00</strong> 本轮过去24小时新闻预分析 + 30日K线研究池 + 20个交易日滚动备忘录。</div>
+      <div class="boundary" style="margin-top:10px"><strong>09:45</strong> 本轮新闻预分析 + 09:30/09:35/09:40/09:45 全A扫描预分析 + 08:00新闻背景 + 20日备忘录；优先寻找尚未充分爆发但有板块惯性的可交易票。</div>
+      <div class="boundary" style="margin-top:10px"><strong>13:15</strong> 本轮新闻预分析 + 上午全A走势 + 13:00/13:05/13:10/13:15 午后变化预分析 + 08:00新闻背景 + 20日备忘录；午后近端信息权重更高。</div>
+      <div class="boundary" style="margin-top:10px"><strong>14:45</strong> 本轮过去6小时新闻预分析 + 全日扫描 + 尾盘近端行情预分析 + 08:00新闻背景；直接并入尾盘推荐，不再单独生成次日观察池。</div>
+    </div>
+    <h2>过滤/仅观察</h2>
+    <div class="panel"><span class="muted">无</span></div>
+    <h2>原始快照</h2>
+    <div class="panel source-links"><a href="next_morning_review.md">收盘后复盘 Markdown</a></div>
+    
+  </main>
+</body>
+</html>

@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-06-16 收盘后次日候选</title>
+  <style>
+:root {
+  color-scheme: light;
+  --bg: #f5f6f8;
+  --panel: #ffffff;
+  --text: #111827;
+  --muted: #667085;
+  --line: #d6dde8;
+  --accent: #0f5f9f;
+  --accent-soft: #e8f2fa;
+  --green: #0d7a4f;
+  --orange: #9a5b00;
+  --red: #a33a3a;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Segoe UI", "Microsoft YaHei", Arial, sans-serif;
+  line-height: 1.5;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.shell { max-width: 1180px; margin: 0 auto; padding: 24px 20px 44px; }
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 14px;
+  margin-bottom: 18px;
+}
+h1 { font-size: 28px; margin: 0 0 6px; letter-spacing: 0; }
+h2 { font-size: 20px; margin: 24px 0 10px; }
+h3 { font-size: 16px; margin: 16px 0 8px; }
+.muted { color: var(--muted); font-size: 13px; }
+.notice {
+  background: #fff8e8;
+  border: 1px solid #ead19a;
+  border-radius: 8px;
+  color: #7a4a00;
+  padding: 10px 12px;
+  margin: 12px 0 18px;
+}
+.date-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 10px;
+  padding: 0;
+  list-style: none;
+}
+.date-list a, .panel {
+  display: block;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 14px;
+}
+.stock-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.stock-table th, .stock-table td {
+  border-bottom: 1px solid var(--line);
+  padding: 10px 12px;
+  text-align: left;
+  vertical-align: middle;
+  font-size: 14px;
+}
+.stock-table th { background: var(--accent-soft); color: #24364a; }
+.stock-table tr:last-child td { border-bottom: 0; }
+.stock-name { font-weight: 700; font-size: 16px; }
+.code { color: var(--muted); font-size: 13px; margin-left: 4px; }
+.perf-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.perf-item {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 2px 7px;
+  background: #fff;
+  white-space: nowrap;
+}
+.perf-item strong { margin-left: 3px; }
+.tag {
+  display: inline-block;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 2px 8px;
+  margin: 2px 4px 2px 0;
+  font-size: 12px;
+  background: #fff;
+}
+.tag.good { color: var(--green); border-color: #b8dccd; background: #eef9f4; }
+.tag.watch { color: var(--orange); border-color: #ead19a; background: #fff8e8; }
+.tag.risk { color: var(--red); border-color: #e8b8b8; background: #fff1f1; }
+.scan-timeline {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+}
+.scan-timeline-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(12px, 1fr));
+  gap: 3px;
+  margin: 8px 0;
+}
+.scan-cell {
+  display: block;
+  height: 16px;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background: #eef0f3;
+}
+.scan-cell.good { background: #0d7a4f; border-color: #0d7a4f; }
+.scan-cell.risk { background: #d9822b; border-color: #d9822b; }
+.scan-cell.missing { background: #eef0f3; border-color: #cbd3df; }
+.scan-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+.scan-legend .scan-cell {
+  width: 14px;
+  display: inline-block;
+  margin-right: 4px;
+  vertical-align: -3px;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+.metric {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px;
+}
+.metric strong { display: block; font-size: 20px; margin-top: 4px; }
+.slot-card {
+  display: block;
+  color: inherit;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 14px;
+}
+.slot-card:hover { text-decoration: none; border-color: var(--accent); }
+.slot-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: baseline;
+}
+.slot-title { font-size: 18px; font-weight: 700; color: var(--accent); }
+.slot-count { color: var(--muted); font-size: 13px; white-space: nowrap; }
+.boundary {
+  border-left: 4px solid var(--accent);
+  padding: 10px 12px;
+  background: #fff;
+}
+.event {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px;
+  margin: 10px 0;
+}
+.event-title { font-weight: 700; margin-bottom: 4px; }
+.source-links a { margin-right: 12px; font-size: 13px; }
+ul.compact { padding-left: 20px; margin-top: 8px; }
+ul.compact li { margin: 4px 0; }
+@media (max-width: 760px) {
+  .shell { padding: 18px 12px 34px; }
+  .topbar { display: block; }
+  h1 { font-size: 23px; }
+  .stock-table, .stock-table tbody, .stock-table tr, .stock-table td { display: block; width: 100%; }
+  .stock-table thead { display: none; }
+  .stock-table tr { border-bottom: 1px solid var(--line); }
+  .stock-table td { border: 0; padding: 8px 10px; }
+}
+</style>
+</head>
+<body>
+  <main class="shell">
+    
+    <div class="topbar">
+      <div>
+        <h1>2026-06-16 收盘后次日候选</h1>
+        <div class="muted">面向 2026-06-17；次日 09:00 仍需结合夜间/早间新闻复核。</div>
+      </div>
+      <a href="index.html">返回日期页</a>
+    </div>
+    <div class="notice">这是次日观察池，不是自动交易指令。09:45/13:15 仍需用全市场扫描验证资金方向和可买性。</div>
+    <h2>策略摘要</h2>
+    <div class="panel">
+      <ul class="compact">
+        <li><strong>模式：</strong>硬催化优先</li>
+        <li><strong>理由：</strong>东阳光和上峰材料体现了新增事实催化与 20 日主线记忆的交集；海航科技为软催化，应低权重处理。</li>
+        <li><strong>市场背景：</strong>回放样本显示，硬催化叠加滚动主线的候选强于软催化。该文件用于制度化结构，不代表 2026-06-16 当日 18:00 生产 job 已运行。</li>
+      </ul>
+    </div>
+    <h2>候选池</h2>
+    <table class="stock-table">
+      <thead><tr><th>股票</th><th>概念</th><th>催化</th><th>记忆映射</th><th>评分</th><th>次日验证</th></tr></thead>
+      <tbody>
+    <tr>
+      <td><span class="stock-name">东阳光</span><span class="code">(600673)</span></td>
+      <td>AI 算力基础设施</td>
+      <td><span class="tag good">hard/mna</span></td>
+      <td>硬催化直接落在 AI 算力基础设施主线，且为主板可交易映射。</td>
+      <td>92</td>
+      <td>次日 09:00 复核是否有澄清、停牌、监管或外围科技风险。；09:45 若涨幅超过 6%、涨停、近涨停或一字买不进，则只作为强度样本。</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="stock-name">上峰材料</span><span class="code">(000672)</span></td>
+      <td>半导体材料</td>
+      <td><span class="tag good">medium/theme_map</span></td>
+      <td>半导体材料方向的主板映射，可承接科创/创业板半导体强度外溢。</td>
+      <td>84</td>
+      <td>09:00 复核半导体材料线是否仍有新增催化或产业新闻。；09:45 看全 A 股扫描中半导体、材料、电子化学品是否继续流入。</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="stock-name">海航科技</span><span class="code">(600751)</span></td>
+      <td>回购与股东回报</td>
+      <td><span class="tag good">soft/buyback</span></td>
+      <td>软催化，适合作为科技分歧时的防御观察，不应与硬催化等权排序。</td>
+      <td>61</td>
+      <td>09:00 复核是否有新增回购细节或股东回报扩散。；若市场仍集中进攻 AI 硬件链，则降权。</td>
+    </tr>
+    </tbody>
+    </table>
+    <h2>原始快照</h2>
+    <div class="panel source-links"><a href="0900_preopen.md">08:00 盘前候选 Markdown</a><a href="0945_open_validation.md">09:45 开盘验证 Markdown</a><a href="1315_midday_update.md">13:15 午后修正 Markdown</a><a href="next_morning_review.md">收盘后复盘 Markdown</a></div>
+    
+  </main>
+</body>
+</html>

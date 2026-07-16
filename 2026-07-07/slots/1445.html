@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-07-07 14:45 尾盘推荐</title>
+  <style>
+:root {
+  color-scheme: light;
+  --bg: #f5f6f8;
+  --panel: #ffffff;
+  --text: #111827;
+  --muted: #667085;
+  --line: #d6dde8;
+  --accent: #0f5f9f;
+  --accent-soft: #e8f2fa;
+  --green: #0d7a4f;
+  --orange: #9a5b00;
+  --red: #a33a3a;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Segoe UI", "Microsoft YaHei", Arial, sans-serif;
+  line-height: 1.5;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.shell { max-width: 1180px; margin: 0 auto; padding: 24px 20px 44px; }
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 14px;
+  margin-bottom: 18px;
+}
+h1 { font-size: 28px; margin: 0 0 6px; letter-spacing: 0; }
+h2 { font-size: 20px; margin: 24px 0 10px; }
+h3 { font-size: 16px; margin: 16px 0 8px; }
+.muted { color: var(--muted); font-size: 13px; }
+.notice {
+  background: #fff8e8;
+  border: 1px solid #ead19a;
+  border-radius: 8px;
+  color: #7a4a00;
+  padding: 10px 12px;
+  margin: 12px 0 18px;
+}
+.date-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 10px;
+  padding: 0;
+  list-style: none;
+}
+.date-list a, .panel {
+  display: block;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 14px;
+}
+.stock-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.stock-table th, .stock-table td {
+  border-bottom: 1px solid var(--line);
+  padding: 10px 12px;
+  text-align: left;
+  vertical-align: middle;
+  font-size: 14px;
+}
+.stock-table th { background: var(--accent-soft); color: #24364a; }
+.stock-table tr:last-child td { border-bottom: 0; }
+.stock-name { font-weight: 700; font-size: 16px; }
+.code { color: var(--muted); font-size: 13px; margin-left: 4px; }
+.perf-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.perf-item {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 2px 7px;
+  background: #fff;
+  white-space: nowrap;
+}
+.perf-item strong { margin-left: 3px; }
+.tag {
+  display: inline-block;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 2px 8px;
+  margin: 2px 4px 2px 0;
+  font-size: 12px;
+  background: #fff;
+}
+.tag.good { color: var(--green); border-color: #b8dccd; background: #eef9f4; }
+.tag.watch { color: var(--orange); border-color: #ead19a; background: #fff8e8; }
+.tag.risk { color: var(--red); border-color: #e8b8b8; background: #fff1f1; }
+.scan-timeline {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+}
+.scan-timeline-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(12px, 1fr));
+  gap: 3px;
+  margin: 8px 0;
+}
+.scan-cell {
+  display: block;
+  height: 16px;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background: #eef0f3;
+}
+.scan-cell.good { background: #0d7a4f; border-color: #0d7a4f; }
+.scan-cell.risk { background: #d9822b; border-color: #d9822b; }
+.scan-cell.missing { background: #eef0f3; border-color: #cbd3df; }
+.scan-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+.scan-legend .scan-cell {
+  width: 14px;
+  display: inline-block;
+  margin-right: 4px;
+  vertical-align: -3px;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+.metric {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px;
+}
+.metric strong { display: block; font-size: 20px; margin-top: 4px; }
+.slot-card {
+  display: block;
+  color: inherit;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 14px;
+}
+.slot-card:hover { text-decoration: none; border-color: var(--accent); }
+.slot-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: baseline;
+}
+.slot-title { font-size: 18px; font-weight: 700; color: var(--accent); }
+.slot-count { color: var(--muted); font-size: 13px; white-space: nowrap; }
+.boundary {
+  border-left: 4px solid var(--accent);
+  padding: 10px 12px;
+  background: #fff;
+}
+.event {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px;
+  margin: 10px 0;
+}
+.event-title { font-weight: 700; margin-bottom: 4px; }
+.source-links a { margin-right: 12px; font-size: 13px; }
+ul.compact { padding-left: 20px; margin-top: 8px; }
+ul.compact li { margin: 4px 0; }
+@media (max-width: 760px) {
+  .shell { padding: 18px 12px 34px; }
+  .topbar { display: block; }
+  h1 { font-size: 23px; }
+  .stock-table, .stock-table tbody, .stock-table tr, .stock-table td { display: block; width: 100%; }
+  .stock-table thead { display: none; }
+  .stock-table tr { border-bottom: 1px solid var(--line); }
+  .stock-table td { border: 0; padding: 8px 10px; }
+}
+</style>
+</head>
+<body>
+  <main class="shell">
+    
+    <div class="topbar">
+      <div>
+        <h1>2026-07-07 14:45 尾盘推荐</h1>
+        <div class="muted">只显示该时间点当时生成的股票；点击股票名进入该时间点详情。</div>
+      </div>
+      <a href="../index.html">返回时间点</a>
+    </div>
+    <div class="notice">时间边界：14:45 前已保存08:00新闻/观察池、轻量重大新闻增量、全日全A扫描、14:30/14:35/14:40/14:45尾盘行情预分析和滚动备忘录。</div>
+    
+    <h2>状态</h2>
+    <div class="grid">
+      <div class="metric"><span class="muted">市场姿态</span><strong>risk_off</strong></div>
+      <div class="metric"><span class="muted">快照生成时间</span><strong>2026-07-07T14:46:12+08:00</strong></div>
+      <div class="metric"><span class="muted">候选数量</span><strong>5</strong></div>
+    </div>
+    <h2>分析结论</h2><div class="panel muted">该时间点尚未生成分析。</div>
+    
+    <h2>API 运行信息</h2>
+    <div class="grid"><div class="metric"><span class="muted">模型</span><strong>deepseek-v4-flash</strong></div>
+<div class="metric"><span class="muted">Total tokens</span><strong>160780</strong></div></div>
+    
+    <h2>热门概念雷达</h2><table class="stock-table"><thead><tr><th>概念</th><th>强度证据</th><th>不可买强势样本</th><th>同链低位候选</th></tr></thead><tbody><tr><td><span class="stock-name">半导体/算力</span></td><td>-</td><td>-</td><td>-</td></tr>
+<tr><td><span class="stock-name">锗资源</span></td><td>-</td><td>-</td><td>-</td></tr></tbody></table>
+    <h2>行情预分析</h2><div class="panel"><ul class="compact"><li><strong>边界：</strong>market_only_preanalysis_no_news_or_memory</li><li><strong>模式：</strong>risk_off：下跌家数占优，先按防御和风险收缩处理。</li><li><strong>涨停潮阈值：</strong>未触发 / 主板pct&gt;6 48，近涨停 30</li><li><strong>数据源：</strong>push2delay_eastmoney_clist / 行数 5659 / 帧数 71</li><li><strong>宽度：</strong>上涨 684，下跌 4605，中位涨幅 -2.8%</li><li><strong>时间权重：</strong>14:45 以尾盘近端资金为最高权重，同时保留全日主线和上午背景。</li><li><strong>近端窗口：</strong>2026-07-07T14:00:01+08:00 至 2026-07-07T14:40:02+08:00 / 9帧</li><li><strong>主板6%以下活跃：</strong>东山精密(002384) 4.89%、北方华创(002371) 0.18%、深科技(000021) 2.31%、立讯精密(002475) 0.56%、通富微电(002156) 3.32%</li></ul></div>
+    <h2>盘面监控</h2><div class="panel muted">该窗口尚未采集高频监控快照。</div>
+    <h2>主板可交易候选（偏未爆发/惯性）</h2>
+    <table class="stock-table">
+      <thead>
+        <tr><th>股票</th><th>概念</th><th>来源/确认</th><th>涨幅</th><th>详情</th></tr>
+      </thead>
+      <tbody>
+    <tr>
+      <td><a class="stock-name" href="../stocks/1445_002384.html">东山精密</a><span class="code">(002384)</span></td>
+      <td>半导体/消费电子</td>
+      <td><span class="tag good">intraday_market_enhancement / PCB及半导体封装，四帧行情确认近端斜率向上，成交额和主力净流入持续放大，剩余空间5.11%</span></td>
+      <td><div class="perf-line"><span class="perf-item">快照涨幅<strong>4.89%</strong></span><span class="perf-item">收盘涨幅<strong>5.53%</strong></span></div></td>
+      <td><a href="../stocks/1445_002384.html">查看详情</a></td>
+    </tr>
+    
+
+    <tr>
+      <td><a class="stock-name" href="../stocks/1445_000977.html">浪潮信息</a><span class="code">(000977)</span></td>
+      <td>AI算力/服务器</td>
+      <td><span class="tag good">intraday_market_enhancement / AI算力龙头，四帧行情显示尾盘资金净流入加速，涨幅较低提供安全垫</span></td>
+      <td><div class="perf-line"><span class="perf-item">快照涨幅<strong>1.89%</strong></span><span class="perf-item">收盘涨幅<strong>1.94%</strong></span></div></td>
+      <td><a href="../stocks/1445_000977.html">查看详情</a></td>
+    </tr>
+    
+
+    <tr>
+      <td><a class="stock-name" href="../stocks/1445_002156.html">通富微电</a><span class="code">(002156)</span></td>
+      <td>半导体封装</td>
+      <td><span class="tag good">intraday_market_enhancement / 先进封装龙头，四帧行情显示成交额稳步放大，主力资金持续流入</span></td>
+      <td><div class="perf-line"><span class="perf-item">快照涨幅<strong>3.32%</strong></span><span class="perf-item">收盘涨幅<strong>3.07%</strong></span></div></td>
+      <td><a href="../stocks/1445_002156.html">查看详情</a></td>
+    </tr>
+    
+
+    <tr>
+      <td><a class="stock-name" href="../stocks/1445_002428.html">云南锗业</a><span class="code">(002428)</span></td>
+      <td>锗/稀有金属</td>
+      <td><span class="tag good">intraday_market_enhancement / 锗资源龙头，涨价预期，四帧行情显示尾盘放量上攻，主力净流入显著</span></td>
+      <td><div class="perf-line"><span class="perf-item">快照涨幅<strong>3.14%</strong></span><span class="perf-item">收盘涨幅<strong>4.45%</strong></span></div></td>
+      <td><a href="../stocks/1445_002428.html">查看详情</a></td>
+    </tr>
+    
+
+    <tr>
+      <td><a class="stock-name" href="../stocks/1445_600460.html">士兰微</a><span class="code">(600460)</span></td>
+      <td>半导体/功率器件</td>
+      <td><span class="tag good">intraday_market_enhancement / IDM模式，功率半导体龙头，四帧行情显示尾盘资金加速流入</span></td>
+      <td><div class="perf-line"><span class="perf-item">快照涨幅<strong>1.67%</strong></span><span class="perf-item">收盘涨幅<strong>1.44%</strong></span></div></td>
+      <td><a href="../stocks/1445_600460.html">查看详情</a></td>
+    </tr>
+    </tbody>
+    </table>
+    
+    <h2>风险提示（概念/个股）</h2>
+    <table class="stock-table">
+      <thead>
+        <tr><th>对象</th><th>类型</th><th>线索</th><th>风险</th><th>应对</th></tr>
+      </thead>
+      <tbody>
+    <tr>
+      <td><span class="stock-name">外部市场中性</span></td>
+      <td><span class="tag risk">外部市场</span><span class="tag watch">低</span></td>
+      <td>embedded_external_market_risk_from_news_titles</td>
+      <td>未发现明确外部负面线索，但仍不能让国内利好自动高权重。</td>
+      <td>继续要求盘面承接确认。</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="stock-name">短线情绪过热</span></td>
+      <td><span class="tag risk">概念</span><span class="tag watch">中</span></td>
+      <td>全市场涨幅超过 6% 的样本约 93 只。</td>
+      <td>高涨幅样本过多时，尾盘和次日容易出现兑现，未爆发候选也可能被板块退潮拖累。</td>
+      <td>降低追涨权重，只保留未过 6% 且仍有资金流入的样本。</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="stock-name">新闻风险线索</span></td>
+      <td><span class="tag risk">新闻</span><span class="tag watch">中</span></td>
+      <td>[业绩修复？创新药持续强势 杠杆资金抢筹股曝光](https://finance.eastmoney.com/a/202607063794970396.html) - eastmoney_stock</td>
+      <td>公告、异常波动、杠杆或监管线索可能使相关主题从进攻转为兑现。</td>
+      <td>若与候选概念重合，降低仓位假设并等待资金确认。</td>
+    </tr>
+    </tbody>
+    </table>
+    
+    
+    <h2>使用信息</h2>
+    <div class="panel"><ul class="compact"><li>data/market/YYYY-MM-DD_1445_market_preanalysis.json</li><li>data/market/archive/YYYY-MM-DD/continuous_full_rows_archive.jsonl</li><li>docs/daily_news_YYYY-MM-DD.md</li><li>docs/daily_news_YYYY-MM-DD_1445.md</li><li>data/news_preanalysis/YYYY-MM-DD_0900_news_preanalysis.json</li><li>data/news_preanalysis/YYYY-MM-DD_1445_news_preanalysis.json</li><li>data/preopen_research/YYYY-MM-DD_preopen_research_pool.json</li><li>memory/rolling_20_trading_days.md</li></ul></div>
+    <h2>原始快照</h2>
+    <div class="panel source-links"><a href="../next_morning_review.md">收盘后复盘 Markdown</a><a href="../sla_daily_report.md">SLA 日报 Markdown</a></div>
+    
+  </main>
+</body>
+</html>

@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-06-26 13:15 午后修正</title>
+  <style>
+:root {
+  color-scheme: light;
+  --bg: #f5f6f8;
+  --panel: #ffffff;
+  --text: #111827;
+  --muted: #667085;
+  --line: #d6dde8;
+  --accent: #0f5f9f;
+  --accent-soft: #e8f2fa;
+  --green: #0d7a4f;
+  --orange: #9a5b00;
+  --red: #a33a3a;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Segoe UI", "Microsoft YaHei", Arial, sans-serif;
+  line-height: 1.5;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.shell { max-width: 1180px; margin: 0 auto; padding: 24px 20px 44px; }
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 14px;
+  margin-bottom: 18px;
+}
+h1 { font-size: 28px; margin: 0 0 6px; letter-spacing: 0; }
+h2 { font-size: 20px; margin: 24px 0 10px; }
+h3 { font-size: 16px; margin: 16px 0 8px; }
+.muted { color: var(--muted); font-size: 13px; }
+.notice {
+  background: #fff8e8;
+  border: 1px solid #ead19a;
+  border-radius: 8px;
+  color: #7a4a00;
+  padding: 10px 12px;
+  margin: 12px 0 18px;
+}
+.date-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 10px;
+  padding: 0;
+  list-style: none;
+}
+.date-list a, .panel {
+  display: block;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 14px;
+}
+.stock-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.stock-table th, .stock-table td {
+  border-bottom: 1px solid var(--line);
+  padding: 10px 12px;
+  text-align: left;
+  vertical-align: middle;
+  font-size: 14px;
+}
+.stock-table th { background: var(--accent-soft); color: #24364a; }
+.stock-table tr:last-child td { border-bottom: 0; }
+.stock-name { font-weight: 700; font-size: 16px; }
+.code { color: var(--muted); font-size: 13px; margin-left: 4px; }
+.perf-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.perf-item {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 2px 7px;
+  background: #fff;
+  white-space: nowrap;
+}
+.perf-item strong { margin-left: 3px; }
+.tag {
+  display: inline-block;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 2px 8px;
+  margin: 2px 4px 2px 0;
+  font-size: 12px;
+  background: #fff;
+}
+.tag.good { color: var(--green); border-color: #b8dccd; background: #eef9f4; }
+.tag.watch { color: var(--orange); border-color: #ead19a; background: #fff8e8; }
+.tag.risk { color: var(--red); border-color: #e8b8b8; background: #fff1f1; }
+.scan-timeline {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+}
+.scan-timeline-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(12px, 1fr));
+  gap: 3px;
+  margin: 8px 0;
+}
+.scan-cell {
+  display: block;
+  height: 16px;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background: #eef0f3;
+}
+.scan-cell.good { background: #0d7a4f; border-color: #0d7a4f; }
+.scan-cell.risk { background: #d9822b; border-color: #d9822b; }
+.scan-cell.missing { background: #eef0f3; border-color: #cbd3df; }
+.scan-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+.scan-legend .scan-cell {
+  width: 14px;
+  display: inline-block;
+  margin-right: 4px;
+  vertical-align: -3px;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+.metric {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px;
+}
+.metric strong { display: block; font-size: 20px; margin-top: 4px; }
+.slot-card {
+  display: block;
+  color: inherit;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 14px;
+}
+.slot-card:hover { text-decoration: none; border-color: var(--accent); }
+.slot-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: baseline;
+}
+.slot-title { font-size: 18px; font-weight: 700; color: var(--accent); }
+.slot-count { color: var(--muted); font-size: 13px; white-space: nowrap; }
+.boundary {
+  border-left: 4px solid var(--accent);
+  padding: 10px 12px;
+  background: #fff;
+}
+.event {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px;
+  margin: 10px 0;
+}
+.event-title { font-weight: 700; margin-bottom: 4px; }
+.source-links a { margin-right: 12px; font-size: 13px; }
+ul.compact { padding-left: 20px; margin-top: 8px; }
+ul.compact li { margin: 4px 0; }
+@media (max-width: 760px) {
+  .shell { padding: 18px 12px 34px; }
+  .topbar { display: block; }
+  h1 { font-size: 23px; }
+  .stock-table, .stock-table tbody, .stock-table tr, .stock-table td { display: block; width: 100%; }
+  .stock-table thead { display: none; }
+  .stock-table tr { border-bottom: 1px solid var(--line); }
+  .stock-table td { border: 0; padding: 8px 10px; }
+}
+</style>
+</head>
+<body>
+  <main class="shell">
+    
+    <div class="topbar">
+      <div>
+        <h1>2026-06-26 13:15 午后修正</h1>
+        <div class="muted">只显示该时间点当时生成的股票；点击股票名进入该时间点详情。</div>
+      </div>
+      <a href="../index.html">返回时间点</a>
+    </div>
+    <div class="notice">时间边界：13:15 前已保存08:00新闻/观察池、轻量重大新闻增量、上午全A扫描、午后13:00/13:05/13:10/13:15扫描、行情预分析和滚动备忘录。</div>
+    
+    <h2>状态</h2>
+    <div class="grid">
+      <div class="metric"><span class="muted">市场姿态</span><strong>risk_off_with_afternoon_tech_rotation</strong></div>
+      <div class="metric"><span class="muted">快照生成时间</span><strong>2026-06-26T13:15:02+08:00</strong></div>
+      <div class="metric"><span class="muted">候选数量</span><strong>8</strong></div>
+    </div>
+    <h2>分析结论</h2><div class="panel"><ul class="compact"><li><strong>结论：</strong>13:15全市场仍为risk_off，但13:00后出现弱修复，科技硬件/半导体/电子材料链继续有局部承接。按外部风险先降权后确认的规则，只保留13:15仍有A股资金承接、未过6%、非近涨停的主板低位样本。</li><li><strong>市场情绪：</strong>latest_capture_at=2026-06-26T13:10:01+08:00；全市场上涨994、下跌4249，中位涨幅-1.92%；主板上涨578、下跌2447，pct_gt_6=75、limit_up_like=39。主板尚未达到涨停潮阈值，但科技链强样本增多。</li><li><strong>候选规则：</strong>主板、非ST、非科创/创业/北交；13:15涨幅&lt;=6%、非涨停/近涨停/一字；6%是风险上限不是目标，本轮正式候选均低于5%以避免批量贴边。</li></ul></div>
+    
+    
+    <h2>行情预分析</h2><div class="panel"><ul class="compact"><li><strong>边界：</strong>market_only_preanalysis_no_news_or_memory</li><li><strong>模式：</strong>risk_off：下跌家数占优，先按防御和风险收缩处理。</li><li><strong>涨停潮阈值：</strong>-</li><li><strong>数据源：</strong>push2delay_eastmoney_clist / 行数 5666 / 帧数 45</li><li><strong>宽度：</strong>上涨 994，下跌 4249，中位涨幅 -1.92%</li><li><strong>时间权重：</strong>13:15 必须同时考虑上午主线和午后变化；午后近端资金权重大于上午背景。</li><li><strong>近端窗口：</strong>2026-06-26T13:00:01+08:00 至 2026-06-26T13:10:01+08:00 / 3帧</li><li><strong>主板6%以下活跃：</strong>京东方Ａ(000725) 4.39%、长电科技(600584) 0.15%、大族激光(002008) 2.9%、德明利(001309) 0.23%、中国巨石(600176) 0.88%</li></ul></div>
+    <h2>盘面监控</h2><div class="panel muted">该窗口尚未采集高频监控快照。</div>
+    <h2>主板可交易候选（偏未爆发/惯性）</h2>
+    <table class="stock-table">
+      <thead>
+        <tr><th>股票</th><th>概念</th><th>来源/确认</th><th>涨幅</th><th>详情</th></tr>
+      </thead>
+      <tbody>
+    <tr>
+      <td><a class="stock-name" href="../stocks/1315_002185.html">华天科技</a><span class="code">(002185)</span></td>
+      <td>先进封装/半导体封测</td>
+      <td><span class="tag good">2026-06-26_1315_midday_market_confirmed / 09:45已验证的封测低位样本，13:15仍保持2%左右涨幅、百亿级成交和正主力净流入，属于上午主线中仍有承接而未爆发的核心票。</span></td>
+      <td><div class="perf-line"><span class="perf-item">13:15涨幅<strong>2.01%</strong></span><span class="perf-item">收盘涨幅<strong>0.71%</strong></span></div></td>
+      <td><a href="../stocks/1315_002185.html">查看详情</a></td>
+    </tr>
+    
+
+    <tr>
+      <td><a class="stock-name" href="../stocks/1315_603005.html">晶方科技</a><span class="code">(603005)</span></td>
+      <td>半导体封测/传感器</td>
+      <td><span class="tag good">2026-06-26_1315_midday_market_confirmed / 13:15仍在低位区间，成交额和主力净流入继续确认封测链扩散，是上午科技线中没有贴近6%的可交易分支。</span></td>
+      <td><div class="perf-line"><span class="perf-item">13:15涨幅<strong>2.18%</strong></span><span class="perf-item">收盘涨幅<strong>4.62%</strong></span></div></td>
+      <td><a href="../stocks/1315_603005.html">查看详情</a></td>
+    </tr>
+    
+
+    <tr>
+      <td><a class="stock-name" href="../stocks/1315_603929.html">亚翔集成</a><span class="code">(603929)</span></td>
+      <td>半导体洁净工程/厂务</td>
+      <td><span class="tag good">2026-06-26_1315_midday_market_confirmed / 13:00后仍在top_burst_potential，半导体厂务/洁净工程与设备扩产催化同链，涨幅3%左右且主力净流入为正。</span></td>
+      <td><div class="perf-line"><span class="perf-item">13:15涨幅<strong>3.07%</strong></span><span class="perf-item">收盘涨幅<strong>2.27%</strong></span></div></td>
+      <td><a href="../stocks/1315_603929.html">查看详情</a></td>
+    </tr>
+    
+
+    <tr>
+      <td><a class="stock-name" href="../stocks/1315_603061.html">金海通</a><span class="code">(603061)</span></td>
+      <td>半导体测试设备</td>
+      <td><span class="tag good">2026-06-26_1315_midday_market_confirmed / 半导体测试设备补涨，13:15涨幅2.29%、正净流入、剩余空间充足，作为高位设备/材料样本的低位替代。</span></td>
+      <td><div class="perf-line"><span class="perf-item">13:15涨幅<strong>2.29%</strong></span><span class="perf-item">收盘涨幅<strong>3.75%</strong></span></div></td>
+      <td><a href="../stocks/1315_603061.html">查看详情</a></td>
+    </tr>
+    
+
+    <tr>
+      <td><a class="stock-name" href="../stocks/1315_605111.html">新洁能</a><span class="code">(605111)</span></td>
+      <td>功率半导体</td>
+      <td><span class="tag good">2026-06-26_1315_midday_market_confirmed / 13:00后afternoon_recent进入top_burst_potential，功率半导体在午后修复窗口获得新增承接，涨幅仍低于3%。</span></td>
+      <td><div class="perf-line"><span class="perf-item">13:15涨幅<strong>2.55%</strong></span><span class="perf-item">收盘涨幅<strong>2.85%</strong></span></div></td>
+      <td><a href="../stocks/1315_605111.html">查看详情</a></td>
+    </tr>
+    
+
+    <tr>
+      <td><a class="stock-name" href="../stocks/1315_002859.html">洁美科技</a><span class="code">(002859)</span></td>
+      <td>电子元件材料/MLCC配套</td>
+      <td><span class="tag good">2026-06-26_1315_midday_market_confirmed / 13:15在top_acceleration中仍保持2.32%低位、涨幅增量5.89pct、正净流入，承接MLCC/电子元件扩散。</span></td>
+      <td><div class="perf-line"><span class="perf-item">13:15涨幅<strong>2.32%</strong></span><span class="perf-item">收盘涨幅<strong>6.87%</strong></span></div></td>
+      <td><a href="../stocks/1315_002859.html">查看详情</a></td>
+    </tr>
+    
+
+    <tr>
+      <td><a class="stock-name" href="../stocks/1315_603002.html">宏昌电子</a><span class="code">(603002)</span></td>
+      <td>PCB/电子树脂材料</td>
+      <td><span class="tag good">2026-06-26_1315_midday_market_confirmed / 13:15仍是top_acceleration和top_burst_potential强样本，涨幅3.89%、成交近28亿元、正净流入，映射PCB/电子材料链。</span></td>
+      <td><div class="perf-line"><span class="perf-item">13:15涨幅<strong>3.89%</strong></span><span class="perf-item">收盘涨幅<strong>5.13%</strong></span></div></td>
+      <td><a href="../stocks/1315_603002.html">查看详情</a></td>
+    </tr>
+    
+
+    <tr>
+      <td><a class="stock-name" href="../stocks/1315_603256.html">宏和科技</a><span class="code">(603256)</span></td>
+      <td>电子级玻纤布/PCB材料</td>
+      <td><span class="tag good">2026-06-26_1315_midday_market_confirmed / PCB上游电子玻纤布方向，13:15成交和净流入强，涨幅4.62%仍未进5%高位带，作为中国巨石/山东玻纤等强弱分化后的电子材料分支。</span></td>
+      <td><div class="perf-line"><span class="perf-item">13:15涨幅<strong>4.62%</strong></span><span class="perf-item">收盘涨幅<strong>7.31%</strong></span></div></td>
+      <td><a href="../stocks/1315_603256.html">查看详情</a></td>
+    </tr>
+    </tbody>
+    </table>
+    
+    <h2>风险提示（概念/个股）</h2>
+    <table class="stock-table">
+      <thead>
+        <tr><th>对象</th><th>类型</th><th>线索</th><th>风险</th><th>应对</th></tr>
+      </thead>
+      <tbody>
+    <tr>
+      <td><span class="stock-name">美股科技链</span></td>
+      <td><span class="tag risk">外部市场</span><span class="tag watch">高</span></td>
+      <td>全线暴涨 美光拯救AI！股民：指数全红 4000家下跌；全球市场：美股三大指数涨跌不一 闪迪、美光科技领涨芯片股 苹果跌超6%</td>
+      <td>外部同产业链或风险偏好走弱会传导到A股，国内利好不能自动高权重覆盖外部证伪。</td>
+      <td>相关主题候选降权，等待A股全市场扫描和资金流入确认后再恢复。</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="stock-name">商品与汇率</span></td>
+      <td><span class="tag risk">外部市场</span><span class="tag watch">高</span></td>
+      <td>霍尔木兹海峡新动向！纳指跳水 黄金、白银突变！；黄金大跌！工行、建行公告：即将关闭，尽快卖出或平仓</td>
+      <td>外部同产业链或风险偏好走弱会传导到A股，国内利好不能自动高权重覆盖外部证伪。</td>
+      <td>相关主题候选降权，等待A股全市场扫描和资金流入确认后再恢复。</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="stock-name">日韩半导体链</span></td>
+      <td><span class="tag risk">外部市场</span><span class="tag watch">高</span></td>
+      <td>日经225指数开盘跌1.08% 韩国...；日经225指数猛跌1600点，软银...</td>
+      <td>外部同产业链或风险偏好走弱会传导到A股，国内利好不能自动高权重覆盖外部证伪。</td>
+      <td>相关主题候选降权，等待A股全市场扫描和资金流入确认后再恢复。</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="stock-name">港股科技映射</span></td>
+      <td><span class="tag risk">外部市场</span><span class="tag watch">高</span></td>
+      <td>港股大模型概念股盘初下挫 智谱跌超7%；港股午评：恒生指数跌1.13% 智谱跌超11%</td>
+      <td>外部同产业链或风险偏好走弱会传导到A股，国内利好不能自动高权重覆盖外部证伪。</td>
+      <td>相关主题候选降权，等待A股全市场扫描和资金流入确认后再恢复。</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="stock-name">全球风险偏好</span></td>
+      <td><span class="tag risk">外部市场</span><span class="tag watch">高</span></td>
+      <td>全球市场：美股三大指数涨跌不一 闪迪、美光科技领涨芯片股 苹果跌超6%；被SpaceX大跌吓退了？OpenAI据传考虑推迟IPO计划 力争万亿美元估值</td>
+      <td>外部同产业链或风险偏好走弱会传导到A股，国内利好不能自动高权重覆盖外部证伪。</td>
+      <td>相关主题候选降权，等待A股全市场扫描和资金流入确认后再恢复。</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="stock-name">13:15市场宽度</span></td>
+      <td><span class="tag risk">大盘</span><span class="tag watch">高</span></td>
+      <td>全市场上涨994家、下跌4249家，中位涨幅-1.92%；主板上涨578家、下跌2447家。13:00后有弱修复：上涨家数+141、下跌家数-37、中位涨幅+0.47pct。</td>
+      <td>午后仍是risk_off中的局部科技修复，不是全面进攻；追高和贴近6%的样本容易兑现。</td>
+      <td>只保留13:00后仍有承接、涨幅低于5%、或未贴近6%的同链主板样本。</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="stock-name">热门概念集中</span></td>
+      <td><span class="tag risk">概念</span><span class="tag watch">中</span></td>
+      <td>13:15候选集中在半导体封测、设备、电子材料和MLCC配套。</td>
+      <td>主题过度集中时，若科技硬件强样本炸板，低位补涨也可能同步回落。</td>
+      <td>后续14:45需要检查是否仍有低位承接；若扩散退潮，减少尾盘候选。</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="stock-name">内外信号冲突</span></td>
+      <td><span class="tag risk">外部市场</span><span class="tag watch">高</span></td>
+      <td>“韬定律”V2版正式发布！先进封装国产突围加速 多只概念股业绩有望倍增</td>
+      <td>国内利好与外部同产业链走弱冲突：先进封装。</td>
+      <td>国内利好降权为待验证，必须等待A股资金承接确认。</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="stock-name">内外信号冲突</span></td>
+      <td><span class="tag risk">外部市场</span><span class="tag watch">高</span></td>
+      <td>机构调研丨AIDC+液冷+字节概念 这家公司订单充足 将稳步拓展日韩、澳洲、欧美高端算力市场</td>
+      <td>国内利好与外部同产业链走弱冲突：液冷。</td>
+      <td>国内利好降权为待验证，必须等待A股资金承接确认。</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="stock-name">内外信号冲突</span></td>
+      <td><span class="tag risk">外部市场</span><span class="tag watch">高</span></td>
+      <td>期权智投播报 | AI电力接棒算力行情 Bloom Energy大涨；并购与指数纳入预期加持 SpaceX斩获三连涨</td>
+      <td>国内利好与外部同产业链走弱冲突：科技硬件/半导体链。</td>
+      <td>国内利好降权为待验证，必须等待A股资金承接确认。</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="stock-name">短线情绪过热</span></td>
+      <td><span class="tag risk">概念</span><span class="tag watch">中</span></td>
+      <td>全市场涨幅超过 6% 的样本约 151 只。</td>
+      <td>高涨幅样本过多时，尾盘和次日容易出现兑现，未爆发候选也可能被板块退潮拖累。</td>
+      <td>降低追涨权重，只保留未过 6% 且仍有资金流入的样本。</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="stock-name">华天科技</span><span class="code">(002185)</span></td>
+      <td><span class="tag risk">个股</span><span class="tag watch">中</span></td>
+      <td>先进封装/半导体封测</td>
+      <td>外部美股科技链和日韩半导体链仍为高风险，国内利好不能单独支撑。</td>
+      <td>触发风险条件时从正式候选降级为观察。</td>
+    </tr>
+    </tbody>
+    </table>
+    
+    <h2>剔除/仅观察</h2><div class="panel"><span class="tag risk">太极实业 600667：13:15涨幅7.11%，超过6%硬上限，只能作为半导体强度样本。</span><span class="tag risk">N惠科 001399：新股大幅上涨383.70%，不可作为本流程可交易候选。</span><span class="tag risk">立昂微 605358：13:15涨幅6.45%，超过6%硬上限；半导体强度可用但不可买。</span><span class="tag risk">TCL中环 002129：13:15涨幅10.03%，涨停/近涨停，硬剔除。</span><span class="tag risk">金风科技 002202：13:15涨幅9.13%，接近涨停，硬剔除。</span><span class="tag risk">中国卫星 600118：13:15涨幅7.96%，超过6%；用于提示航天/军工局部强度，不进正式候选。</span><span class="tag risk">凯盛科技 600552：13:15涨幅10.00%，涨停/近涨停，硬剔除。</span><span class="tag risk">航天电子 600879：13:15涨幅6.33%，超过6%；航天链强度确认，但正式候选改看未过6%的低位样本。</span><span class="tag risk">超声电子 000823：13:15涨幅10.01%，涨停/近涨停，不能进入候选。</span><span class="tag risk">永和股份 605020：13:15涨幅5.89%，已在5.5%-6%高位带，预分析评级偏兑现，剩余空间约3.88%，不批量贴边。</span><span class="tag risk">欧菲光 002456：13:15涨幅5.83%，消费电子映射强但已高位偏兑现，剩余空间约3.94%，只作强度观察。</span><span class="tag risk">盛剑科技 603324：09:45候选午后涨至5.76%，评级偏兑现且主力净流入很弱，不再复制到13:15。</span><span class="tag risk">恒逸石化 000703：13:15涨幅5.67%且首帧以来回落2.51pct，处高位带偏兑现；商品/化工外部风险仍高。</span><span class="tag risk">张江高科 600895：13:15涨幅5.32%，虽有净流入但已进高位带且评级仅中，作为半导体园区情绪观察。</span><span class="tag risk">京东方Ａ 000725：09:45候选午后仍有大成交但主力净流出约1.53亿元，13:00后变化为-0.40pct，降级观察。</span><span class="tag risk">长电科技 600584：盘前核心候选但13:15主力净流出约23.43亿元，涨幅仅0.15%且评级低，A股承接未确认。</span><span class="tag risk">德明利 001309：存储催化仍在，但13:15主力净流出约6.01亿元，外部存储/半导体冲突下不能只凭新闻入选。</span><span class="tag risk">三安光电 600703：09:45候选午后转弱，13:15涨幅0.18%、主力净流出约4.30亿元，剔除。</span><span class="tag risk">牧原股份 002714：13:15爆发评分高但不属于当日科技硬件/电子材料热门概念，且缺少09:00硬催化映射，不用于凑数。</span><span class="tag risk">万通发展 600246：本地兜底候选，地产属性与当日热门概念不匹配；正式13:15不沿用。</span><span class="tag risk">华电辽能 600396：电力/防御属性强，虽有资金承接但不是午后热门科技主线，弱势盘中不与硬科技同权。</span><span class="tag risk">三孚股份 603938：化工材料样本爆发评分高，但商品/化工外部风险仍高，且与电子材料主线映射弱于入选候选。</span><span class="tag risk">新亚电子 605277：13:00后加速居前，但成交额约4.09亿元，弱于入选的电子材料/半导体扩散样本，暂观察。</span></div>
+    <h2>使用信息</h2>
+    <div class="panel"><ul class="compact"><li>data/market/YYYY-MM-DD_1315_market_preanalysis.json</li><li>data/market/archive/YYYY-MM-DD/continuous_full_rows_archive.jsonl</li><li>docs/daily_news_YYYY-MM-DD_1315.md</li><li>data/news_preanalysis/YYYY-MM-DD_1315_news_preanalysis.json</li><li>docs/daily_news_YYYY-MM-DD.md</li><li>data/news_preanalysis/YYYY-MM-DD_0900_news_preanalysis.json</li><li>data/preopen_research/YYYY-MM-DD_preopen_research_pool.json</li><li>memory/rolling_20_trading_days.md</li></ul></div>
+    <h2>原始快照</h2>
+    <div class="panel source-links"><a href="../next_morning_review.md">收盘后复盘 Markdown</a></div>
+    
+  </main>
+</body>
+</html>
