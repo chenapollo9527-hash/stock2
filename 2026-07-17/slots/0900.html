@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>2026-07-16 08:00 盘前分析</title>
+  <title>2026-07-17 08:00 盘前分析</title>
   <style>
 :root {
   color-scheme: light;
@@ -204,29 +204,28 @@ ul.compact li { margin: 4px 0; }
     
     <div class="topbar">
       <div>
-        <h1>2026-07-16 08:00 盘前分析</h1>
+        <h1>2026-07-17 08:00 盘前分析</h1>
         <div class="muted">只显示该时间点当时生成的股票；点击股票名进入该时间点详情。</div>
       </div>
       <a href="../index.html">返回时间点</a>
     </div>
     <div class="notice">时间边界：08:00 前已保存过去24小时新闻预分析、事件、30日K线研究池和滚动备忘录；不得读取开盘后行情。</div>
-    <div class="notice">券商板块受外部市场风险压制，华泰证券、中信证券缺乏独立公司级硬催化，未满足external_risk_override_reason，已降级为观察；以岭药业、好想你、农产品等非券商候选均因低弹性、无进攻性催化或过热信号被盘前研究拒绝，无符合条件的盘前核心候选，故不强制凑数。</div>
+    
     <h2>状态</h2>
     <div class="grid">
-      <div class="metric"><span class="muted">市场姿态</span><strong>观察待确认</strong></div>
-      <div class="metric"><span class="muted">快照生成时间</span><strong>2026-07-16T08:17:49+08:00</strong></div>
-      <div class="metric"><span class="muted">候选数量</span><strong>0</strong></div>
+      <div class="metric"><span class="muted">市场姿态</span><strong>外部风险压制科技高 Beta，局部主题轮动（医药、军工、化工），核心候选极度稀缺</strong></div>
+      <div class="metric"><span class="muted">快照生成时间</span><strong>2026-07-17T08:17:29+08:00</strong></div>
+      <div class="metric"><span class="muted">候选数量</span><strong>1</strong></div>
     </div>
     <h2>分析结论</h2><div class="panel muted">该时间点尚未生成分析。</div>
     
     <h2>API 运行信息</h2>
     <div class="grid"><div class="metric"><span class="muted">模型</span><strong>deepseek-v4-pro</strong></div>
-<div class="metric"><span class="muted">Total tokens</span><strong>1988950</strong></div></div>
+<div class="metric"><span class="muted">Total tokens</span><strong>1985172</strong></div></div>
     
-    <h2>热门概念雷达</h2><table class="stock-table"><thead><tr><th>概念</th><th>强度证据</th><th>不可买强势样本</th><th>同链低位候选</th></tr></thead><tbody><tr><td><span class="stock-name">医药/创新药/医疗</span></td><td>创新药获批、公募密集调研、业绩预增等新闻催化；以岭药业进入盘前核心候选，技术面量能放大，但仍处20日高点，需开盘确认突破。</td><td>-</td><td>-</td></tr>
-<tr><td><span class="stock-name">消费/养殖/食品/文旅轮动</span></td><td>白酒业绩预告、大消费板块景气度回升；好想你、农产品等低位修复样本进入核心候选，轮动主线仍需资金扩散验证。</td><td>-</td><td>-</td></tr>
-<tr><td><span class="stock-name">券商/大金融</span></td><td>华泰证券、中信证券量价结构稳健，业绩预增强催化，但受全球风险偏好外部风险压制，必须等待09:45 A股资金承接确认后恢复权重。</td><td>-</td><td>-</td></tr>
-<tr><td><span class="stock-name">科技硬件/半导体/AI算力</span></td><td>美股科技链、日韩半导体链外部风险严重度「高」，国内利好被降权；旭光电子、航天电子等研究池标的仅作为观察，盘前不纳入正式候选，需开盘后A股资金承接验证。</td><td>-</td><td>-</td></tr></tbody></table>
+    <h2>热门概念雷达</h2><table class="stock-table"><thead><tr><th>概念</th><th>强度证据</th><th>不可买强势样本</th><th>同链低位候选</th></tr></thead><tbody><tr><td><span class="stock-name">创新药/医药</span></td><td>新闻预分析中创新药主题聚合样本密集，海思科（002653）技术面强劲，30 日涨幅 48.5%，成交额稳定，且未受外部科技风险直接影响。</td><td>-</td><td>-</td></tr>
+<tr><td><span class="stock-name">化工/农药/材料</span></td><td>利尔化学（002258）和诺德股份（600110）量价结构突出，分别处于化工农药和铜箔材料领域，部分受益于涨价链和业绩预喜线索，但外部商品汇率风险及高 Beta 属性使其须等待盘中确认。</td><td>-</td><td>-</td></tr>
+<tr><td><span class="stock-name">高端制造/军工/机器人</span></td><td>航天工程（603698）30 日斜率上升，量价结构评分第一，属于独立主题，但无公司级硬催化，且概念与外部风险有一定关联，盘前仅观察。</td><td>-</td><td>-</td></tr></tbody></table>
     
     
     <h2>主板可交易候选（偏未爆发/惯性）</h2>
@@ -234,7 +233,15 @@ ul.compact li { margin: 4px 0; }
       <thead>
         <tr><th>股票</th><th>概念</th><th>来源/确认</th><th>涨幅</th><th>详情</th></tr>
       </thead>
-      <tbody><tr><td colspan="5" class="muted">该时间点暂无可交易候选。</td></tr></tbody>
+      <tbody>
+    <tr>
+      <td><a class="stock-name" href="../stocks/0900_002653.html">海思科</a><span class="code">(002653)</span></td>
+      <td>医药/创新药</td>
+      <td><span class="tag good">preopen_observation_pool / 创新药主题映射，30 日涨幅 48.5%，斜率 0.83，成交额 16.88 亿元，20 日位置 0.69，风险质量中等，无过热，且不受外部科技风险直接影响。</span></td>
+      <td><div class="perf-line"><span class="perf-item">待收盘复盘</span></div></td>
+      <td><a href="../stocks/0900_002653.html">查看详情</a></td>
+    </tr>
+    </tbody>
     </table>
     
     <h2>风险提示（概念/个股）</h2>
@@ -244,9 +251,9 @@ ul.compact li { margin: 4px 0; }
       </thead>
       <tbody>
     <tr>
-      <td><span class="stock-name">日韩半导体链</span></td>
+      <td><span class="stock-name">美股科技链</span></td>
       <td><span class="tag risk">外部市场</span><span class="tag watch">高</span></td>
-      <td>暴涨熔断！三大利好来袭 韩国股市直线拉升！SK海力士、三星电子大涨；美股存储芯片深夜重挫，SK海力士大跌9%，中概股普涨</td>
+      <td>全球市场：美股三大指数收跌 纳指跌超1% 半导体、存储概念股继续大跌 现货白银跌近4%；美股三大指数集体收跌 半导体、存储概念股大跌</td>
       <td>外部同产业链或风险偏好走弱会传导到A股，国内利好不能自动高权重覆盖外部证伪。</td>
       <td>相关主题候选降权，等待A股全市场扫描和资金流入确认后再恢复。</td>
     </tr>
@@ -255,16 +262,7 @@ ul.compact li { margin: 4px 0; }
     <tr>
       <td><span class="stock-name">全球风险偏好</span></td>
       <td><span class="tag risk">外部市场</span><span class="tag watch">高</span></td>
-      <td>SpaceX首次跌破135美元的IPO发...；全球市场：美股三大指数收涨 存储概念股逆市大跌 苹果涨超4%创历史新高</td>
-      <td>外部同产业链或风险偏好走弱会传导到A股，国内利好不能自动高权重覆盖外部证伪。</td>
-      <td>相关主题候选降权，等待A股全市场扫描和资金流入确认后再恢复。</td>
-    </tr>
-    
-
-    <tr>
-      <td><span class="stock-name">美股科技链</span></td>
-      <td><span class="tag risk">外部市场</span><span class="tag watch">高</span></td>
-      <td>芯片股低迷闪迪美光重挫，科技...；全球市场：美股三大指数收涨 存储概念股逆市大跌 苹果涨超4%创历史新高</td>
+      <td>全球市场：美股三大指数收跌 纳指跌超1% 半导体、存储概念股继续大跌 现货白银跌近4%；美股存储股下挫，美光市值跌破1万亿美元，腾讯音乐涨超5%</td>
       <td>外部同产业链或风险偏好走弱会传导到A股，国内利好不能自动高权重覆盖外部证伪。</td>
       <td>相关主题候选降权，等待A股全市场扫描和资金流入确认后再恢复。</td>
     </tr>
@@ -273,7 +271,16 @@ ul.compact li { margin: 4px 0; }
     <tr>
       <td><span class="stock-name">港股科技映射</span></td>
       <td><span class="tag risk">外部市场</span><span class="tag watch">高</span></td>
-      <td>美股三大指数集体收涨 存储概念股逆势大跌 中国金龙指数涨近3%、阿里涨超4%；美股芯片股深夜走低，闪迪跌逾6%，阿里巴巴涨近8%</td>
+      <td>美股存储股下挫，美光市值跌破1万亿美元，腾讯音乐涨超5%</td>
+      <td>外部同产业链或风险偏好走弱会传导到A股，国内利好不能自动高权重覆盖外部证伪。</td>
+      <td>相关主题候选降权，等待A股全市场扫描和资金流入确认后再恢复。</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="stock-name">商品与汇率</span></td>
+      <td><span class="tag risk">外部市场</span><span class="tag watch">高</span></td>
+      <td>商品与汇率出现负面线索。</td>
       <td>外部同产业链或风险偏好走弱会传导到A股，国内利好不能自动高权重覆盖外部证伪。</td>
       <td>相关主题候选降权，等待A股全市场扫描和资金流入确认后再恢复。</td>
     </tr>
@@ -282,8 +289,8 @@ ul.compact li { margin: 4px 0; }
     <tr>
       <td><span class="stock-name">内外信号冲突</span></td>
       <td><span class="tag risk">外部市场</span><span class="tag watch">高</span></td>
-      <td>有色金属公司上半年业绩有望向好</td>
-      <td>国内利好与外部同产业链走弱冲突：有色。</td>
+      <td>手机AI准生证获批（附股）</td>
+      <td>国内利好与外部同产业链走弱冲突：科技硬件/半导体链。</td>
       <td>国内利好降权为待验证，必须等待A股资金承接确认。</td>
     </tr>
     
@@ -291,8 +298,8 @@ ul.compact li { margin: 4px 0; }
     <tr>
       <td><span class="stock-name">内外信号冲突</span></td>
       <td><span class="tag risk">外部市场</span><span class="tag watch">高</span></td>
-      <td>利好来了！华为、苹果在列 手机AI“准生证”获批...</td>
-      <td>国内利好与外部同产业链走弱冲突：科技硬件/半导体链。</td>
+      <td>半导体行业涨价潮蔓延！光刻机巨头据悉酝酿提价</td>
+      <td>国内利好与外部同产业链走弱冲突：半导体。</td>
       <td>国内利好降权为待验证，必须等待A股资金承接确认。</td>
     </tr>
     
@@ -300,7 +307,7 @@ ul.compact li { margin: 4px 0; }
     <tr>
       <td><span class="stock-name">新闻风险线索</span></td>
       <td><span class="tag risk">新闻</span><span class="tag watch">中</span></td>
-      <td>[韩股芯片股杠杆ETF放大波动 券商讨论提高投资门槛](https://finance.eastmoney.com/a/202607153807251185.html) - eastmoney_stock - soft</td>
+      <td>[巴菲特谈AI股：投了310亿美元 怒斥美股投机狂热](https://finance.eastmoney.com/a/202607163809076091.html) - eastmoney_stock - 美元, 美股, AI</td>
       <td>公告、异常波动、杠杆或监管线索可能使相关主题从进攻转为兑现。</td>
       <td>若与候选概念重合，降低仓位假设并等待资金确认。</td>
     </tr>
@@ -311,7 +318,7 @@ ul.compact li { margin: 4px 0; }
     <h2>使用信息</h2>
     <div class="panel"><ul class="compact"><li>docs/daily_news_YYYY-MM-DD.md</li><li>data/news_preanalysis/YYYY-MM-DD_0900_news_preanalysis.json</li><li>data/cleaned/events.jsonl</li><li>memory/rolling_20_trading_days.md</li><li>memory/bootstrap_20d_context.json</li><li>data/state/source_status.json</li></ul></div>
     <h2>原始快照</h2>
-    <div class="panel source-links"><a href="../next_morning_review.md">收盘后复盘 Markdown</a><a href="../sla_daily_report.md">SLA 日报 Markdown</a></div>
+    <div class="panel source-links"><span class="muted">无原始快照</span></div>
     
   </main>
 </body>
