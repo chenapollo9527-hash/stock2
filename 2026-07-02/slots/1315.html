@@ -110,39 +110,7 @@ h3 { font-size: 16px; margin: 16px 0 8px; }
 .tag.good { color: var(--green); border-color: #b8dccd; background: #eef9f4; }
 .tag.watch { color: var(--orange); border-color: #ead19a; background: #fff8e8; }
 .tag.risk { color: var(--red); border-color: #e8b8b8; background: #fff1f1; }
-.scan-timeline {
-  margin-top: 12px;
-  padding-top: 10px;
-  border-top: 1px solid var(--line);
-}
-.scan-timeline-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(12px, 1fr));
-  gap: 3px;
-  margin: 8px 0;
-}
-.scan-cell {
-  display: block;
-  height: 16px;
-  border: 1px solid var(--line);
-  border-radius: 3px;
-  background: #eef0f3;
-}
-.scan-cell.good { background: #0d7a4f; border-color: #0d7a4f; }
-.scan-cell.risk { background: #d9822b; border-color: #d9822b; }
-.scan-cell.missing { background: #eef0f3; border-color: #cbd3df; }
-.scan-legend {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  align-items: center;
-}
-.scan-legend .scan-cell {
-  width: 14px;
-  display: inline-block;
-  margin-right: 4px;
-  vertical-align: -3px;
-}
+.tag.pending { color: var(--muted); border-color: var(--line); background: #f8fafc; }
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -209,7 +177,7 @@ ul.compact li { margin: 4px 0; }
       </div>
       <a href="../index.html">返回时间点</a>
     </div>
-    <div class="notice">时间边界：13:15 前已保存08:00新闻/观察池、轻量重大新闻增量、上午全A扫描、午后13:00/13:05/13:10/13:15扫描、行情预分析和滚动备忘录。</div>
+    <div class="notice">时间边界：13:15 到点一次性保存上午120分钟及午后15分钟全主板原生1分钟量价批次，并生成13:00/13:05/13:10/13:15决策特征；新闻固定复用08:00背景。</div>
     
     <h2>状态</h2>
     <div class="grid">
@@ -395,7 +363,7 @@ ul.compact li { margin: 4px 0; }
     
     <h2>剔除/仅观察</h2><div class="panel"><span class="tag risk">京东方A 000725：涨幅7.98%，超过6%硬上限；只作科技/面板强度样本。</span><span class="tag risk">万业企业 600641：涨幅10.01%，涨停/近涨停，不可买。</span><span class="tag risk">赤峰黄金 600988：涨幅10.00%，涨停不可买。</span><span class="tag risk">山金国际 000975：涨幅10.01%，涨停不可买。</span><span class="tag risk">章源钨业 002378：涨幅10.00%，涨停不可买。</span><span class="tag risk">科伦药业 002422：涨幅6.29%，超过6%硬上限。</span><span class="tag risk">恺英网络 002517：5.02%且AI应用命中港股科技映射，13:00后回落，观察。</span><span class="tag risk">多氟多 002407：成交162.58亿元但主力净流出10.58亿元，不因成交额补位。</span><span class="tag risk">TCL科技 000100：成交108.58亿元但主力净流出6.45亿元，观察。</span><span class="tag risk">药明康德 603259：医药成交高但涨幅为负且主力净流出，不选。</span><span class="tag risk">上海医药 601607：09:00旧票，13:15成交1.21亿元且主力净流出，不复读。</span><span class="tag risk">贵州茅台 600519：低弹性消费权重，不是13:15涨停潮核心。</span><span class="tag risk">美的集团 000333：13:15转负且主力净流出，不复读09:45。</span><span class="tag risk">中国人寿 601628：13:15转负，金融不是当前最强概念簇。</span></div>
     <h2>使用信息</h2>
-    <div class="panel"><ul class="compact"><li>data/market/YYYY-MM-DD_1315_market_preanalysis.json</li><li>data/market/archive/YYYY-MM-DD/continuous_full_rows_archive.jsonl</li><li>docs/daily_news_YYYY-MM-DD_1315.md</li><li>data/news_preanalysis/YYYY-MM-DD_1315_news_preanalysis.json</li><li>docs/daily_news_YYYY-MM-DD.md</li><li>data/news_preanalysis/YYYY-MM-DD_0900_news_preanalysis.json</li><li>data/preopen_research/YYYY-MM-DD_preopen_research_pool.json</li><li>memory/rolling_20_trading_days.md</li></ul></div>
+    <div class="panel"><ul class="compact"><li>data/market/YYYY-MM-DD_1315_market_preanalysis.json</li><li>data/market/slot_batches/YYYY-MM-DD/1315/minute_bars.parquet</li><li>data/market/slot_batches/YYYY-MM-DD/1315/quality_manifest.json</li><li>docs/daily_news_YYYY-MM-DD.md</li><li>data/news_preanalysis/YYYY-MM-DD_0900_news_preanalysis.json</li><li>data/preopen_research/YYYY-MM-DD_preopen_research_pool.json</li><li>memory/rolling_20_trading_days.md</li></ul></div>
     <h2>原始快照</h2>
     <div class="panel source-links"><a href="../next_morning_review.md">收盘后复盘 Markdown</a></div>
     

@@ -110,39 +110,7 @@ h3 { font-size: 16px; margin: 16px 0 8px; }
 .tag.good { color: var(--green); border-color: #b8dccd; background: #eef9f4; }
 .tag.watch { color: var(--orange); border-color: #ead19a; background: #fff8e8; }
 .tag.risk { color: var(--red); border-color: #e8b8b8; background: #fff1f1; }
-.scan-timeline {
-  margin-top: 12px;
-  padding-top: 10px;
-  border-top: 1px solid var(--line);
-}
-.scan-timeline-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(12px, 1fr));
-  gap: 3px;
-  margin: 8px 0;
-}
-.scan-cell {
-  display: block;
-  height: 16px;
-  border: 1px solid var(--line);
-  border-radius: 3px;
-  background: #eef0f3;
-}
-.scan-cell.good { background: #0d7a4f; border-color: #0d7a4f; }
-.scan-cell.risk { background: #d9822b; border-color: #d9822b; }
-.scan-cell.missing { background: #eef0f3; border-color: #cbd3df; }
-.scan-legend {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  align-items: center;
-}
-.scan-legend .scan-cell {
-  width: 14px;
-  display: inline-block;
-  margin-right: 4px;
-  vertical-align: -3px;
-}
+.tag.pending { color: var(--muted); border-color: var(--line); background: #f8fafc; }
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -210,7 +178,7 @@ ul.compact li { margin: 4px 0; }
       <a href="../index.html">返回日期索引</a>
     </div>
     <div class="notice">仅用于投研辅助和候选池整理；请结合确认条件和风险条件，不作为自动交易指令。</div>
-    <h2>流程健康状态</h2><div class="panel"><span class="tag good">滚动备忘录：OK</span><span class="tag risk">回测清单缺项1：缺失</span><span class="tag risk">SLA日报：缺失</span><span class="tag good">08:00新闻：OK</span><span class="tag good">08:00候选：OK</span><span class="tag risk">全天扫描：缺失</span><span class="tag good">09:45新闻：OK</span><span class="tag risk">09:45预分析：缺失</span><span class="tag risk">09:45候选：缺失</span><span class="tag good">13:15新闻：OK</span><span class="tag risk">13:15预分析：缺失</span><span class="tag risk">13:15候选：缺失</span><span class="tag good">14:45新闻：OK</span><span class="tag risk">14:45预分析：缺失</span><span class="tag risk">14:45候选：缺失</span><span class="tag risk">收盘结果：缺失</span><div class="scan-timeline muted">全天扫描时间轴：暂无归档。</div></div>
+    <h2>流程健康状态</h2><div class="panel"><span class="tag good">滚动备忘录：正常</span><span class="tag good">08:00新闻与公告：正常</span><span class="tag risk">08:00量价研究池 Top200=0 Top30=0：异常</span><span class="tag good">08:00正式候选：正常</span><span class="tag risk">09:45一分钟行情与预分析：异常</span><span class="tag risk">09:45正式候选：异常</span><span class="tag risk">13:15一分钟行情与预分析：异常</span><span class="tag risk">13:15正式候选：异常</span><span class="tag risk">14:45一分钟行情与预分析：异常</span><span class="tag risk">14:45正式候选：异常</span><span class="tag risk">15:15收盘结果：异常</span><span class="tag risk">回测资料包缺项1：异常</span><span class="tag risk">运行审计日报：异常</span><div class="muted" style="margin-top:10px">回测资料包在收盘后封存各阶段可见输入，用于无未来数据泄漏的历史重放；运行审计日报（SLA）在收盘后汇总耗时、超时/阻塞和正式邮件状态。</div></div>
     
     <h2>分时点推荐</h2>
     <div class="grid">
@@ -233,7 +201,7 @@ ul.compact li { margin: 4px 0; }
               <strong>未形成正式候选</strong>
               <div class="muted">2026-06-16T18:20:00+08:00</div>
               <div>测试新闻可显示热点方向，但没有正式 09:45 准点监控和主板快照，不能输出可交易标的。</div>
-              <div class="muted">边界：09:45 前已保存08:00新闻/观察池、轻量重大新闻增量、09:30/09:35/09:40/09:45 全A扫描帧、开盘行情预分析和滚动备忘录。</div>
+              <div class="muted">边界：09:45 到点一次性保存截至09:45的全主板原生1分钟量价批次，并从中生成09:30前收锚点及09:35/09:40/09:45决策特征；新闻固定复用08:00背景。</div>
             </a>
             
             <a class="slot-card" href="slots/1315.html">
@@ -244,7 +212,7 @@ ul.compact li { margin: 4px 0; }
               <strong>未形成正式候选</strong>
               <div class="muted">2026-06-16T18:20:00+08:00</div>
               <div>测试新闻显示午后有有机硅、稀土和 AI 硬件强度，但缺少正式 13:15 准点证据，不能追高。</div>
-              <div class="muted">边界：13:15 前已保存08:00新闻/观察池、轻量重大新闻增量、上午全A扫描、午后13:00/13:05/13:10/13:15扫描、行情预分析和滚动备忘录。</div>
+              <div class="muted">边界：13:15 到点一次性保存上午120分钟及午后15分钟全主板原生1分钟量价批次，并生成13:00/13:05/13:10/13:15决策特征；新闻固定复用08:00背景。</div>
             </a>
             
             <a class="slot-card" href="slots/1445.html">
@@ -255,7 +223,7 @@ ul.compact li { margin: 4px 0; }
               <strong>待生成</strong>
               <div class="muted">-</div>
               <div>该时间点尚未生成分析。</div>
-              <div class="muted">边界：14:45 前已保存08:00新闻/观察池、轻量重大新闻增量、全日全A扫描、14:30/14:35/14:40/14:45尾盘行情预分析和滚动备忘录。</div>
+              <div class="muted">边界：14:45 到点一次性保存截至14:45的全主板原生1分钟量价批次，并生成14:30/14:35/14:40/14:45决策特征；新闻固定复用08:00背景，结论用于次日开盘观察。</div>
             </a>
             </div>
     
@@ -274,9 +242,9 @@ ul.compact li { margin: 4px 0; }
     <div class="panel">
       <div class="boundary"><strong>滚动备忘录</strong> 四轮推荐都必须读取，用来约束主线生命周期、历史胜率、错因纠偏、外部风险硬闸门和“不能复读旧票/不能凑数”的长期规则；它不替代当轮新闻和行情，只负责把近期经验转成决策约束。</div>
       <div class="boundary"><strong>08:00</strong> 本轮过去24小时新闻预分析 + 30日K线研究池 + 20个交易日滚动备忘录。</div>
-      <div class="boundary" style="margin-top:10px"><strong>09:45</strong> 本轮新闻预分析 + 09:30/09:35/09:40/09:45 全A扫描预分析 + 08:00新闻背景 + 20日备忘录；优先寻找尚未充分爆发但有板块惯性的可交易票。</div>
-      <div class="boundary" style="margin-top:10px"><strong>13:15</strong> 本轮新闻预分析 + 上午全A走势 + 13:00/13:05/13:10/13:15 午后变化预分析 + 08:00新闻背景 + 20日备忘录；午后近端信息权重更高。</div>
-      <div class="boundary" style="margin-top:10px"><strong>14:45</strong> 本轮过去6小时新闻预分析 + 全日扫描 + 尾盘近端行情预分析 + 08:00新闻背景；直接并入尾盘推荐，不再单独生成次日观察池。</div>
+      <div class="boundary" style="margin-top:10px"><strong>09:45</strong> 一次性下载截至09:45的全主板原生1分钟量价数据，生成09:30前收锚点及09:35/09:40/09:45特征；基于08:00 Top30和备忘录确认，不刷新新闻。</div>
+      <div class="boundary" style="margin-top:10px"><strong>13:15</strong> 一次性下载上午120分钟和午后15分钟全主板原生1分钟量价数据，生成13:00/13:05/13:10/13:15特征；午后资金事实权重高于盘前叙事，不刷新新闻。</div>
+      <div class="boundary" style="margin-top:10px"><strong>14:45</strong> 一次性下载截至14:45的225分钟全主板原生1分钟量价数据，生成14:30/14:35/14:40/14:45特征；结论严格用于次日开盘观察，不刷新新闻。</div>
     </div>
     <h2>过滤/仅观察</h2>
     <div class="panel"><span class="muted">无</span></div>

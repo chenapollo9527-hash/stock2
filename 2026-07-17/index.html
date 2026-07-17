@@ -110,39 +110,7 @@ h3 { font-size: 16px; margin: 16px 0 8px; }
 .tag.good { color: var(--green); border-color: #b8dccd; background: #eef9f4; }
 .tag.watch { color: var(--orange); border-color: #ead19a; background: #fff8e8; }
 .tag.risk { color: var(--red); border-color: #e8b8b8; background: #fff1f1; }
-.scan-timeline {
-  margin-top: 12px;
-  padding-top: 10px;
-  border-top: 1px solid var(--line);
-}
-.scan-timeline-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(12px, 1fr));
-  gap: 3px;
-  margin: 8px 0;
-}
-.scan-cell {
-  display: block;
-  height: 16px;
-  border: 1px solid var(--line);
-  border-radius: 3px;
-  background: #eef0f3;
-}
-.scan-cell.good { background: #0d7a4f; border-color: #0d7a4f; }
-.scan-cell.risk { background: #d9822b; border-color: #d9822b; }
-.scan-cell.missing { background: #eef0f3; border-color: #cbd3df; }
-.scan-legend {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  align-items: center;
-}
-.scan-legend .scan-cell {
-  width: 14px;
-  display: inline-block;
-  margin-right: 4px;
-  vertical-align: -3px;
-}
+.tag.pending { color: var(--muted); border-color: var(--line); background: #f8fafc; }
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -210,7 +178,7 @@ ul.compact li { margin: 4px 0; }
       <a href="../index.html">返回日期索引</a>
     </div>
     <div class="notice">仅用于投研辅助和候选池整理；请结合确认条件和风险条件，不作为自动交易指令。</div>
-    <h2>流程健康状态</h2><div class="panel"><span class="tag good">滚动备忘录：OK</span><span class="tag risk">回测清单缺项10：缺失</span><span class="tag risk">SLA日报：缺失</span><span class="tag good">08:00新闻：OK</span><span class="tag good">08:00候选：OK</span><span class="tag good">09:45 1分钟批次 3041/3042：OK</span><span class="tag risk">09:45候选：缺失</span><span class="tag risk">13:15预分析：缺失</span><span class="tag risk">13:15候选：缺失</span><span class="tag risk">14:45预分析：缺失</span><span class="tag risk">14:45候选：缺失</span><span class="tag risk">收盘结果：缺失</span><div class="muted">最近自动化：0945 / blocked_slot_incomplete / 2026-07-17T09:46:03+08:00</div></div>
+    <h2>流程健康状态</h2><div class="panel"><span class="tag good">滚动备忘录：正常</span><span class="tag good">08:00新闻与公告：正常</span><span class="tag good">08:00量价研究池 Top200=200 Top30=30：正常</span><span class="tag good">08:00正式候选：正常</span><span class="tag good">09:45一分钟行情与预分析 3041/3042：正常</span><span class="tag risk">09:45正式候选：异常</span><span class="tag pending">13:15一分钟行情与预分析：待执行</span><span class="tag pending">13:15正式候选：待执行</span><span class="tag pending">14:45一分钟行情与预分析：待执行</span><span class="tag pending">14:45正式候选：待执行</span><span class="tag pending">15:15收盘结果：待执行</span><span class="tag pending">回测资料包：待执行</span><span class="tag pending">运行审计日报：待执行</span><div class="muted" style="margin-top:10px">回测资料包在收盘后封存各阶段可见输入，用于无未来数据泄漏的历史重放；运行审计日报（SLA）在收盘后汇总耗时、超时/阻塞和正式邮件状态。</div><div class="muted">最近自动化：0945 / blocked_slot_incomplete / 2026-07-17T09:46:03+08:00</div></div>
     
     <h2>分时点推荐</h2>
     <div class="grid">

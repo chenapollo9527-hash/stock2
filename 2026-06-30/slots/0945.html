@@ -110,39 +110,7 @@ h3 { font-size: 16px; margin: 16px 0 8px; }
 .tag.good { color: var(--green); border-color: #b8dccd; background: #eef9f4; }
 .tag.watch { color: var(--orange); border-color: #ead19a; background: #fff8e8; }
 .tag.risk { color: var(--red); border-color: #e8b8b8; background: #fff1f1; }
-.scan-timeline {
-  margin-top: 12px;
-  padding-top: 10px;
-  border-top: 1px solid var(--line);
-}
-.scan-timeline-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(12px, 1fr));
-  gap: 3px;
-  margin: 8px 0;
-}
-.scan-cell {
-  display: block;
-  height: 16px;
-  border: 1px solid var(--line);
-  border-radius: 3px;
-  background: #eef0f3;
-}
-.scan-cell.good { background: #0d7a4f; border-color: #0d7a4f; }
-.scan-cell.risk { background: #d9822b; border-color: #d9822b; }
-.scan-cell.missing { background: #eef0f3; border-color: #cbd3df; }
-.scan-legend {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  align-items: center;
-}
-.scan-legend .scan-cell {
-  width: 14px;
-  display: inline-block;
-  margin-right: 4px;
-  vertical-align: -3px;
-}
+.tag.pending { color: var(--muted); border-color: var(--line); background: #f8fafc; }
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -209,7 +177,7 @@ ul.compact li { margin: 4px 0; }
       </div>
       <a href="../index.html">返回时间点</a>
     </div>
-    <div class="notice">时间边界：09:45 前已保存08:00新闻/观察池、轻量重大新闻增量、09:30/09:35/09:40/09:45 全A扫描帧、开盘行情预分析和滚动备忘录。</div>
+    <div class="notice">时间边界：09:45 到点一次性保存截至09:45的全主板原生1分钟量价批次，并从中生成09:30前收锚点及09:35/09:40/09:45决策特征；新闻固定复用08:00背景。</div>
     
     <h2>状态</h2>
     <div class="grid">
@@ -413,7 +381,7 @@ ul.compact li { margin: 4px 0; }
     
     <h2>剔除/仅观察</h2><div class="panel"><span class="tag risk">兆易创新 603986：新闻显示大涨逾9%，接近涨停/强兑现区，违反盘中可买性要求。</span><span class="tag risk">立讯精密 002475：5.30%高位带，仅作为强势样本；外部科技链风险下不批量贴边。</span><span class="tag risk">沪电股份 002463：5.13%且爆发评级低，剩余空间不足以覆盖外部风险。</span><span class="tag risk">北方华创 002371：成交额和净流入强，但pct_delta_since_first为-1.14；外部高风险半导体链要求近端斜率改善，降级观察。</span><span class="tag risk">彩虹股份 600707：5.28%且爆发评级低，强势样本不可买。</span><span class="tag risk">冠石科技 605588：显示链映射存在，但成交额和净流入明显弱于沃格光电。</span><span class="tag risk">五方光电 002962：斜率好但新闻背景提示TGV尚未批量订单，且净流入不足，不用弱映射补位。</span><span class="tag risk">厦门钨业 600549：资源/有色命中商品与汇率和全球风险偏好高风险，等待后续承接确认。</span><span class="tag risk">隆基绿能 601012：光伏不是本轮最密集新闻/涨停簇，不能用防守或泛新能源补位。</span><span class="tag risk">恒瑞医药 600276：创新药新闻仍有效，但未进入09:45可交易强势池，缺少本轮资金确认。</span><span class="tag risk">德才股份 605287：公司事件仍观察，但09:45未进入本轮可交易强势池，不能复制09:00。</span></div>
     <h2>使用信息</h2>
-    <div class="panel"><ul class="compact"><li>data/market/YYYY-MM-DD_0945_market_preanalysis.json</li><li>data/market/archive/YYYY-MM-DD/continuous_full_rows_archive.jsonl</li><li>docs/daily_news_YYYY-MM-DD_0945.md</li><li>data/news_preanalysis/YYYY-MM-DD_0945_news_preanalysis.json</li><li>docs/daily_news_YYYY-MM-DD.md</li><li>data/news_preanalysis/YYYY-MM-DD_0900_news_preanalysis.json</li><li>data/preopen_research/YYYY-MM-DD_preopen_research_pool.json</li><li>memory/rolling_20_trading_days.md</li></ul></div>
+    <div class="panel"><ul class="compact"><li>data/market/YYYY-MM-DD_0945_market_preanalysis.json</li><li>data/market/slot_batches/YYYY-MM-DD/0945/minute_bars.parquet</li><li>data/market/slot_batches/YYYY-MM-DD/0945/quality_manifest.json</li><li>docs/daily_news_YYYY-MM-DD.md</li><li>data/news_preanalysis/YYYY-MM-DD_0900_news_preanalysis.json</li><li>data/preopen_research/YYYY-MM-DD_preopen_research_pool.json</li><li>memory/rolling_20_trading_days.md</li></ul></div>
     <h2>原始快照</h2>
     <div class="panel source-links"><a href="../next_morning_review.md">收盘后复盘 Markdown</a></div>
     

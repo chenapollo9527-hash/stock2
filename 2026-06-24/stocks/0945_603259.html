@@ -110,39 +110,7 @@ h3 { font-size: 16px; margin: 16px 0 8px; }
 .tag.good { color: var(--green); border-color: #b8dccd; background: #eef9f4; }
 .tag.watch { color: var(--orange); border-color: #ead19a; background: #fff8e8; }
 .tag.risk { color: var(--red); border-color: #e8b8b8; background: #fff1f1; }
-.scan-timeline {
-  margin-top: 12px;
-  padding-top: 10px;
-  border-top: 1px solid var(--line);
-}
-.scan-timeline-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(12px, 1fr));
-  gap: 3px;
-  margin: 8px 0;
-}
-.scan-cell {
-  display: block;
-  height: 16px;
-  border: 1px solid var(--line);
-  border-radius: 3px;
-  background: #eef0f3;
-}
-.scan-cell.good { background: #0d7a4f; border-color: #0d7a4f; }
-.scan-cell.risk { background: #d9822b; border-color: #d9822b; }
-.scan-cell.missing { background: #eef0f3; border-color: #cbd3df; }
-.scan-legend {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  align-items: center;
-}
-.scan-legend .scan-cell {
-  width: 14px;
-  display: inline-block;
-  margin-right: 4px;
-  vertical-align: -3px;
-}
+.tag.pending { color: var(--muted); border-color: var(--line); background: #f8fafc; }
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -209,7 +177,7 @@ ul.compact li { margin: 4px 0; }
       </div>
       <a href="../slots/0945.html">返回该时间点</a>
     </div>
-    <div class="notice">时间边界：09:45 前已保存08:00新闻/观察池、轻量重大新闻增量、09:30/09:35/09:40/09:45 全A扫描帧、开盘行情预分析和滚动备忘录。</div>
+    <div class="notice">时间边界：09:45 到点一次性保存截至09:45的全主板原生1分钟量价批次，并从中生成09:30前收锚点及09:35/09:40/09:45决策特征；新闻固定复用08:00背景。</div>
     <div class="grid"><div class="metric"><span class="muted">开盘</span><strong>0.555%</strong></div><div class="metric"><span class="muted">最高</span><strong>9.9991%</strong></div><div class="metric"><span class="muted">收盘</span><strong>8.55%</strong></div><div class="metric"><span class="muted">成交额</span><strong>125.6551亿元</strong></div><div class="metric"><span class="muted">换手率</span><strong>4.44%</strong></div><div class="metric"><span class="muted">涨停/炸板</span><strong>False / True</strong></div><div class="metric"><span class="muted">距10%空间</span><strong>6.91%</strong></div><div class="metric"><span class="muted">涨停点差</span><strong>7.11%</strong></div><div class="metric"><span class="muted">爆发力</span><strong>中高</strong></div></div>
     <div class="notice">注意：该候选来自补跑行情快照，目标时间为 -，实际抓取时间为 2026-06-24 09:40:01+08:00；因此不能把补跑涨幅当作准点历史涨幅。</div>
     <h2>候选依据</h2>

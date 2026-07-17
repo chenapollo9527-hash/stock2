@@ -110,39 +110,7 @@ h3 { font-size: 16px; margin: 16px 0 8px; }
 .tag.good { color: var(--green); border-color: #b8dccd; background: #eef9f4; }
 .tag.watch { color: var(--orange); border-color: #ead19a; background: #fff8e8; }
 .tag.risk { color: var(--red); border-color: #e8b8b8; background: #fff1f1; }
-.scan-timeline {
-  margin-top: 12px;
-  padding-top: 10px;
-  border-top: 1px solid var(--line);
-}
-.scan-timeline-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(12px, 1fr));
-  gap: 3px;
-  margin: 8px 0;
-}
-.scan-cell {
-  display: block;
-  height: 16px;
-  border: 1px solid var(--line);
-  border-radius: 3px;
-  background: #eef0f3;
-}
-.scan-cell.good { background: #0d7a4f; border-color: #0d7a4f; }
-.scan-cell.risk { background: #d9822b; border-color: #d9822b; }
-.scan-cell.missing { background: #eef0f3; border-color: #cbd3df; }
-.scan-legend {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  align-items: center;
-}
-.scan-legend .scan-cell {
-  width: 14px;
-  display: inline-block;
-  margin-right: 4px;
-  vertical-align: -3px;
-}
+.tag.pending { color: var(--muted); border-color: var(--line); background: #f8fafc; }
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -209,7 +177,7 @@ ul.compact li { margin: 4px 0; }
       </div>
       <a href="../index.html">返回时间点</a>
     </div>
-    <div class="notice">时间边界：09:45 前已保存08:00新闻/观察池、轻量重大新闻增量、09:30/09:35/09:40/09:45 全A扫描帧、开盘行情预分析和滚动备忘录。</div>
+    <div class="notice">时间边界：09:45 到点一次性保存截至09:45的全主板原生1分钟量价批次，并从中生成09:30前收锚点及09:35/09:40/09:45决策特征；新闻固定复用08:00背景。</div>
     
     <h2>状态</h2>
     <div class="grid">
@@ -409,7 +377,7 @@ ul.compact li { margin: 4px 0; }
     
     <h2>剔除/仅观察</h2><div class="panel"><span class="tag risk">剑桥科技 603083：涨幅5.90%，已处于5.5%-6%高位带，预分析评级为偏兑现；虽然主力净流入9698万元，但剩余涨停空间仅4.10个百分点。</span><span class="tag risk">塞力医疗 603716：涨幅5.55%进入高位带，且主力净流入为-239.61万元，承接不充分。</span><span class="tag risk">恒逸石化 000703：涨幅5.60%进入高位带，剩余空间4.40个百分点，作为强度样本而非正式候选。</span><span class="tag risk">中国巨石 600176：涨幅6.70%，超过盘中候选6%风险上限。</span><span class="tag risk">三安光电 600703：涨幅7.36%，超过6%上限，且半导体方向受外部风险压制。</span><span class="tag risk">太极实业 600667：涨幅9.99%，近涨停/涨停样本，硬过滤。</span><span class="tag risk">华安证券 600909：涨幅10.04%，涨停/近涨停样本，硬过滤。</span><span class="tag risk">华天科技 002185：资金确认较强，但与长电科技、兴森科技同属半导体/封装链；在外部科技链高风险下为控制同质拥挤，本轮不再追加。</span><span class="tag risk">通富微电 002156：资金确认较强，但与已入选的半导体封装链高度同质，外部日韩半导体链风险仍高。</span><span class="tag risk">新华制药 000756：09:00有创新药新闻，但09:45可交易强度池中未形成比恒瑞医药、药明康德更明确的市场确认。</span><span class="tag risk">申通快递 002468：09:00回购候选，09:45未在主板可交易强度池中得到足够确认；risk_off下低弹性回购不优先。</span><span class="tag risk">海天味业 603288：09:00回购候选，09:45未获得明确开盘资金承接，防御属性不足以替代市场确认。</span><span class="tag risk">岭南控股 000524：09:00事件候选，但09:45未出现足够强的主板资金验证；事件单点不作为开盘验证候选。</span></div>
     <h2>使用信息</h2>
-    <div class="panel"><ul class="compact"><li>data/market/YYYY-MM-DD_0945_market_preanalysis.json</li><li>data/market/archive/YYYY-MM-DD/continuous_full_rows_archive.jsonl</li><li>docs/daily_news_YYYY-MM-DD_0945.md</li><li>data/news_preanalysis/YYYY-MM-DD_0945_news_preanalysis.json</li><li>docs/daily_news_YYYY-MM-DD.md</li><li>data/news_preanalysis/YYYY-MM-DD_0900_news_preanalysis.json</li><li>data/preopen_research/YYYY-MM-DD_preopen_research_pool.json</li><li>memory/rolling_20_trading_days.md</li></ul></div>
+    <div class="panel"><ul class="compact"><li>data/market/YYYY-MM-DD_0945_market_preanalysis.json</li><li>data/market/slot_batches/YYYY-MM-DD/0945/minute_bars.parquet</li><li>data/market/slot_batches/YYYY-MM-DD/0945/quality_manifest.json</li><li>docs/daily_news_YYYY-MM-DD.md</li><li>data/news_preanalysis/YYYY-MM-DD_0900_news_preanalysis.json</li><li>data/preopen_research/YYYY-MM-DD_preopen_research_pool.json</li><li>memory/rolling_20_trading_days.md</li></ul></div>
     <h2>原始快照</h2>
     <div class="panel source-links"><a href="../next_morning_review.md">收盘后复盘 Markdown</a></div>
     

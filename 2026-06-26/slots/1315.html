@@ -110,39 +110,7 @@ h3 { font-size: 16px; margin: 16px 0 8px; }
 .tag.good { color: var(--green); border-color: #b8dccd; background: #eef9f4; }
 .tag.watch { color: var(--orange); border-color: #ead19a; background: #fff8e8; }
 .tag.risk { color: var(--red); border-color: #e8b8b8; background: #fff1f1; }
-.scan-timeline {
-  margin-top: 12px;
-  padding-top: 10px;
-  border-top: 1px solid var(--line);
-}
-.scan-timeline-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(12px, 1fr));
-  gap: 3px;
-  margin: 8px 0;
-}
-.scan-cell {
-  display: block;
-  height: 16px;
-  border: 1px solid var(--line);
-  border-radius: 3px;
-  background: #eef0f3;
-}
-.scan-cell.good { background: #0d7a4f; border-color: #0d7a4f; }
-.scan-cell.risk { background: #d9822b; border-color: #d9822b; }
-.scan-cell.missing { background: #eef0f3; border-color: #cbd3df; }
-.scan-legend {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  align-items: center;
-}
-.scan-legend .scan-cell {
-  width: 14px;
-  display: inline-block;
-  margin-right: 4px;
-  vertical-align: -3px;
-}
+.tag.pending { color: var(--muted); border-color: var(--line); background: #f8fafc; }
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -209,7 +177,7 @@ ul.compact li { margin: 4px 0; }
       </div>
       <a href="../index.html">返回时间点</a>
     </div>
-    <div class="notice">时间边界：13:15 前已保存08:00新闻/观察池、轻量重大新闻增量、上午全A扫描、午后13:00/13:05/13:10/13:15扫描、行情预分析和滚动备忘录。</div>
+    <div class="notice">时间边界：13:15 到点一次性保存上午120分钟及午后15分钟全主板原生1分钟量价批次，并生成13:00/13:05/13:10/13:15决策特征；新闻固定复用08:00背景。</div>
     
     <h2>状态</h2>
     <div class="grid">
@@ -418,7 +386,7 @@ ul.compact li { margin: 4px 0; }
     
     <h2>剔除/仅观察</h2><div class="panel"><span class="tag risk">太极实业 600667：13:15涨幅7.11%，超过6%硬上限，只能作为半导体强度样本。</span><span class="tag risk">N惠科 001399：新股大幅上涨383.70%，不可作为本流程可交易候选。</span><span class="tag risk">立昂微 605358：13:15涨幅6.45%，超过6%硬上限；半导体强度可用但不可买。</span><span class="tag risk">TCL中环 002129：13:15涨幅10.03%，涨停/近涨停，硬剔除。</span><span class="tag risk">金风科技 002202：13:15涨幅9.13%，接近涨停，硬剔除。</span><span class="tag risk">中国卫星 600118：13:15涨幅7.96%，超过6%；用于提示航天/军工局部强度，不进正式候选。</span><span class="tag risk">凯盛科技 600552：13:15涨幅10.00%，涨停/近涨停，硬剔除。</span><span class="tag risk">航天电子 600879：13:15涨幅6.33%，超过6%；航天链强度确认，但正式候选改看未过6%的低位样本。</span><span class="tag risk">超声电子 000823：13:15涨幅10.01%，涨停/近涨停，不能进入候选。</span><span class="tag risk">永和股份 605020：13:15涨幅5.89%，已在5.5%-6%高位带，预分析评级偏兑现，剩余空间约3.88%，不批量贴边。</span><span class="tag risk">欧菲光 002456：13:15涨幅5.83%，消费电子映射强但已高位偏兑现，剩余空间约3.94%，只作强度观察。</span><span class="tag risk">盛剑科技 603324：09:45候选午后涨至5.76%，评级偏兑现且主力净流入很弱，不再复制到13:15。</span><span class="tag risk">恒逸石化 000703：13:15涨幅5.67%且首帧以来回落2.51pct，处高位带偏兑现；商品/化工外部风险仍高。</span><span class="tag risk">张江高科 600895：13:15涨幅5.32%，虽有净流入但已进高位带且评级仅中，作为半导体园区情绪观察。</span><span class="tag risk">京东方Ａ 000725：09:45候选午后仍有大成交但主力净流出约1.53亿元，13:00后变化为-0.40pct，降级观察。</span><span class="tag risk">长电科技 600584：盘前核心候选但13:15主力净流出约23.43亿元，涨幅仅0.15%且评级低，A股承接未确认。</span><span class="tag risk">德明利 001309：存储催化仍在，但13:15主力净流出约6.01亿元，外部存储/半导体冲突下不能只凭新闻入选。</span><span class="tag risk">三安光电 600703：09:45候选午后转弱，13:15涨幅0.18%、主力净流出约4.30亿元，剔除。</span><span class="tag risk">牧原股份 002714：13:15爆发评分高但不属于当日科技硬件/电子材料热门概念，且缺少09:00硬催化映射，不用于凑数。</span><span class="tag risk">万通发展 600246：本地兜底候选，地产属性与当日热门概念不匹配；正式13:15不沿用。</span><span class="tag risk">华电辽能 600396：电力/防御属性强，虽有资金承接但不是午后热门科技主线，弱势盘中不与硬科技同权。</span><span class="tag risk">三孚股份 603938：化工材料样本爆发评分高，但商品/化工外部风险仍高，且与电子材料主线映射弱于入选候选。</span><span class="tag risk">新亚电子 605277：13:00后加速居前，但成交额约4.09亿元，弱于入选的电子材料/半导体扩散样本，暂观察。</span></div>
     <h2>使用信息</h2>
-    <div class="panel"><ul class="compact"><li>data/market/YYYY-MM-DD_1315_market_preanalysis.json</li><li>data/market/archive/YYYY-MM-DD/continuous_full_rows_archive.jsonl</li><li>docs/daily_news_YYYY-MM-DD_1315.md</li><li>data/news_preanalysis/YYYY-MM-DD_1315_news_preanalysis.json</li><li>docs/daily_news_YYYY-MM-DD.md</li><li>data/news_preanalysis/YYYY-MM-DD_0900_news_preanalysis.json</li><li>data/preopen_research/YYYY-MM-DD_preopen_research_pool.json</li><li>memory/rolling_20_trading_days.md</li></ul></div>
+    <div class="panel"><ul class="compact"><li>data/market/YYYY-MM-DD_1315_market_preanalysis.json</li><li>data/market/slot_batches/YYYY-MM-DD/1315/minute_bars.parquet</li><li>data/market/slot_batches/YYYY-MM-DD/1315/quality_manifest.json</li><li>docs/daily_news_YYYY-MM-DD.md</li><li>data/news_preanalysis/YYYY-MM-DD_0900_news_preanalysis.json</li><li>data/preopen_research/YYYY-MM-DD_preopen_research_pool.json</li><li>memory/rolling_20_trading_days.md</li></ul></div>
     <h2>原始快照</h2>
     <div class="panel source-links"><a href="../next_morning_review.md">收盘后复盘 Markdown</a></div>
     

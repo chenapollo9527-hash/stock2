@@ -110,39 +110,7 @@ h3 { font-size: 16px; margin: 16px 0 8px; }
 .tag.good { color: var(--green); border-color: #b8dccd; background: #eef9f4; }
 .tag.watch { color: var(--orange); border-color: #ead19a; background: #fff8e8; }
 .tag.risk { color: var(--red); border-color: #e8b8b8; background: #fff1f1; }
-.scan-timeline {
-  margin-top: 12px;
-  padding-top: 10px;
-  border-top: 1px solid var(--line);
-}
-.scan-timeline-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(12px, 1fr));
-  gap: 3px;
-  margin: 8px 0;
-}
-.scan-cell {
-  display: block;
-  height: 16px;
-  border: 1px solid var(--line);
-  border-radius: 3px;
-  background: #eef0f3;
-}
-.scan-cell.good { background: #0d7a4f; border-color: #0d7a4f; }
-.scan-cell.risk { background: #d9822b; border-color: #d9822b; }
-.scan-cell.missing { background: #eef0f3; border-color: #cbd3df; }
-.scan-legend {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  align-items: center;
-}
-.scan-legend .scan-cell {
-  width: 14px;
-  display: inline-block;
-  margin-right: 4px;
-  vertical-align: -3px;
-}
+.tag.pending { color: var(--muted); border-color: var(--line); background: #f8fafc; }
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -209,7 +177,7 @@ ul.compact li { margin: 4px 0; }
       </div>
       <a href="../index.html">返回时间点</a>
     </div>
-    <div class="notice">时间边界：14:45 前已保存08:00新闻/观察池、轻量重大新闻增量、全日全A扫描、14:30/14:35/14:40/14:45尾盘行情预分析和滚动备忘录。</div>
+    <div class="notice">时间边界：14:45 到点一次性保存截至14:45的全主板原生1分钟量价批次，并生成14:30/14:35/14:40/14:45决策特征；新闻固定复用08:00背景，结论用于次日开盘观察。</div>
     
     <h2>状态</h2>
     <div class="grid">
@@ -421,7 +389,7 @@ ul.compact li { margin: 4px 0; }
     
     <h2>剔除/仅观察</h2><div class="panel"><span class="tag risk">中科曙光 603019：+9.95%，近涨停，违反尾盘不追涨停/近涨停约束。</span><span class="tag risk">京东方A 000725：+9.69%，玻璃基板强样本但已近涨停，不能作为正式候选。</span><span class="tag risk">立讯精密 002475：+7.57%，超过6%风险上限。</span><span class="tag risk">深科技 000021：+9.31%，超过6%且近涨停。</span><span class="tag risk">光迅科技 002281：+8.35%，超过6%风险上限。</span><span class="tag risk">浪潮信息 000977：+5.89%，5%-6%高位带，尾盘追价剩余安全垫不足。</span><span class="tag risk">深南电路 002916：+5.60%，高位带且已不适合尾盘批量贴边。</span><span class="tag risk">厦门钨业 600549：盘面得分高但命中商品与汇率高严重度外部风险；资源链尾盘不是本轮最强科技扩散的低风险分支，只观察。</span><span class="tag risk">北方华创 002371：半导体核心但近端斜率-0.95，尾盘增量不足。</span><span class="tag risk">剑桥科技 603083：CPO方向相关但近端斜率-0.90，尾盘回落，不作正式候选。</span></div>
     <h2>使用信息</h2>
-    <div class="panel"><ul class="compact"><li>data/market/YYYY-MM-DD_1445_market_preanalysis.json</li><li>data/market/archive/YYYY-MM-DD/continuous_full_rows_archive.jsonl</li><li>docs/daily_news_YYYY-MM-DD.md</li><li>docs/daily_news_YYYY-MM-DD_1445.md</li><li>data/news_preanalysis/YYYY-MM-DD_0900_news_preanalysis.json</li><li>data/news_preanalysis/YYYY-MM-DD_1445_news_preanalysis.json</li><li>data/preopen_research/YYYY-MM-DD_preopen_research_pool.json</li><li>memory/rolling_20_trading_days.md</li></ul></div>
+    <div class="panel"><ul class="compact"><li>data/market/YYYY-MM-DD_1445_market_preanalysis.json</li><li>data/market/slot_batches/YYYY-MM-DD/1445/minute_bars.parquet</li><li>data/market/slot_batches/YYYY-MM-DD/1445/quality_manifest.json</li><li>docs/daily_news_YYYY-MM-DD.md</li><li>data/news_preanalysis/YYYY-MM-DD_0900_news_preanalysis.json</li><li>data/preopen_research/YYYY-MM-DD_preopen_research_pool.json</li><li>memory/rolling_20_trading_days.md</li></ul></div>
     <h2>原始快照</h2>
     <div class="panel source-links"><a href="../next_morning_review.md">收盘后复盘 Markdown</a></div>
     

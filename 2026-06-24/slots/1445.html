@@ -110,39 +110,7 @@ h3 { font-size: 16px; margin: 16px 0 8px; }
 .tag.good { color: var(--green); border-color: #b8dccd; background: #eef9f4; }
 .tag.watch { color: var(--orange); border-color: #ead19a; background: #fff8e8; }
 .tag.risk { color: var(--red); border-color: #e8b8b8; background: #fff1f1; }
-.scan-timeline {
-  margin-top: 12px;
-  padding-top: 10px;
-  border-top: 1px solid var(--line);
-}
-.scan-timeline-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(12px, 1fr));
-  gap: 3px;
-  margin: 8px 0;
-}
-.scan-cell {
-  display: block;
-  height: 16px;
-  border: 1px solid var(--line);
-  border-radius: 3px;
-  background: #eef0f3;
-}
-.scan-cell.good { background: #0d7a4f; border-color: #0d7a4f; }
-.scan-cell.risk { background: #d9822b; border-color: #d9822b; }
-.scan-cell.missing { background: #eef0f3; border-color: #cbd3df; }
-.scan-legend {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  align-items: center;
-}
-.scan-legend .scan-cell {
-  width: 14px;
-  display: inline-block;
-  margin-right: 4px;
-  vertical-align: -3px;
-}
+.tag.pending { color: var(--muted); border-color: var(--line); background: #f8fafc; }
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -209,7 +177,7 @@ ul.compact li { margin: 4px 0; }
       </div>
       <a href="../index.html">返回时间点</a>
     </div>
-    <div class="notice">时间边界：14:45 前已保存08:00新闻/观察池、轻量重大新闻增量、全日全A扫描、14:30/14:35/14:40/14:45尾盘行情预分析和滚动备忘录。</div>
+    <div class="notice">时间边界：14:45 到点一次性保存截至14:45的全主板原生1分钟量价批次，并生成14:30/14:35/14:40/14:45决策特征；新闻固定复用08:00背景，结论用于次日开盘观察。</div>
     
     <h2>状态</h2>
     <div class="grid">
@@ -418,7 +386,7 @@ ul.compact li { margin: 4px 0; }
     
     <h2>剔除/仅观察</h2><div class="panel"><span class="tag risk">大族激光 002008：14:40涨幅5.89%，处于5.5%-6%高位带，虽然成交和资金强，但尾盘剩余空间不足。</span><span class="tag risk">金安国纪 002636：涨幅5.94%接近6%硬上限，尾盘追入容易把风险边界当作目标。</span><span class="tag risk">键邦股份 603285：涨幅5.90%，尾盘高位承接空间不足，不能纳入正式候选。</span><span class="tag risk">城地香江 603887：涨幅5.88%，且属于高弹性科技/算力映射，受外部科技链风险压制。</span><span class="tag risk">生益科技 600183：涨幅5.56%，处于高位带；PCB方向已有沪电股份作为低中位资金确认样本，不再批量贴边。</span><span class="tag risk">新华制药 000756：涨幅5.51%，接近高位带且尾盘净流入不占优；医药方向已由恒瑞医药承接。</span><span class="tag risk">京东方A 000725：14:40涨幅5.17%、换手和成交额都很高，已从13:15低中位修复进入较高位置；尾盘不继续追高。</span><span class="tag risk">赣锋锂业 002460：14:40涨幅5.22%，且资源材料受商品与汇率风险压制；本轮用华友钴业和天赐材料替代高位追涨。</span><span class="tag risk">晶方科技 603005：涨幅4.76%但换手约19.54%，半导体方向外部风险高，尾盘不扩散到高换手小票。</span><span class="tag risk">中科曙光 603019：低中位且有资金承接，但与工业富联同属AI算力链；在外部科技风险高的情况下控制科技链数量。</span><span class="tag risk">亨通光电 600487：成交额高但尾盘主力净流出较大，光通信方向又受外部科技链风险压制。</span><span class="tag risk">兴森科技 002436：PCB方向已有沪电股份，且兴森科技尾盘资金承接不如沪电股份；不复制早盘候选凑数。</span></div>
     <h2>使用信息</h2>
-    <div class="panel"><ul class="compact"><li>data/market/YYYY-MM-DD_1445_market_preanalysis.json</li><li>data/market/archive/YYYY-MM-DD/continuous_full_rows_archive.jsonl</li><li>docs/daily_news_YYYY-MM-DD.md</li><li>docs/daily_news_YYYY-MM-DD_1445.md</li><li>data/news_preanalysis/YYYY-MM-DD_0900_news_preanalysis.json</li><li>data/news_preanalysis/YYYY-MM-DD_1445_news_preanalysis.json</li><li>data/preopen_research/YYYY-MM-DD_preopen_research_pool.json</li><li>memory/rolling_20_trading_days.md</li></ul></div>
+    <div class="panel"><ul class="compact"><li>data/market/YYYY-MM-DD_1445_market_preanalysis.json</li><li>data/market/slot_batches/YYYY-MM-DD/1445/minute_bars.parquet</li><li>data/market/slot_batches/YYYY-MM-DD/1445/quality_manifest.json</li><li>docs/daily_news_YYYY-MM-DD.md</li><li>data/news_preanalysis/YYYY-MM-DD_0900_news_preanalysis.json</li><li>data/preopen_research/YYYY-MM-DD_preopen_research_pool.json</li><li>memory/rolling_20_trading_days.md</li></ul></div>
     <h2>原始快照</h2>
     <div class="panel source-links"><a href="../next_morning_review.md">收盘后复盘 Markdown</a></div>
     

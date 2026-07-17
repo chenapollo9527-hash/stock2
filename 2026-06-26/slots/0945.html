@@ -110,39 +110,7 @@ h3 { font-size: 16px; margin: 16px 0 8px; }
 .tag.good { color: var(--green); border-color: #b8dccd; background: #eef9f4; }
 .tag.watch { color: var(--orange); border-color: #ead19a; background: #fff8e8; }
 .tag.risk { color: var(--red); border-color: #e8b8b8; background: #fff1f1; }
-.scan-timeline {
-  margin-top: 12px;
-  padding-top: 10px;
-  border-top: 1px solid var(--line);
-}
-.scan-timeline-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(12px, 1fr));
-  gap: 3px;
-  margin: 8px 0;
-}
-.scan-cell {
-  display: block;
-  height: 16px;
-  border: 1px solid var(--line);
-  border-radius: 3px;
-  background: #eef0f3;
-}
-.scan-cell.good { background: #0d7a4f; border-color: #0d7a4f; }
-.scan-cell.risk { background: #d9822b; border-color: #d9822b; }
-.scan-cell.missing { background: #eef0f3; border-color: #cbd3df; }
-.scan-legend {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  align-items: center;
-}
-.scan-legend .scan-cell {
-  width: 14px;
-  display: inline-block;
-  margin-right: 4px;
-  vertical-align: -3px;
-}
+.tag.pending { color: var(--muted); border-color: var(--line); background: #f8fafc; }
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -209,7 +177,7 @@ ul.compact li { margin: 4px 0; }
       </div>
       <a href="../index.html">返回时间点</a>
     </div>
-    <div class="notice">时间边界：09:45 前已保存08:00新闻/观察池、轻量重大新闻增量、09:30/09:35/09:40/09:45 全A扫描帧、开盘行情预分析和滚动备忘录。</div>
+    <div class="notice">时间边界：09:45 到点一次性保存截至09:45的全主板原生1分钟量价批次，并从中生成09:30前收锚点及09:35/09:40/09:45决策特征；新闻固定复用08:00背景。</div>
     
     <h2>状态</h2>
     <div class="grid">
@@ -418,7 +386,7 @@ ul.compact li { margin: 4px 0; }
     
     <h2>剔除/仅观察</h2><div class="panel"><span class="tag risk">太极实业 600667：09:45涨幅9.96%，已近涨停，只能作为半导体强度样本，不能进入可交易候选。</span><span class="tag risk">中材科技 002080：09:45涨幅10.00%，触发涨停/近涨停硬过滤。</span><span class="tag risk">超声电子 000823：09:45涨幅10.01%，触发涨停/近涨停硬过滤。</span><span class="tag risk">中国巨石 600176：09:45涨幅7.77%，超过6%盘中候选上限，且商品/周期外部风险较高。</span><span class="tag risk">立昂微 605358：09:45涨幅6.57%，超过6%盘中候选上限，只作半导体链强度样本。</span><span class="tag risk">TCL中环 002129：09:45涨幅7.37%，超过6%盘中候选上限。</span><span class="tag risk">博迁新材 605376：09:45涨幅9.18%，距涨停空间不足，属于偏兑现强度样本。</span><span class="tag risk">士兰微 600460：09:45涨幅5.70%，虽主力净流入较强，但已进入5.5%-6%高位带且预分析评级偏兑现，本轮不批量贴边。</span><span class="tag risk">火炬电子 603678：09:45涨幅5.64%，MLCC映射强但已处高位带，剩余空间约4.13%，改看电子元件低位承接。</span><span class="tag risk">长电科技 600584：09:45涨幅3.27%且成交额大，但主力净流出约7.52亿元；在外部科技链高风险下，新闻催化未获资金承接确认。</span><span class="tag risk">德明利 001309：09:45涨幅1.33%且存储催化明确，但主力净流出约2.86亿元；外部存储/日韩半导体冲突下先降级观察。</span><span class="tag risk">驰宏锌锗 600497：09:45爆发评分高，但资源/有色受商品与汇率外部风险压制，主力净流入很弱，不与国内AI金属新闻相互抵消。</span><span class="tag risk">恒逸石化 000703：09:45虽未过6%，但主力净流出约2.41亿元且预分析爆发评级低，不能复制09:00候选凑数。</span></div>
     <h2>使用信息</h2>
-    <div class="panel"><ul class="compact"><li>data/market/YYYY-MM-DD_0945_market_preanalysis.json</li><li>data/market/archive/YYYY-MM-DD/continuous_full_rows_archive.jsonl</li><li>docs/daily_news_YYYY-MM-DD_0945.md</li><li>data/news_preanalysis/YYYY-MM-DD_0945_news_preanalysis.json</li><li>docs/daily_news_YYYY-MM-DD.md</li><li>data/news_preanalysis/YYYY-MM-DD_0900_news_preanalysis.json</li><li>data/preopen_research/YYYY-MM-DD_preopen_research_pool.json</li><li>memory/rolling_20_trading_days.md</li></ul></div>
+    <div class="panel"><ul class="compact"><li>data/market/YYYY-MM-DD_0945_market_preanalysis.json</li><li>data/market/slot_batches/YYYY-MM-DD/0945/minute_bars.parquet</li><li>data/market/slot_batches/YYYY-MM-DD/0945/quality_manifest.json</li><li>docs/daily_news_YYYY-MM-DD.md</li><li>data/news_preanalysis/YYYY-MM-DD_0900_news_preanalysis.json</li><li>data/preopen_research/YYYY-MM-DD_preopen_research_pool.json</li><li>memory/rolling_20_trading_days.md</li></ul></div>
     <h2>原始快照</h2>
     <div class="panel source-links"><a href="../next_morning_review.md">收盘后复盘 Markdown</a></div>
     
