@@ -178,16 +178,20 @@ ul.compact li { margin: 4px 0; }
       <a href="../index.html">返回时间点</a>
     </div>
     <div class="notice">时间边界：09:45 到点一次性保存截至09:45的全主板原生1分钟量价批次，并从中生成09:30前收锚点及09:35/09:40/09:45决策特征；新闻固定复用08:00背景。</div>
-    <div class="notice">08:00 本地新闻、新闻预分析和主板研究池已落地，等待 API runner 完成盘前正式综合分析。</div>
+    
     <h2>状态</h2>
     <div class="grid">
-      <div class="metric"><span class="muted">市场姿态</span><strong>待综合分析</strong></div>
-      <div class="metric"><span class="muted">快照生成时间</span><strong>2026-07-17T08:03:06+08:00</strong></div>
-      <div class="metric"><span class="muted">候选数量</span><strong>0</strong></div>
+      <div class="metric"><span class="muted">市场姿态</span><strong>mixed_rotation</strong></div>
+      <div class="metric"><span class="muted">快照生成时间</span><strong>2026-07-17T11:03:36+08:00</strong></div>
+      <div class="metric"><span class="muted">候选数量</span><strong>1</strong></div>
     </div>
-    <h2>分析结论</h2><div class="panel"><ul class="compact"><li><strong>结论：</strong>08:00 本地新闻、新闻预分析和主板研究池已落地，等待 API runner 完成盘前正式综合分析。</li><li><strong>市场情绪：</strong>本地证据已落地，页面先行发布；等待 API runner 写入正式综合分析。</li><li><strong>信息背景：</strong>此 slot 为准点发布骨架，不作为正式推荐成绩。</li><li><strong>风险：</strong>若长时间停留在该状态，说明 API runner 未及时完成对应阶段。</li></ul></div>
+    <h2>分析结论</h2><div class="panel muted">该时间点尚未生成分析。</div>
     
+    <h2>API 运行信息</h2>
+    <div class="grid"><div class="metric"><span class="muted">模型</span><strong>deepseek-v4-flash</strong></div>
+<div class="metric"><span class="muted">Total tokens</span><strong>165951</strong></div></div>
     
+    <h2>热门概念雷达</h2><table class="stock-table"><thead><tr><th>概念</th><th>强度证据</th><th>不可买强势样本</th><th>同链低位候选</th></tr></thead><tbody><tr><td><span class="stock-name">电力设备</span></td><td>局部走强</td><td>-</td><td>-</td></tr></tbody></table>
     <h2>行情预分析</h2><div class="panel"><ul class="compact"><li><strong>边界：</strong>market_only_preanalysis_from_exchange_native_one_minute_data_no_news_or_memory</li><li><strong>模式：</strong>mixed_rotation：涨跌宽度和强势数量未形成单边信号，按轮动市处理。</li><li><strong>涨停潮阈值：</strong>未触发 / 主板pct&gt;6 24，近涨停 17</li><li><strong>数据源：</strong>tdx_one_minute_batch / 行数 3041 / 帧数 4</li><li><strong>宽度：</strong>上涨 1154，下跌 1771，中位涨幅 -0.41%</li><li><strong>时间权重：</strong>09:45 只看开盘后已保存扫描，重点使用09:30-09:45近端帧。</li><li><strong>近端窗口：</strong>2026-07-17T09:30:00+08:00 至 2026-07-17T09:45:00+08:00 / 4帧</li><li><strong>主板6%以下活跃：</strong>瑞芯微(603893) 2.14%、片仔癀(600436) 3.63%、儒意电影(002739) 5.23%、比亚迪(002594) 0.01%、景旺电子(603228) 3.81%</li></ul></div>
     <h2>盘面监控</h2><div class="panel muted">该窗口尚未采集高频监控快照。</div>
     <h2>主板可交易候选（偏未爆发/惯性）</h2>
@@ -195,7 +199,15 @@ ul.compact li { margin: 4px 0; }
       <thead>
         <tr><th>股票</th><th>概念</th><th>来源/确认</th><th>涨幅</th><th>详情</th></tr>
       </thead>
-      <tbody><tr><td colspan="5" class="muted">该时间点暂无可交易候选。</td></tr></tbody>
+      <tbody>
+    <tr>
+      <td><a class="stock-name" href="../stocks/0945_600312.html">平高电气</a><span class="code">(600312)</span></td>
+      <td>电力设备/特高压</td>
+      <td><span class="tag good">intraday_market_enhancement / 09:45实时确认：四帧演化显示positive_minute_ratio持续上升，近5分钟成交额加速（ratio=1.11），回撤极小（drawdown=-0.11%），属于量价结构候选2</span></td>
+      <td><div class="perf-line"><span class="perf-item">快照涨幅<strong>5.82%</strong></span></div></td>
+      <td><a href="../stocks/0945_600312.html">查看详情</a></td>
+    </tr>
+    </tbody>
     </table>
     
     <h2>风险提示（概念/个股）</h2>
@@ -204,15 +216,6 @@ ul.compact li { margin: 4px 0; }
         <tr><th>对象</th><th>类型</th><th>线索</th><th>风险</th><th>应对</th></tr>
       </thead>
       <tbody>
-    <tr>
-      <td><span class="stock-name">待 API 综合分析</span></td>
-      <td><span class="tag risk">流程</span><span class="tag watch">中</span></td>
-      <td>08:00 本地新闻、新闻预分析和主板研究池已落地，等待 API runner 完成盘前正式综合分析。</td>
-      <td>当前页面只是本地准点发布占位，候选尚未完成正式综合分析。</td>
-      <td>等待 API runner 覆盖；盘中阶段可由本地行情兜底先行填充。</td>
-    </tr>
-    
-
     <tr>
       <td><span class="stock-name">美股科技链</span></td>
       <td><span class="tag risk">外部市场</span><span class="tag watch">高</span></td>
@@ -273,6 +276,15 @@ ul.compact li { margin: 4px 0; }
       <td>全 A 最新有效行数 3041，低于完整扫描阈值。</td>
       <td>准点行情不完整时，涨幅、宽度和资金方向不能作为正式推荐依据。</td>
       <td>只保留观察样本；等待下一帧完整扫描或异源确认。</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="stock-name">平高电气</span><span class="code">(600312)</span></td>
+      <td><span class="tag risk">个股</span><span class="tag watch">中</span></td>
+      <td>时间点涨幅 5.82%，接近 6% 过滤线。</td>
+      <td>继续上冲会失去可交易性；若大盘转弱，接近过滤线的票更容易兑现。</td>
+      <td>只接受回踩承接，不追高。</td>
     </tr>
     
 
