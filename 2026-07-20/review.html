@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-07-20 收盘复盘</title>
+  <style>
+:root {
+  color-scheme: light;
+  --bg: #f5f6f8;
+  --panel: #ffffff;
+  --text: #111827;
+  --muted: #667085;
+  --line: #d6dde8;
+  --accent: #0f5f9f;
+  --accent-soft: #e8f2fa;
+  --green: #0d7a4f;
+  --orange: #9a5b00;
+  --red: #a33a3a;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Segoe UI", "Microsoft YaHei", Arial, sans-serif;
+  line-height: 1.5;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.shell { max-width: 1180px; margin: 0 auto; padding: 24px 20px 44px; }
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 14px;
+  margin-bottom: 18px;
+}
+h1 { font-size: 28px; margin: 0 0 6px; letter-spacing: 0; }
+h2 { font-size: 20px; margin: 24px 0 10px; }
+h3 { font-size: 16px; margin: 16px 0 8px; }
+.muted { color: var(--muted); font-size: 13px; }
+.notice {
+  background: #fff8e8;
+  border: 1px solid #ead19a;
+  border-radius: 8px;
+  color: #7a4a00;
+  padding: 10px 12px;
+  margin: 12px 0 18px;
+}
+.date-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 10px;
+  padding: 0;
+  list-style: none;
+}
+.date-list a, .panel {
+  display: block;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 14px;
+}
+.stock-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.stock-table th, .stock-table td {
+  border-bottom: 1px solid var(--line);
+  padding: 10px 12px;
+  text-align: left;
+  vertical-align: middle;
+  font-size: 14px;
+}
+.stock-table th { background: var(--accent-soft); color: #24364a; }
+.stock-table tr:last-child td { border-bottom: 0; }
+.stock-name { font-weight: 700; font-size: 16px; }
+.code { color: var(--muted); font-size: 13px; margin-left: 4px; }
+.perf-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.perf-item {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 2px 7px;
+  background: #fff;
+  white-space: nowrap;
+}
+.perf-item strong { margin-left: 3px; }
+.tag {
+  display: inline-block;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 2px 8px;
+  margin: 2px 4px 2px 0;
+  font-size: 12px;
+  background: #fff;
+}
+.tag.good { color: var(--green); border-color: #b8dccd; background: #eef9f4; }
+.tag.watch { color: var(--orange); border-color: #ead19a; background: #fff8e8; }
+.tag.risk { color: var(--red); border-color: #e8b8b8; background: #fff1f1; }
+.tag.pending { color: var(--muted); border-color: var(--line); background: #f8fafc; }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+.metric {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px;
+}
+.metric strong { display: block; font-size: 20px; margin-top: 4px; }
+.slot-card {
+  display: block;
+  color: inherit;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 14px;
+}
+.slot-card:hover { text-decoration: none; border-color: var(--accent); }
+.slot-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: baseline;
+}
+.slot-title { font-size: 18px; font-weight: 700; color: var(--accent); }
+.slot-count { color: var(--muted); font-size: 13px; white-space: nowrap; }
+.boundary {
+  border-left: 4px solid var(--accent);
+  padding: 10px 12px;
+  background: #fff;
+}
+.event {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px;
+  margin: 10px 0;
+}
+.event-title { font-weight: 700; margin-bottom: 4px; }
+.source-links a { margin-right: 12px; font-size: 13px; }
+ul.compact { padding-left: 20px; margin-top: 8px; }
+ul.compact li { margin: 4px 0; }
+@media (max-width: 760px) {
+  .shell { padding: 18px 12px 34px; }
+  .topbar { display: block; }
+  h1 { font-size: 23px; }
+  .stock-table, .stock-table tbody, .stock-table tr, .stock-table td { display: block; width: 100%; }
+  .stock-table thead { display: none; }
+  .stock-table tr { border-bottom: 1px solid var(--line); }
+  .stock-table td { border: 0; padding: 8px 10px; }
+}
+</style>
+</head>
+<body>
+  <main class="shell">
+    
+    <div class="topbar">
+      <div>
+        <h1>2026-07-20 收盘复盘</h1>
+        <div class="muted">生成时间：2026-07-20T15:18:26+08:00</div>
+      </div>
+      <a href="index.html">返回当日首页</a>
+    </div>
+    <div class="notice">复盘以推荐节点后的增量为主；14:45候选只在下一交易日开盘后评估，不使用当日收盘倒推。</div>
+    <div class="grid">
+      <div class="metric"><span class="muted">复盘样本</span><strong>10</strong></div>
+      <div class="metric"><span class="muted">正增量</span><strong>9</strong></div>
+      <div class="metric"><span class="muted">教训样本</span><strong>1</strong></div>
+      <div class="metric"><span class="muted">平均节点增量</span><strong>1.49%</strong></div>
+    </div>
+    <h2>阶段统计</h2>
+    <table class="stock-table">
+      <thead><tr><th>阶段</th><th>候选数</th><th>平均Exit</th><th>最高涨幅</th><th>正增量数</th></tr></thead>
+      <tbody><tr><td>08:00盘前</td><td>2</td><td>2.19%</td><td>3.33%</td><td>2</td></tr><tr><td>09:45开盘验证</td><td>5</td><td>3.93%</td><td>10%</td><td>5</td></tr><tr><td>13:15午后修正</td><td>3</td><td>3.35%</td><td>6.18%</td><td>2</td></tr><tr><td>前日14:45至今日开盘</td><td>0</td><td>-</td><td>-</td><td>0</td></tr></tbody>
+    </table>
+    <h2>逐笔经验与教训</h2>
+    <table class="stock-table">
+      <thead><tr><th>阶段</th><th>股票</th><th>概念</th><th>Entry</th><th>Exit</th><th>增量</th><th>结论</th><th>经验/教训</th></tr></thead>
+      <tbody><tr><td>08:00盘前</td><td><span class="stock-name">长春高新</span><span class="code">(000661)</span></td><td>医药/生物制品</td><td>-1.41%</td><td>1.43%</td><td>2.84%</td><td><span class="tag good">经验</span></td><td>医药/生物制品 从开盘到复盘出口仍有正增量，盘前催化得到价格验证。</td></tr><tr><td>08:00盘前</td><td><span class="stock-name">巨人网络</span><span class="code">(002558)</span></td><td>互联网/游戏</td><td>0.65%</td><td>2.95%</td><td>2.3%</td><td><span class="tag good">经验</span></td><td>互联网/游戏 从开盘到复盘出口仍有正增量，盘前催化得到价格验证。</td></tr><tr><td>09:45开盘验证</td><td><span class="stock-name">泸州老窖</span><span class="code">(000568)</span></td><td>消费/白酒</td><td>2.95%</td><td>6.33%</td><td>3.38%</td><td><span class="tag good">经验</span></td><td>消费/白酒 从推荐节点到收盘为正增量，近端行情确认有效。</td></tr><tr><td>09:45开盘验证</td><td><span class="stock-name">中宠股份</span><span class="code">(002891)</span></td><td>消费/宠物食品</td><td>1.42%</td><td>2.01%</td><td>0.59%</td><td><span class="tag good">经验</span></td><td>消费/宠物食品 从推荐节点到收盘为正增量，近端行情确认有效。</td></tr><tr><td>09:45开盘验证</td><td><span class="stock-name">风语筑</span><span class="code">(603466)</span></td><td>文化传媒/数字展示</td><td>2.06%</td><td>3%</td><td>0.94%</td><td><span class="tag good">经验</span></td><td>文化传媒/数字展示 从推荐节点到收盘为正增量，近端行情确认有效。</td></tr><tr><td>09:45开盘验证</td><td><span class="stock-name">普洛药业</span><span class="code">(000739)</span></td><td>医药/医疗</td><td>1.58%</td><td>1.88%</td><td>0.3%</td><td><span class="tag good">经验</span></td><td>医药/医疗 从推荐节点到收盘为正增量，近端行情确认有效。</td></tr><tr><td>09:45开盘验证</td><td><span class="stock-name">科伦药业</span><span class="code">(002422)</span></td><td>医药/医疗</td><td>1.98%</td><td>6.44%</td><td>4.46%</td><td><span class="tag good">经验</span></td><td>医药/医疗 从推荐节点到收盘为正增量，近端行情确认有效。</td></tr><tr><td>13:15午后修正</td><td><span class="stock-name">恒源煤电</span><span class="code">(600971)</span></td><td>资源/材料/化工</td><td>2.23%</td><td>3.01%</td><td>0.78%</td><td><span class="tag good">经验</span></td><td>资源/材料/化工 从推荐节点到收盘为正增量，近端行情确认有效。</td></tr><tr><td>13:15午后修正</td><td><span class="stock-name">风语筑</span><span class="code">(603466)</span></td><td>量价结构候选1</td><td>4.03%</td><td>3%</td><td>-1.03%</td><td><span class="tag risk">教训</span></td><td>量价结构候选1 从推荐节点到收盘未产生正增量，需复查主线、资金或买点。</td></tr><tr><td>13:15午后修正</td><td><span class="stock-name">东方铁塔</span><span class="code">(002545)</span></td><td>特高压/钢结构</td><td>3.7%</td><td>4.03%</td><td>0.33%</td><td><span class="tag good">经验</span></td><td>特高压/钢结构 从推荐节点到收盘为正增量，近端行情确认有效。</td></tr></tbody>
+    </table>
+    
+  </main>
+</body>
+</html>
