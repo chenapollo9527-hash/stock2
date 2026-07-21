@@ -212,7 +212,7 @@ ul.compact li { margin: 4px 0; }
       <a href="../index.html">返回日期索引</a>
     </div>
     <div class="notice">仅用于投研辅助和候选池整理；请结合确认条件和风险条件，不作为自动交易指令。</div>
-    <h2>流程健康状态</h2><div class="panel"><span class="tag good">滚动备忘录：正常</span><span class="tag good">08:00新闻与公告：正常</span><span class="tag good">08:00量价研究池 Top200=200 Top30=30：正常</span><span class="tag good">08:00正式候选：正常</span><span class="tag good">09:45一分钟行情与预分析 3043/3044：正常</span><span class="tag good">09:45正式候选：正常</span><span class="tag good">13:15一分钟行情与预分析 3043/3044：正常</span><span class="tag good">13:15正式候选：正常</span><span class="tag good">14:45一分钟行情与预分析 3043/3044：正常</span><span class="tag good">14:45正式候选：正常</span><span class="tag pending">15:15收盘结果：待执行</span><span class="tag pending">回测资料包：待执行</span><span class="tag pending">运行审计日报：待执行</span><div class="muted" style="margin-top:10px">回测资料包在收盘后封存各阶段可见输入，用于无未来数据泄漏的历史重放；运行审计日报（SLA）在收盘后汇总耗时、超时/阻塞和正式邮件状态。</div><div class="muted">最近执行：1445 / ok / 2026-07-21T14:47:26+08:00</div></div>
+    <h2>流程健康状态</h2><div class="panel"><span class="tag good">滚动备忘录：正常</span><span class="tag good">08:00新闻与公告：正常</span><span class="tag good">08:00量价研究池 Top200=200 Top30=30：正常</span><span class="tag good">08:00正式候选：正常</span><span class="tag good">09:45一分钟行情与预分析 3043/3044：正常</span><span class="tag good">09:45正式候选：正常</span><span class="tag good">13:15一分钟行情与预分析 3043/3044：正常</span><span class="tag good">13:15正式候选：正常</span><span class="tag good">14:45一分钟行情与预分析 3043/3044：正常</span><span class="tag good">14:45正式候选：正常</span><span class="tag good">15:15收盘结果：正常</span><span class="tag good">回测资料包：正常</span><span class="tag good">运行审计日报 阻塞=0 漏发=0：正常</span><div class="muted" style="margin-top:10px">回测资料包在收盘后封存各阶段可见输入，用于无未来数据泄漏的历史重放；运行审计日报（SLA）在收盘后汇总耗时、超时/阻塞和正式邮件状态。</div><div class="muted">最近执行：close / ok / 2026-07-21T15:31:35+08:00</div></div>
     
     <h2>分时点推荐</h2>
     <div class="grid">
@@ -262,6 +262,15 @@ ul.compact li { margin: 4px 0; }
             </div>
     
     
+    <h2>收盘复盘</h2>
+    <div class="grid">
+      <div class="metric"><span class="muted">复盘样本</span><strong>17</strong></div>
+      <div class="metric"><span class="muted">正增量</span><strong>9</strong></div>
+      <div class="metric"><span class="muted">教训样本</span><strong>8</strong></div>
+      <div class="metric"><span class="muted">平均节点增量</span><strong>0.06%</strong></div>
+    </div>
+    <div class="panel"><strong>最佳增量：0900 长春高新 3.28%</strong><br><a href="review.html">查看完整逐笔复盘</a></div>
+    
     <h2>分析输入</h2>
     <div class="panel">
       <div class="boundary"><strong>滚动备忘录</strong> 四轮推荐都必须读取，用来约束主线生命周期、历史胜率、错因纠偏、外部风险硬闸门和“不能复读旧票/不能凑数”的长期规则；它不替代当轮新闻和行情，只负责把近期经验转成决策约束。</div>
@@ -273,7 +282,7 @@ ul.compact li { margin: 4px 0; }
     <h2>过滤/仅观察</h2>
     <div class="panel"><span class="muted">无</span></div>
     <h2>原始快照</h2>
-    <div class="panel source-links"><span class="muted">无原始快照</span></div>
+    <div class="panel source-links"><a href="review.html">收盘后复盘</a><a href="sla_daily_report.md">运行审计日报（SLA） Markdown</a></div>
     
   </main>
 </body>
