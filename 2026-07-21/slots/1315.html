@@ -49,6 +49,22 @@ h3 { font-size: 16px; margin: 16px 0 8px; }
   padding: 10px 12px;
   margin: 12px 0 18px;
 }
+.featured-entry {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  background: var(--panel);
+  border: 1px solid var(--accent);
+  border-left: 4px solid var(--accent);
+  border-radius: 8px;
+  padding: 14px 16px;
+  margin: 0 0 14px;
+  color: inherit;
+}
+.featured-entry:hover { text-decoration: none; background: var(--accent-soft); }
+.featured-title { display: block; color: var(--accent); font-size: 18px; }
+.featured-action { color: var(--accent); font-weight: 700; white-space: nowrap; }
 .date-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -160,6 +176,7 @@ ul.compact li { margin: 4px 0; }
   .shell { padding: 18px 12px 34px; }
   .topbar { display: block; }
   h1 { font-size: 23px; }
+  .featured-entry { align-items: flex-start; }
   .stock-table, .stock-table tbody, .stock-table tr, .stock-table td { display: block; width: 100%; }
   .stock-table thead { display: none; }
   .stock-table tr { border-bottom: 1px solid var(--line); }

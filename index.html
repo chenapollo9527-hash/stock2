@@ -49,6 +49,22 @@ h3 { font-size: 16px; margin: 16px 0 8px; }
   padding: 10px 12px;
   margin: 12px 0 18px;
 }
+.featured-entry {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  background: var(--panel);
+  border: 1px solid var(--accent);
+  border-left: 4px solid var(--accent);
+  border-radius: 8px;
+  padding: 14px 16px;
+  margin: 0 0 14px;
+  color: inherit;
+}
+.featured-entry:hover { text-decoration: none; background: var(--accent-soft); }
+.featured-title { display: block; color: var(--accent); font-size: 18px; }
+.featured-action { color: var(--accent); font-weight: 700; white-space: nowrap; }
 .date-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -160,6 +176,7 @@ ul.compact li { margin: 4px 0; }
   .shell { padding: 18px 12px 34px; }
   .topbar { display: block; }
   h1 { font-size: 23px; }
+  .featured-entry { align-items: flex-start; }
   .stock-table, .stock-table tbody, .stock-table tr, .stock-table td { display: block; width: 100%; }
   .stock-table thead { display: none; }
   .stock-table tr { border-bottom: 1px solid var(--line); }
@@ -176,6 +193,15 @@ ul.compact li { margin: 4px 0; }
         <div class="muted">按日期查看股票列表，点击股票名进入单股详情。</div>
       </div>
     </div>
+    
+        <a class="featured-entry" href="tail-model/index.html">
+          <div>
+            <strong class="featured-title">尾盘模型选股</strong>
+            <div class="muted">V8C / V17 当日推荐与独立30日回测 · 数据更新时间：2026-07-20 14:52:47（北京时间）</div>
+          </div>
+          <span class="featured-action">进入</span>
+        </a>
+        
     <div class="notice">仅用于投研辅助和候选池整理，不是自动交易指令。</div>
     <h2>报告日期</h2>
     <ul class="date-list"><li><a href="2026-07-21/index.html"><strong>2026-07-21</strong><br><span class="muted">查看股票推荐与复盘</span></a></li>
