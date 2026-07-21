@@ -51,8 +51,8 @@ h3 { font-size: 16px; margin: 16px 0 8px; }
 }
 .module-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
   margin: 0 0 16px;
 }
 .module-card {
@@ -69,9 +69,9 @@ h3 { font-size: 16px; margin: 16px 0 8px; }
   padding: 18px;
   color: inherit;
 }
-.module-card:hover { text-decoration: none; border-color: var(--accent); background: #fafdff; }
+a.module-card:hover { text-decoration: none; border-color: var(--accent); background: #fafdff; }
 .module-card-primary { border-top: 4px solid var(--accent); }
-.module-card-research { border-top: 4px solid var(--green); }
+.module-card-research { min-height: 0; align-items: stretch; border-top: 4px solid var(--green); }
 .module-card-head { width: 100%; }
 .module-label { display: block; margin-bottom: 8px; color: var(--muted); font-size: 12px; font-weight: 700; }
 .module-title { display: block; color: var(--text); font-size: 21px; }
@@ -80,7 +80,7 @@ h3 { font-size: 16px; margin: 16px 0 8px; }
 .module-meta { color: var(--muted); font-size: 12px; }
 .module-action { color: var(--accent); font-weight: 700; white-space: nowrap; }
 .module-card-research .module-action { color: var(--green); }
-.section-intro { margin: -4px 0 12px; color: var(--muted); font-size: 13px; }
+.module-card-research .date-list { width: 100%; margin: 18px 0 0; }
 .date-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -192,8 +192,8 @@ ul.compact li { margin: 4px 0; }
   .shell { padding: 18px 12px 34px; }
   .topbar { display: block; }
   h1 { font-size: 23px; }
-  .module-grid { grid-template-columns: 1fr; }
   .module-card { min-height: 154px; align-items: flex-start; }
+  .module-card-research { min-height: 0; }
   .stock-table, .stock-table tbody, .stock-table tr, .stock-table td { display: block; width: 100%; }
   .stock-table thead { display: none; }
   .stock-table tr { border-bottom: 1px solid var(--line); }
@@ -225,7 +225,7 @@ ul.compact li { margin: 4px 0; }
         </a>
         
       
-    <a class="module-card module-card-research" href="#research-reports">
+    <section class="module-card module-card-research" id="research-reports">
       <div class="module-card-head">
         <span class="module-label">模块 02 · 分时研究链路</span>
         <strong class="module-title">投研辅助</strong>
@@ -233,15 +233,8 @@ ul.compact li { margin: 4px 0; }
       </div>
       <div class="module-footer">
         <span class="module-meta">最新报告：2026-07-21 · 共 26 个日期</span>
-        <span class="module-action">查看报告 ↓</span>
       </div>
-    </a>
-    
-    </section>
-    <div class="notice">仅用于投研辅助和候选池整理，不是自动交易指令。</div>
-    <h2 id="research-reports">投研辅助 · 报告日期</h2>
-    <div class="section-intro">按日期查看各时点候选、单股详情与收盘复盘。</div>
-    <ul class="date-list"><li><a href="2026-07-21/index.html"><strong>2026-07-21</strong><br><span class="muted">查看股票推荐与复盘</span></a></li>
+      <ul class="date-list"><li><a href="2026-07-21/index.html"><strong>2026-07-21</strong><br><span class="muted">查看股票推荐与复盘</span></a></li>
 <li><a href="2026-07-20/index.html"><strong>2026-07-20</strong><br><span class="muted">查看股票推荐与复盘</span></a></li>
 <li><a href="2026-07-17/index.html"><strong>2026-07-17</strong><br><span class="muted">查看股票推荐与复盘</span></a></li>
 <li><a href="2026-07-16/index.html"><strong>2026-07-16</strong><br><span class="muted">查看股票推荐与复盘</span></a></li>
@@ -267,6 +260,10 @@ ul.compact li { margin: 4px 0; }
 <li><a href="2026-06-18/index.html"><strong>2026-06-18</strong><br><span class="muted">查看股票推荐与复盘</span></a></li>
 <li><a href="2026-06-17/index.html"><strong>2026-06-17</strong><br><span class="muted">查看股票推荐与复盘</span></a></li>
 <li><a href="2026-06-16/index.html"><strong>2026-06-16</strong><br><span class="muted">查看股票推荐与复盘</span></a></li></ul>
+    </section>
+    
+    </section>
+    <div class="notice">仅用于投研辅助和候选池整理，不是自动交易指令。</div>
     
   </main>
 </body>
