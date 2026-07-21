@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>A股投研辅助 - 日期索引</title>
+  <title>A股研究工作台</title>
   <style>
 :root {
   color-scheme: light;
@@ -49,22 +49,38 @@ h3 { font-size: 16px; margin: 16px 0 8px; }
   padding: 10px 12px;
   margin: 12px 0 18px;
 }
-.featured-entry {
+.module-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0 0 16px;
+}
+.module-card {
   display: flex;
+  min-width: 0;
+  min-height: 170px;
+  flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  gap: 18px;
+  gap: 16px;
   background: var(--panel);
-  border: 1px solid var(--accent);
-  border-left: 4px solid var(--accent);
+  border: 1px solid var(--line);
   border-radius: 8px;
-  padding: 14px 16px;
-  margin: 0 0 14px;
+  padding: 18px;
   color: inherit;
 }
-.featured-entry:hover { text-decoration: none; background: var(--accent-soft); }
-.featured-title { display: block; color: var(--accent); font-size: 18px; }
-.featured-action { color: var(--accent); font-weight: 700; white-space: nowrap; }
+.module-card:hover { text-decoration: none; border-color: var(--accent); background: #fafdff; }
+.module-card-primary { border-top: 4px solid var(--accent); }
+.module-card-research { border-top: 4px solid var(--green); }
+.module-card-head { width: 100%; }
+.module-label { display: block; margin-bottom: 8px; color: var(--muted); font-size: 12px; font-weight: 700; }
+.module-title { display: block; color: var(--text); font-size: 21px; }
+.module-description { margin-top: 8px; color: var(--muted); font-size: 13px; line-height: 1.65; }
+.module-footer { display: flex; width: 100%; align-items: flex-end; justify-content: space-between; gap: 12px; }
+.module-meta { color: var(--muted); font-size: 12px; }
+.module-action { color: var(--accent); font-weight: 700; white-space: nowrap; }
+.module-card-research .module-action { color: var(--green); }
+.section-intro { margin: -4px 0 12px; color: var(--muted); font-size: 13px; }
 .date-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -176,7 +192,8 @@ ul.compact li { margin: 4px 0; }
   .shell { padding: 18px 12px 34px; }
   .topbar { display: block; }
   h1 { font-size: 23px; }
-  .featured-entry { align-items: flex-start; }
+  .module-grid { grid-template-columns: 1fr; }
+  .module-card { min-height: 154px; align-items: flex-start; }
   .stock-table, .stock-table tbody, .stock-table tr, .stock-table td { display: block; width: 100%; }
   .stock-table thead { display: none; }
   .stock-table tr { border-bottom: 1px solid var(--line); }
@@ -189,21 +206,41 @@ ul.compact li { margin: 4px 0; }
     
     <div class="topbar">
       <div>
-        <h1>A股投研辅助</h1>
-        <div class="muted">按日期查看股票列表，点击股票名进入单股详情。</div>
+        <h1>A股研究工作台</h1>
+        <div class="muted">尾盘模型与分时投研的统一入口。</div>
       </div>
     </div>
-    
-        <a class="featured-entry" href="tail-model/index.html">
-          <div>
-            <strong class="featured-title">尾盘模型选股</strong>
-            <div class="muted">V8C / V17 当日推荐与独立30日回测 · 数据更新时间：2026-07-20 14:52:47（北京时间）</div>
+    <section class="module-grid" aria-label="研究模块">
+      
+        <a class="module-card module-card-primary" href="tail-model/index.html">
+          <div class="module-card-head">
+            <span class="module-label">模块 01 · 14:49 尾盘信号</span>
+            <strong class="module-title">尾盘模型选股</strong>
+            <div class="module-description">V8C与V17当日推荐、模型状态及各自独立的30日回测。</div>
           </div>
-          <span class="featured-action">进入</span>
+          <div class="module-footer">
+            <span class="module-meta">数据更新时间：2026-07-20 14:52:47（北京时间）</span>
+            <span class="module-action">进入模块 →</span>
+          </div>
         </a>
         
+      
+    <a class="module-card module-card-research" href="#research-reports">
+      <div class="module-card-head">
+        <span class="module-label">模块 02 · 分时研究链路</span>
+        <strong class="module-title">投研辅助</strong>
+        <div class="module-description">盘前、开盘、午后、尾盘和收盘复盘的日期归档与单股研究详情。</div>
+      </div>
+      <div class="module-footer">
+        <span class="module-meta">最新报告：2026-07-21 · 共 26 个日期</span>
+        <span class="module-action">查看报告 ↓</span>
+      </div>
+    </a>
+    
+    </section>
     <div class="notice">仅用于投研辅助和候选池整理，不是自动交易指令。</div>
-    <h2>报告日期</h2>
+    <h2 id="research-reports">投研辅助 · 报告日期</h2>
+    <div class="section-intro">按日期查看各时点候选、单股详情与收盘复盘。</div>
     <ul class="date-list"><li><a href="2026-07-21/index.html"><strong>2026-07-21</strong><br><span class="muted">查看股票推荐与复盘</span></a></li>
 <li><a href="2026-07-20/index.html"><strong>2026-07-20</strong><br><span class="muted">查看股票推荐与复盘</span></a></li>
 <li><a href="2026-07-17/index.html"><strong>2026-07-17</strong><br><span class="muted">查看股票推荐与复盘</span></a></li>
