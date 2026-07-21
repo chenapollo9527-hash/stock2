@@ -49,6 +49,38 @@ h3 { font-size: 16px; margin: 16px 0 8px; }
   padding: 10px 12px;
   margin: 12px 0 18px;
 }
+.module-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+  margin: 0 0 16px;
+}
+.module-card {
+  display: flex;
+  min-width: 0;
+  min-height: 170px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 18px;
+  color: inherit;
+}
+a.module-card:hover { text-decoration: none; border-color: var(--accent); background: #fafdff; }
+.module-card-primary { border-top: 4px solid var(--accent); }
+.module-card-research { min-height: 0; align-items: stretch; border-top: 4px solid var(--green); }
+.module-card-head { width: 100%; }
+.module-label { display: block; margin-bottom: 8px; color: var(--muted); font-size: 12px; font-weight: 700; }
+.module-title { display: block; color: var(--text); font-size: 21px; }
+.module-description { margin-top: 8px; color: var(--muted); font-size: 13px; line-height: 1.65; }
+.module-footer { display: flex; width: 100%; align-items: flex-end; justify-content: space-between; gap: 12px; }
+.module-meta { color: var(--muted); font-size: 12px; }
+.module-action { color: var(--accent); font-weight: 700; white-space: nowrap; }
+.module-card-research .module-action { color: var(--green); }
+.module-card-research .date-list { width: 100%; margin: 18px 0 0; }
 .date-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -160,6 +192,8 @@ ul.compact li { margin: 4px 0; }
   .shell { padding: 18px 12px 34px; }
   .topbar { display: block; }
   h1 { font-size: 23px; }
+  .module-card { min-height: 154px; align-items: flex-start; }
+  .module-card-research { min-height: 0; }
   .stock-table, .stock-table tbody, .stock-table tr, .stock-table td { display: block; width: 100%; }
   .stock-table thead { display: none; }
   .stock-table tr { border-bottom: 1px solid var(--line); }
@@ -178,7 +212,7 @@ ul.compact li { margin: 4px 0; }
       <a href="../index.html">返回日期索引</a>
     </div>
     <div class="notice">仅用于投研辅助和候选池整理；请结合确认条件和风险条件，不作为自动交易指令。</div>
-    <h2>流程健康状态</h2><div class="panel"><span class="tag good">滚动备忘录：正常</span><span class="tag good">08:00新闻与公告：正常</span><span class="tag good">08:00量价研究池 Top200=200 Top30=30：正常</span><span class="tag good">08:00正式候选：正常</span><span class="tag good">09:45一分钟行情与预分析 3043/3044：正常</span><span class="tag good">09:45正式候选：正常</span><span class="tag good">13:15一分钟行情与预分析 3043/3044：正常</span><span class="tag good">13:15正式候选：正常</span><span class="tag good">14:45一分钟行情与预分析 3043/3044：正常</span><span class="tag good">14:45正式候选：正常</span><span class="tag good">15:15收盘结果：正常</span><span class="tag good">回测资料包：正常</span><span class="tag good">运行审计日报 阻塞=0 漏发=0：正常</span><div class="muted" style="margin-top:10px">回测资料包在收盘后封存各阶段可见输入，用于无未来数据泄漏的历史重放；运行审计日报（SLA）在收盘后汇总耗时、超时/阻塞和正式邮件状态。</div><div class="muted">最近执行：close / ok / 2026-07-20T15:18:28+08:00</div></div>
+    <h2>流程健康状态</h2><div class="panel"><span class="tag good">滚动备忘录：正常</span><span class="tag good">08:00新闻与公告：正常</span><span class="tag good">08:00量价研究池 Top200=200 Top30=30：正常</span><span class="tag good">08:00正式候选：正常</span><span class="tag good">09:45一分钟行情与预分析 3043/3044：正常</span><span class="tag good">09:45正式候选：正常</span><span class="tag good">13:15一分钟行情与预分析 3043/3044：正常</span><span class="tag good">13:15正式候选：正常</span><span class="tag good">14:45一分钟行情与预分析 3043/3044：正常</span><span class="tag good">14:45正式候选：正常</span><span class="tag good">15:15收盘结果：正常</span><span class="tag good">回测资料包：正常</span><span class="tag good">运行审计日报 阻塞=0 漏发=0：正常</span><div class="muted" style="margin-top:10px">回测资料包在收盘后封存各阶段可见输入，用于无未来数据泄漏的历史重放；运行审计日报（SLA）在收盘后汇总耗时、超时/阻塞和正式邮件状态。</div><div class="muted">最近执行：1445 / ok / 2026-07-20T14:47:44+08:00</div></div>
     
     <h2>分时点推荐</h2>
     <div class="grid">
