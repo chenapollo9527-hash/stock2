@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-07-22 近30个交易日回测</title>
+  <style>
+    :root { color-scheme: light; font-family: "Microsoft YaHei", "Segoe UI", sans-serif; }
+    * { box-sizing: border-box; }
+    body { margin: 0; color: #17202a; background: #f4f6f8; }
+    header { background: #17324d; color: #fff; padding: 28px max(24px, calc((100vw - 1280px) / 2)); }
+    h1 { margin: 0; font-size: 28px; letter-spacing: 0; }
+    header p { margin: 8px 0 0; color: #d6e2ec; }
+    main { max-width: 1280px; margin: 0 auto; padding: 24px; }
+    .back-link { display: inline-flex; align-items: center; color: #17324d; font-weight: 700; text-decoration: none; margin-bottom: 18px; }
+    .back-link:hover { text-decoration: underline; }
+    .badge { font-weight: 700; color: #fff; padding: 4px 9px; border-radius: 4px; }
+    .badge.pass { background: #16865c; } .badge.blocked { background: #c23b3b; } .badge.warn { background: #aa6b00; }
+    .metrics { display: grid; grid-template-columns: repeat(6, minmax(125px, 1fr)); gap: 1px; margin: 20px 0; background: #d9dee3; border: 1px solid #d9dee3; }
+    .metric { background: #fff; padding: 14px 16px; }
+    .metric span { display: block; color: #66717d; font-size: 12px; margin-bottom: 6px; }
+    .metric strong { font-size: 18px; }
+    .table-wrap { overflow-x: auto; background: #fff; border: 1px solid #d9dee3; }
+    table { width: 100%; border-collapse: collapse; min-width: 1040px; }
+    th, td { padding: 12px 14px; text-align: left; border-bottom: 1px solid #e5e8eb; }
+    th { background: #edf1f4; font-size: 12px; color: #45515d; }
+    tbody tr:hover { background: #f8fafb; }
+    a { color: #173f63; }
+    .muted { color: #77828d; font-size: 12px; }
+    .empty { padding: 36px; text-align: center; color: #7a3333; background: #fff; }
+    .report-section { padding-top: 4px; }
+    .section-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 18px; margin-bottom: 14px; }
+    .section-heading h2 { margin: 0; font-size: 21px; }
+    .section-heading p { margin: 6px 0 0; color: #66717d; font-size: 13px; }
+    .section-heading .badge { flex: 0 0 auto; }
+    .audit-note { color: #56616c; font-size: 13px; line-height: 1.7; }
+    .trade-line { min-width: 260px; margin: 3px 0; }
+    .result { display: inline-block; padding: 2px 6px; border-radius: 3px; font-size: 12px; font-weight: 700; }
+    .result.success { color: #116b49; background: #e7f4ee; }
+    .result.failure { color: #a12727; background: #faeaea; }
+    .result.pending { color: #805300; background: #fff2d8; }
+    .positive { color: #116b49; } .negative { color: #a12727; }
+    .backtest-day-row.expandable { cursor: pointer; }
+    .backtest-day-row.expandable:hover { background: #eef4f7; }
+    .backtest-day-row.expandable:focus-visible { outline: 2px solid #173f63; outline-offset: -2px; }
+    .expand-indicator { display: inline-block; width: 16px; margin-right: 5px; color: #173f63; transition: transform .15s ease; }
+    .expand-indicator::before { content: "▸"; }
+    .backtest-day-row[aria-expanded="true"] .expand-indicator { transform: rotate(90deg); }
+    .day-kline-row[hidden] { display: none; }
+    .day-kline-row:hover { background: transparent; }
+    .day-kline-cell { padding: 16px; background: #edf1f4; }
+    .day-kline-heading { margin-bottom: 12px; color: #354350; font-size: 15px; font-weight: 700; }
+    .chart-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    .chart-card { min-width: 0; background: #fff; border: 1px solid #d9dee3; padding: 14px; }
+    .chart-title { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 28px; }
+    .chart-return { font-weight: 700; margin-left: 6px; }
+    .kline-svg { display: block; width: 100%; aspect-ratio: 720 / 260; margin-top: 10px; }
+    .grid-line { stroke: #e3e7ea; stroke-width: 1; }
+    .zero-line { stroke: #89939c; stroke-width: 1; stroke-dasharray: 4 4; }
+    .axis-label { fill: #707b85; font-size: 10px; }
+    .phase-band { opacity: .08; } .phase-band.signal { fill: #aa6b00; } .phase-band.verify { fill: #173f63; }
+    .phase-label { fill: #4c5863; font-size: 10px; font-weight: 700; }
+    .wick { stroke-width: 1.3; } .wick.up { stroke: #c23b3b; } .wick.down { stroke: #16865c; }
+    .candle.up { fill: #c23b3b; } .candle.down { fill: #16865c; }
+    .chart-note { margin: 4px 0 0; color: #68737e; font-size: 12px; }
+    .chart-empty { height: 220px; display: grid; place-items: center; color: #7a3333; background: #f8fafb; margin-top: 10px; }
+    footer { color: #68737e; font-size: 12px; line-height: 1.7; margin-top: 18px; }
+    @media (max-width: 900px) { .metrics { grid-template-columns: repeat(2, minmax(130px, 1fr)); } .chart-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 640px) { main { padding: 16px; } h1 { font-size: 22px; } .section-heading, .chart-title { align-items: stretch; flex-direction: column; } }
+  </style>
+</head>
+<body>
+  <header><h1>2026-07-22 近30个交易日回测</h1><p>模型 V65 CAUSAL LIQUIDITY RISK GATE · 独立回测与K线明细</p></header>
+  <main>
+    <a class="back-link" href="formal_signal_20260722.html">返回当天推荐</a>
+    
+    <section class="report-section">
+      <div class="section-heading"><div><h2>最近 1 个交易日回测 · V65 CAUSAL LIQUIDITY RISK GATE</h2><p>2026-07-22 至 2026-07-22；待验证名单不进入命中率和收益。</p></div><span class="badge pass">单档 +2% 止盈</span></div>
+      <div class="metrics backtest-metrics">
+        <div class="metric"><span>已结算交易日</span><strong>0</strong></div>
+        <div class="metric"><span>活跃日率</span><strong>--</strong></div>
+        <div class="metric"><span>已结算股票</span><strong>0</strong></div>
+        <div class="metric"><span>命中率</span><strong>--</strong></div>
+        <div class="metric"><span>Top3 三槽累计收益（单档 +2%）</span><strong class="positive">+0.00%</strong></div>
+        <div class="metric"><span>待验证交易日</span><strong>1</strong></div>
+      </div>
+      <div class="table-wrap"><table class="backtest-table">
+        <thead><tr><th>信号日 T</th><th>验证日 T+1</th><th>股票与结果</th><th>入选</th><th>命中</th><th>三槽收益</th><th>状态</th></tr></thead>
+        <tbody><tr class="backtest-day-row expandable" role="button" tabindex="0" aria-expanded="false" aria-controls="kline-day-2026-07-22" data-detail-id="kline-day-2026-07-22"><td><span class="expand-indicator" aria-hidden="true"></span><strong>2026-07-22</strong></td><td>2026-07-23</td><td><div class="trade-line"><strong>凯盛科技</strong> <span class="muted">600552</span> <span class="result pending">待验证</span><span class="muted"></span></div><div class="trade-line"><strong>金海通</strong> <span class="muted">603061</span> <span class="result pending">待验证</span><span class="muted"></span></div></td><td>2</td><td>0/0</td><td class="">--</td><td><span class="badge warn">待 T+1 验证</span></td></tr><tr class="day-kline-row" id="kline-day-2026-07-22" hidden><td class="day-kline-cell" colspan="7"><div class="day-kline-heading">2026-07-22 入选股票K线</div><div class="chart-grid"><article class="chart-card"><div class="chart-title"><div><strong>凯盛科技</strong> <span class="muted">600552</span></div><div><span class="result pending">待验证</span> </div></div><div class="chart-empty">K线数据不可用</div><p class="chart-note">前复权百分比K线，以T-1收盘价为0%；红涨绿跌，阴影标出T与T+1。</p></article><article class="chart-card"><div class="chart-title"><div><strong>金海通</strong> <span class="muted">603061</span></div><div><span class="result pending">待验证</span> </div></div><div class="chart-empty">K线数据不可用</div><p class="chart-note">前复权百分比K线，以T-1收盘价为0%；红涨绿跌，阴影标出T与T+1。</p></article></div></td></tr></tbody>
+      </table></div>
+      <p class="audit-note">收益口径：T+1 高开达到或超过 +2% 目标价时按开盘价卖出；否则在盘中首次触及 +2% 时卖出；全日未触及则按 T+1 14:50 一分钟 VWAP 卖出。单笔扣除 0.15% 往返成本，每日固定三槽。</p>
+    </section>
+    <footer>图表区间为T日前10个交易日、T日及T+1日；只展示当时已冻结的历史推荐，不回填事后候选。生成时间：2026-07-22T14:51:33+08:00。</footer>
+  </main>
+  <script>
+    (() => {
+      const toggle = (row) => {
+        const detail = document.getElementById(row.dataset.detailId);
+        if (!detail) return;
+        const expanded = row.getAttribute("aria-expanded") === "true";
+        row.setAttribute("aria-expanded", String(!expanded));
+        detail.hidden = expanded;
+      };
+      document.querySelectorAll(".backtest-day-row.expandable").forEach((row) => {
+        row.addEventListener("click", () => toggle(row));
+        row.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            toggle(row);
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
