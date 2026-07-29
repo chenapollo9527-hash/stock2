@@ -212,24 +212,47 @@ ul.compact li { margin: 4px 0; }
       <a href="../index.html">返回时间点</a>
     </div>
     <div class="notice">时间边界：13:15 到点一次性保存上午120分钟及午后15分钟全主板原生1分钟量价批次，并生成13:00/13:05/13:10/13:15决策特征；新闻固定复用08:00背景。</div>
-    <div class="notice">08:00 新闻预分析、完整日K线质量门控和主板研究池已落地，等待 API runner 完成盘前正式综合分析。</div>
+    
     <h2>状态</h2>
     <div class="grid">
-      <div class="metric"><span class="muted">市场姿态</span><strong>待综合分析</strong></div>
-      <div class="metric"><span class="muted">快照生成时间</span><strong>2026-07-29T08:03:53+08:00</strong></div>
-      <div class="metric"><span class="muted">候选数量</span><strong>0</strong></div>
+      <div class="metric"><span class="muted">市场姿态</span><strong>narrow_theme_strength</strong></div>
+      <div class="metric"><span class="muted">快照生成时间</span><strong>2026-07-29T13:17:12+08:00</strong></div>
+      <div class="metric"><span class="muted">候选数量</span><strong>2</strong></div>
     </div>
-    <h2>分析结论</h2><div class="panel"><ul class="compact"><li><strong>结论：</strong>08:00 新闻预分析、完整日K线质量门控和主板研究池已落地，等待 API runner 完成盘前正式综合分析。</li><li><strong>市场情绪：</strong>本地证据已落地，页面先行发布；等待 API runner 写入正式综合分析。</li><li><strong>信息背景：</strong>此 slot 为准点发布骨架，不作为正式推荐成绩。</li><li><strong>风险：</strong>若长时间停留在该状态，说明 API runner 未及时完成对应阶段。</li></ul></div>
+    <h2>分析结论</h2><div class="panel muted">该时间点尚未生成分析。</div>
     
+    <h2>API 运行信息</h2>
+    <div class="grid"><div class="metric"><span class="muted">模型</span><strong>deepseek-v4-flash</strong></div>
+<div class="metric"><span class="muted">Total tokens</span><strong>89984</strong></div></div>
     
-    <h2>行情预分析</h2><div class="panel muted">尚未生成行情预分析。</div>
+    <h2>热门概念雷达</h2><table class="stock-table"><thead><tr><th>概念</th><th>强度证据</th><th>不可买强势样本</th><th>同链低位候选</th></tr></thead><tbody><tr><td colspan="4">新能源/电力设备：摩恩电气(002451)+2.62%，平高电气(600312)+4.39%但回撤，同链扩散温和。</td></tr>
+<tr><td colspan="4">高端制造/军工/机器人：福田汽车(600166)+4.61%，华明装备(002270)+1.23%，同链扩散扩大。</td></tr>
+<tr><td colspan="4">化工/材料：北化股份(002246)+2.36%，利尔化学(002258)+1.64%，但受商品与汇率外部风险压制。</td></tr></tbody></table>
+    <h2>行情预分析</h2><div class="panel"><ul class="compact"><li><strong>边界：</strong>market_only_preanalysis_from_exchange_native_one_minute_data_no_news_or_memory</li><li><strong>模式：</strong>narrow_theme_strength：主板强势样本达到涨停潮阈值：pct_gt_6=90，limit_up_like=58。即使下跌家数占优，也应先识别热门概念和同链低位承接。</li><li><strong>涨停潮阈值：</strong>触发 / 主板pct&gt;6 90，近涨停 58</li><li><strong>数据源：</strong>tdx_one_minute_batch / 行数 3042 / 帧数 4</li><li><strong>宽度：</strong>上涨 2503，下跌 502，中位涨幅 1.57%</li><li><strong>时间权重：</strong>13:15 必须同时考虑上午主线和午后变化；午后近端资金权重大于上午背景。</li><li><strong>近端窗口：</strong>2026-07-29T13:00:00+08:00 至 2026-07-29T13:15:00+08:00 / 4帧</li><li><strong>主板6%以下活跃：</strong>中国巨石(600176) 1.14%、亨通光电(600487) 0.14%、京东方Ａ(000725) 1.61%、贵州茅台(600519) 0.52%、立讯精密(002475) 2.95%</li></ul></div>
     <h2>盘面监控</h2><div class="panel muted">该窗口尚未采集高频监控快照。</div>
     <h2>主板可交易候选（偏未爆发/惯性）</h2>
     <table class="stock-table">
       <thead>
         <tr><th>股票</th><th>概念</th><th>来源/确认</th><th>涨幅</th><th>详情</th></tr>
       </thead>
-      <tbody><tr><td colspan="5" class="muted">该时间点暂无可交易候选。</td></tr></tbody>
+      <tbody>
+    <tr>
+      <td><a class="stock-name" href="../stocks/1315_600331.html">宏达股份</a><span class="code">(600331)</span></td>
+      <td>量价结构候选2</td>
+      <td><span class="tag good">preopen_observation_pool / 量价结构候选2概念，盘中四帧持续上行，pct从2.9%升至4.14%，成交额稳定放大。</span></td>
+      <td><div class="perf-line"><span class="perf-item">快照涨幅<strong>4.14%</strong></span></div></td>
+      <td><a href="../stocks/1315_600331.html">查看详情</a></td>
+    </tr>
+    
+
+    <tr>
+      <td><a class="stock-name" href="../stocks/1315_002246.html">北化股份</a><span class="code">(002246)</span></td>
+      <td>量价结构候选5</td>
+      <td><span class="tag good">preopen_observation_pool / 量价结构候选5概念，盘中四帧持续上行，pct从1.80%升至2.36%，成交额温和。</span></td>
+      <td><div class="perf-line"><span class="perf-item">快照涨幅<strong>2.36%</strong></span></div></td>
+      <td><a href="../stocks/1315_002246.html">查看详情</a></td>
+    </tr>
+    </tbody>
     </table>
     
     <h2>风险提示（概念/个股）</h2>
@@ -238,15 +261,6 @@ ul.compact li { margin: 4px 0; }
         <tr><th>对象</th><th>类型</th><th>线索</th><th>风险</th><th>应对</th></tr>
       </thead>
       <tbody>
-    <tr>
-      <td><span class="stock-name">待 API 综合分析</span></td>
-      <td><span class="tag risk">流程</span><span class="tag watch">中</span></td>
-      <td>08:00 新闻预分析、完整日K线质量门控和主板研究池已落地，等待 API runner 完成盘前正式综合分析。</td>
-      <td>当前页面只是本地准点发布占位，候选尚未完成正式综合分析。</td>
-      <td>等待 API runner 覆盖；盘中阶段可由本地行情兜底先行填充。</td>
-    </tr>
-    
-
     <tr>
       <td><span class="stock-name">商品与汇率</span></td>
       <td><span class="tag risk">外部市场</span><span class="tag watch">高</span></td>
@@ -302,6 +316,51 @@ ul.compact li { margin: 4px 0; }
     
 
     <tr>
+      <td><span class="stock-name">行情数据质量</span></td>
+      <td><span class="tag risk">数据</span><span class="tag watch">高</span></td>
+      <td>全 A 最新有效行数 3042，低于完整扫描阈值。</td>
+      <td>准点行情不完整时，涨幅、宽度和资金方向不能作为正式推荐依据。</td>
+      <td>只保留观察样本；等待下一帧完整扫描或异源确认。</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="stock-name">大盘普涨遮蔽</span></td>
+      <td><span class="tag risk">大盘</span><span class="tag watch">中</span></td>
+      <td>上涨 2503/3042，中位涨幅 1.57%；主板强势样本达到涨停潮阈值：pct_gt_6=90，limit_up_like=58。即使下跌家数占优，也应先识别热门概念和同链低位承接。</td>
+      <td>候选胜率可能主要来自市场 Beta，而不是个股自身催化或资金独立选择。</td>
+      <td>优先看相对强度、缩量回踩承接和次日是否仍强于大盘。</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="stock-name">短线情绪过热</span></td>
+      <td><span class="tag risk">概念</span><span class="tag watch">中</span></td>
+      <td>全市场涨幅超过 6% 的样本约 90 只。</td>
+      <td>高涨幅样本过多时，尾盘和次日容易出现兑现，未爆发候选也可能被板块退潮拖累。</td>
+      <td>降低追涨权重，只保留未过 6% 且仍有资金流入的样本。</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="stock-name">摩恩电气</span><span class="code">(002451)</span></td>
+      <td><span class="tag risk">个股</span><span class="tag watch">高</span></td>
+      <td>该样本已被本时点过滤。</td>
+      <td>命中外部高风险主题且缺少可审计的例外证据，已从正式候选降级至观察。</td>
+      <td>不纳入正式候选；只作为板块强度或反面样本。</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="stock-name">福田汽车</span><span class="code">(600166)</span></td>
+      <td><span class="tag risk">个股</span><span class="tag watch">高</span></td>
+      <td>该样本已被本时点过滤。</td>
+      <td>命中外部高风险主题且缺少可审计的例外证据，已从正式候选降级至观察。</td>
+      <td>不纳入正式候选；只作为板块强度或反面样本。</td>
+    </tr>
+    
+
+    <tr>
       <td><span class="stock-name">新闻风险线索</span></td>
       <td><span class="tag risk">新闻</span><span class="tag watch">中</span></td>
       <td>[动力煤价格企稳回升 后续高位震荡](https://finance.eastmoney.com/a/202607283822492173.html) - eastmoney_stock - 价格</td>
@@ -311,7 +370,7 @@ ul.compact li { margin: 4px 0; }
     </tbody>
     </table>
     
-    
+    <h2>剔除/仅观察</h2><div class="panel"><span class="tag risk">摩恩电气 002451：命中外部高风险主题且缺少可审计的例外证据，已从正式候选降级至观察。</span><span class="tag risk">福田汽车 600166：命中外部高风险主题且缺少可审计的例外证据，已从正式候选降级至观察。</span></div>
     <h2>使用信息</h2>
     <div class="panel"><ul class="compact"><li>data/market/YYYY-MM-DD_1315_market_preanalysis.json</li><li>data/market/slot_batches/YYYY-MM-DD/1315/minute_bars.parquet</li><li>data/market/slot_batches/YYYY-MM-DD/1315/quality_manifest.json</li><li>docs/daily_news_YYYY-MM-DD.md</li><li>data/news_preanalysis/YYYY-MM-DD_0900_news_preanalysis.json</li><li>data/preopen_research/YYYY-MM-DD_preopen_research_pool.json</li><li>memory/rolling_20_trading_days.md</li></ul></div>
     <h2>原始快照</h2>
