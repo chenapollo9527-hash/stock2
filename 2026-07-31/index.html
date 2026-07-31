@@ -212,7 +212,7 @@ ul.compact li { margin: 4px 0; }
       <a href="../index.html">返回日期索引</a>
     </div>
     <div class="notice">仅用于投研辅助和候选池整理；请结合确认条件和风险条件，不作为自动交易指令。</div>
-    <h2>流程健康状态</h2><div class="panel"><span class="tag good">滚动备忘录：正常</span><span class="tag good">08:00新闻与公告：正常</span><span class="tag good">08:00量价研究池 Top200=200 Top30=30：正常</span><span class="tag watch">08:00正式候选：运行中</span><span class="tag pending">09:45一分钟行情与预分析：待执行</span><span class="tag pending">09:45正式候选：待执行</span><span class="tag pending">13:15一分钟行情与预分析：待执行</span><span class="tag pending">13:15正式候选：待执行</span><span class="tag pending">14:45一分钟行情与预分析：待执行</span><span class="tag pending">14:45正式候选：待执行</span><span class="tag pending">15:15收盘结果：待执行</span><span class="tag pending">回测资料包：待执行</span><span class="tag pending">运行审计日报：待执行</span><div class="muted" style="margin-top:10px">回测资料包在收盘后封存各阶段可见输入，用于无未来数据泄漏的历史重放；运行审计日报（SLA）在收盘后汇总耗时、超时/阻塞和正式邮件状态。</div></div>
+    <h2>流程健康状态</h2><div class="panel"><span class="tag good">滚动备忘录：正常</span><span class="tag good">08:00新闻与公告：正常</span><span class="tag good">08:00量价研究池 Top200=200 Top30=30：正常</span><span class="tag risk">08:00正式候选：异常</span><span class="tag good">09:45一分钟行情与预分析 3043/3046：正常</span><span class="tag risk">09:45正式候选：异常</span><span class="tag good">13:15一分钟行情与预分析 3043/3046：正常</span><span class="tag good">13:15正式候选：正常</span><span class="tag pending">14:45一分钟行情与预分析：待执行</span><span class="tag pending">14:45正式候选：待执行</span><span class="tag pending">15:15收盘结果：待执行</span><span class="tag pending">回测资料包：待执行</span><span class="tag pending">运行审计日报：待执行</span><div class="muted" style="margin-top:10px">回测资料包在收盘后封存各阶段可见输入，用于无未来数据泄漏的历史重放；运行审计日报（SLA）在收盘后汇总耗时、超时/阻塞和正式邮件状态。</div><div class="muted">最近执行：0945 / blocked_slot_incomplete / 2026-07-31T09:46:22+08:00</div></div>
     
         <div class="notice">
           08:00 盘前没有形成可交易候选。原因：科技硬件链（岩山科技）因外部风险过高转入观察池，核心候选数量4只满足最低要求，未用低弹性防御或弱映射票凑数。
@@ -245,11 +245,11 @@ ul.compact li { margin: 4px 0; }
             <a class="slot-card" href="slots/1315.html">
               <div class="slot-top">
                 <div class="slot-title">13:15</div>
-                <div class="slot-count">0 只候选</div>
+                <div class="slot-count">4 只候选</div>
               </div>
-              <strong>待综合分析</strong>
-              <div class="muted">2026-07-31T08:03:33+08:00</div>
-              <div>08:00 新闻预分析、完整日K线质量门控和主板研究池已落地，等待 API runner 完成盘前正式综合分析。</div>
+              <strong>narrow_theme_strength</strong>
+              <div class="muted">2026-07-31T13:21:32+08:00</div>
+              <div>主板13:15涨停潮阈值触发（limit_up_like=92、pct_gt_6=298），上涨2300家/下跌672家、中位涨幅1.42%，赚钱效应集中在有色/资源链与少数权重科技龙头；四帧验证显示资源链扩散持续扩大，科技硬件仅个别龙头获资金确认。13:15优先采信上午已验证资金方向。</div>
               <div class="muted">边界：13:15 到点一次性保存上午120分钟及午后15分钟全主板原生1分钟量价批次，并生成13:00/13:05/13:10/13:15决策特征；新闻固定复用08:00背景。</div>
             </a>
             

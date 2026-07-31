@@ -212,24 +212,65 @@ ul.compact li { margin: 4px 0; }
       <a href="../index.html">返回时间点</a>
     </div>
     <div class="notice">时间边界：13:15 到点一次性保存上午120分钟及午后15分钟全主板原生1分钟量价批次，并生成13:00/13:05/13:10/13:15决策特征；新闻固定复用08:00背景。</div>
-    <div class="notice">08:00 新闻预分析、完整日K线质量门控和主板研究池已落地，等待 API runner 完成盘前正式综合分析。</div>
+    
     <h2>状态</h2>
     <div class="grid">
-      <div class="metric"><span class="muted">市场姿态</span><strong>待综合分析</strong></div>
-      <div class="metric"><span class="muted">快照生成时间</span><strong>2026-07-31T08:03:33+08:00</strong></div>
-      <div class="metric"><span class="muted">候选数量</span><strong>0</strong></div>
+      <div class="metric"><span class="muted">市场姿态</span><strong>narrow_theme_strength</strong></div>
+      <div class="metric"><span class="muted">快照生成时间</span><strong>2026-07-31T13:21:32+08:00</strong></div>
+      <div class="metric"><span class="muted">候选数量</span><strong>4</strong></div>
     </div>
-    <h2>分析结论</h2><div class="panel"><ul class="compact"><li><strong>结论：</strong>08:00 新闻预分析、完整日K线质量门控和主板研究池已落地，等待 API runner 完成盘前正式综合分析。</li><li><strong>市场情绪：</strong>本地证据已落地，页面先行发布；等待 API runner 写入正式综合分析。</li><li><strong>信息背景：</strong>此 slot 为准点发布骨架，不作为正式推荐成绩。</li><li><strong>风险：</strong>若长时间停留在该状态，说明 API runner 未及时完成对应阶段。</li></ul></div>
+    <h2>分析结论</h2><div class="panel muted">该时间点尚未生成分析。</div>
     
+    <h2>API 运行信息</h2>
+    <div class="grid"><div class="metric"><span class="muted">模型</span><strong>deepseek-v4-flash</strong></div>
+<div class="metric"><span class="muted">Total tokens</span><strong>107775</strong></div></div>
     
-    <h2>行情预分析</h2><div class="panel muted">尚未生成行情预分析。</div>
+    <h2>热门概念雷达</h2><table class="stock-table"><thead><tr><th>概念</th><th>强度证据</th><th>不可买强势样本</th><th>同链低位候选</th></tr></thead><tbody><tr><td colspan="4">有色/工业金属（铜、铝、钼）：全市场与Top30双确认，盘面增强池洛阳钼业、江西铜业、云南铜业、云铝股份、天山铝业等多股放量上行，Top30内资源/材料/化工四帧平均涨幅0.86%→1.49%持续扩大；代表强势样本603993、000630；候选600219、002379。命中商品与汇率外部高风险，仅保留A股扩散+连续成交额确认样本。</td></tr>
+<tr><td colspan="4">科技硬件/安防（海康威视）：Top30内量价结构候选4成员四帧维持红盘，海康威视13:15重新加速（成交额32.9亿、末5分钟+0.57%、回撤-0.08%），但岩山科技、浪潮软件等高位震荡/回落，板块扩散不足；外部美股/港股科技高风险下只保留大额资金确认龙头。</td></tr>
+<tr><td colspan="4">医药/医疗链：蓝帆医疗、塞力医疗、永安药业等Top30成员涨幅温和（&lt;3%），四帧平均1.73%但无斜率与量能扩张，暂不构成可交易主线。</td></tr></tbody></table>
+    <h2>行情预分析</h2><div class="panel"><ul class="compact"><li><strong>边界：</strong>market_only_preanalysis_from_exchange_native_one_minute_data_no_news_or_memory</li><li><strong>模式：</strong>narrow_theme_strength：主板强势样本达到涨停潮阈值：pct_gt_6=298，limit_up_like=92。即使下跌家数占优，也应先识别热门概念和同链低位承接。</li><li><strong>涨停潮阈值：</strong>触发 / 主板pct&gt;6 298，近涨停 92</li><li><strong>数据源：</strong>tdx_one_minute_batch / 行数 3043 / 帧数 4</li><li><strong>宽度：</strong>上涨 2300，下跌 672，中位涨幅 1.42%</li><li><strong>时间权重：</strong>13:15 必须同时考虑上午主线和午后变化；午后近端资金权重大于上午背景。</li><li><strong>近端窗口：</strong>2026-07-31T13:00:00+08:00 至 2026-07-31T13:15:00+08:00 / 4帧</li><li><strong>主板6%以下活跃：</strong>中国巨石(600176) 4.53%、德明利(001309) 3.86%、风华高科(000636) 2.69%、紫光股份(000938) 4.11%、京东方Ａ(000725) 4.1%</li></ul></div>
     <h2>盘面监控</h2><div class="panel muted">该窗口尚未采集高频监控快照。</div>
     <h2>主板可交易候选（偏未爆发/惯性）</h2>
     <table class="stock-table">
       <thead>
         <tr><th>股票</th><th>概念</th><th>来源/确认</th><th>涨幅</th><th>详情</th></tr>
       </thead>
-      <tbody><tr><td colspan="5" class="muted">该时间点暂无可交易候选。</td></tr></tbody>
+      <tbody>
+    <tr>
+      <td><a class="stock-name" href="../stocks/1315_600219.html">南山铝业</a><span class="code">(600219)</span></td>
+      <td>有色/铝/资源材料</td>
+      <td><span class="tag good">preopen_observation_pool / 08:00 Top30主池/Top15观察池成员（priority_tier=top15）；资源/材料/化工概念四帧平均涨幅0.86%→1.49%扩散扩大，000975同步红盘。</span></td>
+      <td><div class="perf-line"><span class="perf-item">快照涨幅<strong>1.95%</strong></span></div></td>
+      <td><a href="../stocks/1315_600219.html">查看详情</a></td>
+    </tr>
+    
+
+    <tr>
+      <td><a class="stock-name" href="../stocks/1315_002415.html">海康威视</a><span class="code">(002415)</span></td>
+      <td>科技硬件/安防/AI视觉</td>
+      <td><span class="tag good">preopen_observation_pool / 08:00 Top30主池/Top15观察池成员（priority_tier=top15）；13:15分时二次加速，量价结构候选4组内成员四帧均红盘未收缩。</span></td>
+      <td><div class="perf-line"><span class="perf-item">快照涨幅<strong>3.59%</strong></span></div></td>
+      <td><a href="../stocks/1315_002415.html">查看详情</a></td>
+    </tr>
+    
+
+    <tr>
+      <td><a class="stock-name" href="../stocks/1315_002379.html">宏桥控股</a><span class="code">(002379)</span></td>
+      <td>有色/铝/资源材料</td>
+      <td><span class="tag good">preopen_observation_pool / 08:00 Top30主池成员（priority_tier=top30，overheat_flag=near_20d_high）；量价结构候选2组内四帧up_members=3，有色链扩散共振。</span></td>
+      <td><div class="perf-line"><span class="perf-item">快照涨幅<strong>4.24%</strong></span></div></td>
+      <td><a href="../stocks/1315_002379.html">查看详情</a></td>
+    </tr>
+    
+
+    <tr>
+      <td><a class="stock-name" href="../stocks/1315_603993.html">洛阳钼业</a><span class="code">(603993)</span></td>
+      <td>有色/铜钼/资源材料</td>
+      <td><span class="tag good">intraday_market_enhancement / 池外增强：08:00 Top30未覆盖；午后铜钼链1分钟序列连续确认，盘面增强池burst_potential第一。</span></td>
+      <td><div class="perf-line"><span class="perf-item">快照涨幅<strong>3.27%</strong></span></div></td>
+      <td><a href="../stocks/1315_603993.html">查看详情</a></td>
+    </tr>
+    </tbody>
     </table>
     
     <h2>风险提示（概念/个股）</h2>
@@ -238,15 +279,6 @@ ul.compact li { margin: 4px 0; }
         <tr><th>对象</th><th>类型</th><th>线索</th><th>风险</th><th>应对</th></tr>
       </thead>
       <tbody>
-    <tr>
-      <td><span class="stock-name">待 API 综合分析</span></td>
-      <td><span class="tag risk">流程</span><span class="tag watch">中</span></td>
-      <td>08:00 新闻预分析、完整日K线质量门控和主板研究池已落地，等待 API runner 完成盘前正式综合分析。</td>
-      <td>当前页面只是本地准点发布占位，候选尚未完成正式综合分析。</td>
-      <td>等待 API runner 覆盖；盘中阶段可由本地行情兜底先行填充。</td>
-    </tr>
-    
-
     <tr>
       <td><span class="stock-name">美股科技链</span></td>
       <td><span class="tag risk">外部市场</span><span class="tag watch">高</span></td>
@@ -298,6 +330,33 @@ ul.compact li { margin: 4px 0; }
       <td>两大龙头开启新一轮涨价 算力需求引爆MLCC超级周期 融资客提前埋伏这些股</td>
       <td>国内利好与外部同产业链走弱冲突：科技硬件/半导体链。</td>
       <td>国内利好降权为待验证，必须等待A股资金承接确认。</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="stock-name">行情数据质量</span></td>
+      <td><span class="tag risk">数据</span><span class="tag watch">高</span></td>
+      <td>全 A 最新有效行数 3043，低于完整扫描阈值。</td>
+      <td>准点行情不完整时，涨幅、宽度和资金方向不能作为正式推荐依据。</td>
+      <td>只保留观察样本；等待下一帧完整扫描或异源确认。</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="stock-name">大盘普涨遮蔽</span></td>
+      <td><span class="tag risk">大盘</span><span class="tag watch">中</span></td>
+      <td>上涨 2300/3043，中位涨幅 1.42%；主板强势样本达到涨停潮阈值：pct_gt_6=298，limit_up_like=92。即使下跌家数占优，也应先识别热门概念和同链低位承接。</td>
+      <td>候选胜率可能主要来自市场 Beta，而不是个股自身催化或资金独立选择。</td>
+      <td>优先看相对强度、缩量回踩承接和次日是否仍强于大盘。</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="stock-name">短线情绪过热</span></td>
+      <td><span class="tag risk">概念</span><span class="tag watch">中</span></td>
+      <td>全市场涨幅超过 6% 的样本约 298 只。</td>
+      <td>高涨幅样本过多时，尾盘和次日容易出现兑现，未爆发候选也可能被板块退潮拖累。</td>
+      <td>降低追涨权重，只保留未过 6% 且仍有资金流入的样本。</td>
     </tr>
     
 
