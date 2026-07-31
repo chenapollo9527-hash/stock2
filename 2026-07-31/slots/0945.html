@@ -212,16 +212,23 @@ ul.compact li { margin: 4px 0; }
       <a href="../index.html">返回时间点</a>
     </div>
     <div class="notice">时间边界：09:45 到点一次性保存截至09:45的全主板原生1分钟量价批次，并从中生成09:30前收锚点及09:35/09:40/09:45决策特征；新闻固定复用08:00背景。</div>
-    <div class="notice">08:00 新闻预分析、完整日K线质量门控和主板研究池已落地，等待 API runner 完成盘前正式综合分析。</div>
+    
     <h2>状态</h2>
     <div class="grid">
-      <div class="metric"><span class="muted">市场姿态</span><strong>待综合分析</strong></div>
-      <div class="metric"><span class="muted">快照生成时间</span><strong>2026-07-31T08:03:33+08:00</strong></div>
-      <div class="metric"><span class="muted">候选数量</span><strong>0</strong></div>
+      <div class="metric"><span class="muted">市场姿态</span><strong>narrow_theme_strength</strong></div>
+      <div class="metric"><span class="muted">快照生成时间</span><strong>2026-07-31T19:23:11+08:00</strong></div>
+      <div class="metric"><span class="muted">候选数量</span><strong>1</strong></div>
     </div>
-    <h2>分析结论</h2><div class="panel"><ul class="compact"><li><strong>结论：</strong>08:00 新闻预分析、完整日K线质量门控和主板研究池已落地，等待 API runner 完成盘前正式综合分析。</li><li><strong>市场情绪：</strong>本地证据已落地，页面先行发布；等待 API runner 写入正式综合分析。</li><li><strong>信息背景：</strong>此 slot 为准点发布骨架，不作为正式推荐成绩。</li><li><strong>风险：</strong>若长时间停留在该状态，说明 API runner 未及时完成对应阶段。</li></ul></div>
+    <h2>分析结论</h2><div class="panel muted">该时间点尚未生成分析。</div>
     
+    <h2>API 运行信息</h2>
+    <div class="grid"><div class="metric"><span class="muted">模型</span><strong>deepseek-v4-flash</strong></div>
+<div class="metric"><span class="muted">Total tokens</span><strong>86921</strong></div></div>
     
+    <h2>热门概念雷达</h2><table class="stock-table"><thead><tr><th>概念</th><th>强度证据</th><th>不可买强势样本</th><th>同链低位候选</th></tr></thead><tbody><tr><td><span class="stock-name">科技硬件/半导体</span></td><td>Top30内科技硬件/半导体成员岩山科技、尚太科技、浪潮软件四帧平均pct由-1.54%升至1.71%，09:45上涨成员2/3且平均涨幅1.7109%；岩山科技09:45为3.6364%，尚太科技-0.0354%、浪潮软件1.5316%。板块为前一日已确认扩散方向，今日四帧低位承接延续，但未出现大面积涨停梯队，保留为观察热度而非正式主推。</td><td>-</td><td>-</td></tr>
+<tr><td><span class="stock-name">量价结构候选5</span></td><td>Top30内量价结构候选5成员东方新能、智度股份、跨境通四帧平均pct由-1.60%升至1.80%，09:45上涨成员3/3且平均1.7964%；智度股份09:45为3.3774%，东方新能0.8032%，跨境通1.2085%。扩散扩大但成员涨幅多在3%附近且无成交额爆发核心，板块内暂无6%以上强度样本反推弹性。</td><td>-</td><td>-</td></tr>
+<tr><td><span class="stock-name">医药/医疗</span></td><td>Top30内医药/医疗成员蓝帆医疗、塞力医疗、永安药业四帧平均pct由-2.43%升至1.34%，09:45上涨成员3/3且平均1.3388%；蓝帆医疗1.7513%，塞力医疗1.3012%，永安药业0.9639%。同链低位扩散稳定，但成交额偏低（塞力医疗1.05亿、永安药业0.68亿），仅作雷达观察，不进入正式候选。</td><td>-</td><td>-</td></tr>
+<tr><td><span class="stock-name">资源/材料/化工</span></td><td>Top30内资源/材料/化工成员南山铝业、山金国际四帧平均pct由-0.35%升至1.30%，09:45上涨成员2/2且平均1.2952%；山金国际2.3738%，南山铝业0.2165%。前一日资源/材料/化工已在0945扩散扩大，今日延续但强度弱于昨日3.45%水平，且外部商品与汇率高风险压制，只作雷达。</td><td>-</td><td>-</td></tr></tbody></table>
     <h2>行情预分析</h2><div class="panel"><ul class="compact"><li><strong>边界：</strong>market_only_preanalysis_from_exchange_native_one_minute_data_no_news_or_memory</li><li><strong>模式：</strong>narrow_theme_strength：主板强势样本达到涨停潮阈值：pct_gt_6=247，limit_up_like=57。即使下跌家数占优，也应先识别热门概念和同链低位承接。</li><li><strong>涨停潮阈值：</strong>触发 / 主板pct&gt;6 247，近涨停 57</li><li><strong>数据源：</strong>tdx_one_minute_batch / 行数 3043 / 帧数 4</li><li><strong>宽度：</strong>上涨 2357，下跌 613，中位涨幅 1.37%</li><li><strong>时间权重：</strong>09:45 只看开盘后已保存扫描，重点使用09:30-09:45近端帧。</li><li><strong>近端窗口：</strong>2026-07-31T09:30:00+08:00 至 2026-07-31T09:45:00+08:00 / 4帧</li><li><strong>主板6%以下活跃：</strong>紫光股份(000938) 5.36%、京东方Ａ(000725) 5.04%、永鼎股份(600105) 4.04%、工业富联(601138) 5.33%、雅克科技(002409) 5.87%</li></ul></div>
     <h2>盘面监控</h2><div class="panel muted">该窗口尚未采集高频监控快照。</div>
     <h2>主板可交易候选（偏未爆发/惯性）</h2>
@@ -229,7 +236,15 @@ ul.compact li { margin: 4px 0; }
       <thead>
         <tr><th>股票</th><th>概念</th><th>来源/确认</th><th>涨幅</th><th>详情</th></tr>
       </thead>
-      <tbody><tr><td colspan="5" class="muted">该时间点暂无可交易候选。</td></tr></tbody>
+      <tbody>
+    <tr>
+      <td><a class="stock-name" href="../stocks/0945_000676.html">智度股份</a><span class="code">(000676)</span></td>
+      <td>量价结构候选5</td>
+      <td><span class="tag good">preopen_observation_pool / 08:00 Preopen Top30主池第17名并属于风险过滤后主池；前一日14:45该概念扩散曾收窄（量价结构候选5最新avg_pct=-1.36%），今日四帧由-3.08%→1.47%→2.79%→3.38%无回撤式承接，Top30内同概念扩散avg_pct由-1.60%升至1.80%。1分钟序列：09:35-09:45最近5分钟成交额3864万元，较前一5分钟6305万元略缩但保持正斜率；09:45最低点距离日内高点回撤仅-0.565%，15分钟正分钟率0.467。</span></td>
+      <td><div class="perf-line"><span class="perf-item">快照涨幅<strong>3.38%</strong></span></div></td>
+      <td><a href="../stocks/0945_000676.html">查看详情</a></td>
+    </tr>
+    </tbody>
     </table>
     
     <h2>风险提示（概念/个股）</h2>
@@ -238,15 +253,6 @@ ul.compact li { margin: 4px 0; }
         <tr><th>对象</th><th>类型</th><th>线索</th><th>风险</th><th>应对</th></tr>
       </thead>
       <tbody>
-    <tr>
-      <td><span class="stock-name">待 API 综合分析</span></td>
-      <td><span class="tag risk">流程</span><span class="tag watch">中</span></td>
-      <td>08:00 新闻预分析、完整日K线质量门控和主板研究池已落地，等待 API runner 完成盘前正式综合分析。</td>
-      <td>当前页面只是本地准点发布占位，候选尚未完成正式综合分析。</td>
-      <td>等待 API runner 覆盖；盘中阶段可由本地行情兜底先行填充。</td>
-    </tr>
-    
-
     <tr>
       <td><span class="stock-name">美股科技链</span></td>
       <td><span class="tag risk">外部市场</span><span class="tag watch">高</span></td>
@@ -329,16 +335,34 @@ ul.compact li { margin: 4px 0; }
     
 
     <tr>
-      <td><span class="stock-name">新闻风险线索</span></td>
-      <td><span class="tag risk">新闻</span><span class="tag watch">中</span></td>
-      <td>[美股三大指数高开高走！美元指数跳水](https://www.stcn.com/article/detail/4051250.html) - stcn_stock - 美元, 美股, 跳水</td>
-      <td>公告、异常波动、杠杆或监管线索可能使相关主题从进攻转为兑现。</td>
-      <td>若与候选概念重合，降低仓位假设并等待资金确认。</td>
+      <td><span class="stock-name">岩山科技</span><span class="code">(002195)</span></td>
+      <td><span class="tag risk">个股</span><span class="tag watch">高</span></td>
+      <td>该样本已被本时点过滤。</td>
+      <td>命中外部高风险主题且缺少可审计的例外证据，已从正式候选降级至观察。</td>
+      <td>不纳入正式候选；只作为板块强度或反面样本。</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="stock-name">吉华集团</span><span class="code">(603980)</span></td>
+      <td><span class="tag risk">个股</span><span class="tag watch">高</span></td>
+      <td>该样本已被本时点过滤。</td>
+      <td>正向选股理由命中弱映射、低弹性或其他凑数特征，已从正式候选降级至观察。</td>
+      <td>不纳入正式候选；只作为板块强度或反面样本。</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="stock-name">山金国际</span><span class="code">(000975)</span></td>
+      <td><span class="tag risk">个股</span><span class="tag watch">高</span></td>
+      <td>该样本已被本时点过滤。</td>
+      <td>命中外部高风险主题且缺少可审计的例外证据，已从正式候选降级至观察。</td>
+      <td>不纳入正式候选；只作为板块强度或反面样本。</td>
     </tr>
     </tbody>
     </table>
     
-    
+    <h2>剔除/仅观察</h2><div class="panel"><span class="tag risk">岩山科技 002195：命中外部高风险主题且缺少可审计的例外证据，已从正式候选降级至观察。</span><span class="tag risk">吉华集团 603980：正向选股理由命中弱映射、低弹性或其他凑数特征，已从正式候选降级至观察。</span><span class="tag risk">山金国际 000975：命中外部高风险主题且缺少可审计的例外证据，已从正式候选降级至观察。</span></div>
     <h2>使用信息</h2>
     <div class="panel"><ul class="compact"><li>data/market/YYYY-MM-DD_0945_market_preanalysis.json</li><li>data/market/slot_batches/YYYY-MM-DD/0945/minute_bars.parquet</li><li>data/market/slot_batches/YYYY-MM-DD/0945/quality_manifest.json</li><li>docs/daily_news_YYYY-MM-DD.md</li><li>data/news_preanalysis/YYYY-MM-DD_0900_news_preanalysis.json</li><li>data/preopen_research/YYYY-MM-DD_preopen_research_pool.json</li><li>memory/rolling_20_trading_days.md</li></ul></div>
     <h2>原始快照</h2>
