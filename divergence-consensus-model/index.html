@@ -199,6 +199,7 @@ const publicLiveApiBase="https://stock2-consensus-live-api.chenapollo9527.worker
 let publicLiveManifest=null;
 let publicCachedVersion=null;
 let publicCachedSnapshotText=null;
+let publicInitialStaticLoaded=false;
 let publicDataSource='静态备用快照';
 async function publicLoadManifest(){
   const response=await fetch(publicLiveApiBase+'/v1/latest/manifest.json?ts='+Date.now(),{cache:'no-store'});
@@ -209,6 +210,16 @@ async function publicLoadManifest(){
   return manifest;
 }
 async function publicSnapshotResponse(){
+  if(!publicInitialStaticLoaded){
+    publicInitialStaticLoaded=true;
+    try{
+      const response=await fetch('snapshot.json?ts='+Date.now(),{cache:'no-store'});
+      if(response.ok){
+        publicCachedSnapshotText=await response.text();publicCachedVersion='static';
+        publicDataSource='静态备用快照';return new Response(publicCachedSnapshotText,{headers:{'content-type':'application/json'}});
+      }
+    }catch(error){console.warn('static snapshot unavailable; trying live API',error);}
+  }
   try{
     const manifest=await publicLoadManifest();
     if(publicCachedVersion===manifest.version&&publicCachedSnapshotText!==null){
@@ -532,5 +543,5 @@ const historyObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{
   historyState[kind].visible=true;loadHistory(kind);
 }),{rootMargin:'240px'});
 historyObserver.observe(document.getElementById('settledPanel'));
-refresh();setInterval(refresh,30000);
+refresh();setTimeout(refresh,1000);setInterval(refresh,30000);
 </script></body></html>
