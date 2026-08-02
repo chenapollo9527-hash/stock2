@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="data:,">
+<title>V32MAIN 实时研究推荐</title>
+<style>
+:root {
+  color-scheme:dark;
+  --bg:#08111f;--panel:#101c2d;--panel2:#142238;--line:#26364e;
+  --text:#edf3fb;--muted:#91a1b7;--up:#ff6b78;--down:#41d69b;
+  --watch:#f2c45c;--blue:#5ca9ff;
+}
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(135deg,#07101c,#0d1727 48%,#08111f);
+  color:var(--text);font:14px/1.45 "Segoe UI","Microsoft YaHei",sans-serif}
+.shell{max-width:1780px;margin:auto;padding:22px}
+.top{display:flex;justify-content:space-between;gap:20px;align-items:flex-start}
+h1{margin:0;font-size:27px;letter-spacing:.3px}.sub{color:var(--muted);margin-top:6px}
+.badge{padding:7px 11px;border:1px solid #765b22;color:#ffd77d;
+  background:#2b2415;border-radius:999px;white-space:nowrap}
+.scan-progress{margin-top:18px;padding:14px 17px 13px;background:rgba(16,28,45,.96);
+  border:1px solid var(--line);border-radius:14px;box-shadow:0 14px 35px rgba(0,0,0,.18)}
+.scan-progress-head{display:flex;justify-content:space-between;align-items:center;gap:16px}
+.scan-progress-head h2{margin:0;font-size:15px}.scan-progress-head span{color:var(--muted);font-size:12px}
+.scan-timeline{position:relative;height:57px;margin:8px 5px 0}
+.scan-track{position:absolute;left:0;right:0;top:22px;height:9px;border-radius:999px;
+  background:#24344c;box-shadow:inset 0 0 0 1px rgba(145,161,183,.18);overflow:hidden}
+.scan-fill{position:absolute;left:0;top:0;bottom:0;width:0;background:linear-gradient(90deg,#397fcf,#5ca9ff);
+  transition:width .35s ease}
+.scan-lunch{position:absolute;left:36.3636%;width:27.2728%;top:22px;height:9px;z-index:2;
+  background:repeating-linear-gradient(135deg,#172439 0,#172439 5px,#23334b 5px,#23334b 10px);
+  border-left:1px solid #41536d;border-right:1px solid #41536d}
+.scan-marker{position:absolute;top:15px;left:0;z-index:3;width:3px;height:23px;border-radius:3px;
+  background:#f2c45c;box-shadow:0 0 13px rgba(242,196,92,.72);transition:left .35s ease}
+.scan-marker-label{position:absolute;left:50%;bottom:25px;transform:translateX(-50%);padding:2px 6px;
+  border-radius:5px;background:#2b2415;color:#ffd77d;font-size:11px;font-weight:700;white-space:nowrap}
+.scan-axis-label{position:absolute;top:38px;color:var(--muted);font-size:11px;transform:translateX(-50%)}
+.scan-axis-label.first{transform:none}.scan-axis-label.last{transform:translateX(-100%)}
+.scan-progress-meta{display:flex;justify-content:space-between;gap:14px;color:var(--muted);font-size:12px}
+.scan-progress.DATA_BLOCKED .scan-fill{background:linear-gradient(90deg,#a43b49,#ff6b78)}
+.scan-progress.WAITING_FOR_COMPLETED_MINUTE .scan-fill{background:linear-gradient(90deg,#8a6a25,#f2c45c)}
+.metrics{display:grid;grid-template-columns:repeat(6,minmax(120px,1fr));gap:12px;margin:18px 0}
+.metric,.panel{background:rgba(16,28,45,.96);border:1px solid var(--line);
+  border-radius:14px;box-shadow:0 14px 35px rgba(0,0,0,.18)}
+.metric{padding:15px}.metric .k{color:var(--muted);font-size:12px}
+.metric .v{font-size:22px;font-weight:700;margin-top:4px}
+.grid{display:grid;grid-template-columns:minmax(0,1.18fr) minmax(0,1fr);gap:14px}
+.panel{overflow:hidden}.settled-panel{margin-top:14px}
+.panel-head{display:flex;justify-content:space-between;align-items:center;padding:15px 17px;
+  background:var(--panel2);border-bottom:1px solid var(--line)}
+.panel-head h2{margin:0;font-size:17px}.panel-head span{color:var(--muted);font-size:12px}
+.table-wrap{max-height:58vh;overflow:auto}.settled-panel .table-wrap{max-height:54vh}
+table{width:100%;border-collapse:collapse}
+th{position:sticky;top:0;z-index:1;background:#101c2d;color:var(--muted);
+  text-align:left;font-weight:600;font-size:12px;padding:10px 12px;border-bottom:1px solid var(--line)}
+td{padding:10px 12px;border-bottom:1px solid rgba(38,54,78,.7);vertical-align:top}
+tr:hover td{background:#142238}
+#events tr td{background:var(--day-bg)}
+#events tr:hover td{background:var(--day-hover)}
+#events tr.day-start td{border-top:2px solid rgba(118,143,176,.55)}
+.stock-link{border:0;background:transparent;color:var(--text);font:inherit;font-weight:700;
+  padding:0;cursor:pointer;text-align:left;text-decoration:underline;text-decoration-color:#48617f;
+  text-underline-offset:3px}.stock-link:hover{color:#8ec5ff}
+.action{display:inline-block;min-width:56px;text-align:center;padding:3px 7px;
+  border-radius:7px;font-weight:700}
+.BUY,.BUY_FILLED{color:var(--down);background:rgba(65,214,155,.12)}
+.SELL,.SELL_FILLED{color:var(--up);background:rgba(255,107,120,.13)}
+.WATCH{color:var(--watch);background:rgba(242,196,92,.12)}
+.MONITOR{color:var(--blue);background:rgba(92,169,255,.12)}
+.REJECT{color:var(--muted);background:rgba(145,161,183,.1)}
+.pos{color:var(--up)}.neg{color:var(--down)}.muted{color:var(--muted)}
+.empty{padding:34px;text-align:center;color:var(--muted)}
+.readiness{margin-top:14px;padding:12px 15px;border:1px solid var(--line);
+  border-radius:12px;color:var(--muted);background:rgba(16,28,45,.75)}
+.error{color:var(--up)}
+.modal{display:none;position:fixed;inset:0;z-index:20;background:rgba(2,7,14,.82);
+  padding:24px;align-items:center;justify-content:center}
+.modal.open{display:flex}.modal-card{width:min(1450px,96vw);max-height:94vh;overflow:auto;
+  background:#0d192a;border:1px solid #334863;border-radius:16px;box-shadow:0 30px 80px #000}
+.modal-head{display:flex;align-items:flex-start;justify-content:space-between;padding:16px 18px;
+  border-bottom:1px solid var(--line)}.modal-title{font-size:20px;font-weight:700}
+.modal-sub{color:var(--muted);margin-top:3px}.modal-close{border:1px solid var(--line);
+  background:#142238;color:var(--text);border-radius:8px;padding:6px 11px;cursor:pointer}
+.chart-wrap{padding:12px 14px 18px;min-height:600px}
+#kline{display:block;width:100%;height:auto;min-height:580px;background:#0a1524;border-radius:10px}
+.chart-note{color:var(--muted);font-size:12px;padding:0 18px 16px}
+.intraday-section{padding:4px 14px 22px}.intraday-section h3{margin:8px 4px 12px;font-size:18px}
+.intraday-card{margin-top:12px;border:1px solid var(--line);border-radius:12px;overflow:hidden;
+  background:#0a1524}.intraday-head{display:flex;justify-content:space-between;gap:18px;
+  align-items:flex-start;padding:12px 14px;background:#122137;border-bottom:1px solid var(--line)}
+.intraday-title{font-weight:700;font-size:16px}.intraday-meta{color:var(--muted);font-size:12px;
+  margin-top:3px}.intraday-badge{white-space:nowrap;padding:4px 8px;border-radius:7px;font-weight:700}
+.intraday-badge.ENTRY{color:#f2c45c;background:rgba(242,196,92,.13)}
+.intraday-badge.EXIT{color:#b982ff;background:rgba(185,130,255,.13)}
+.intraday-svg{display:block;width:100%;height:auto;min-height:390px}
+.intraday-empty{padding:30px;text-align:center;color:var(--muted)}
+@media(max-width:1100px){
+  .grid{grid-template-columns:1fr}.metrics{grid-template-columns:repeat(2,1fr)}
+  .top{flex-direction:column}.modal{padding:6px}.chart-wrap{padding:6px}
+}
+</style>
+</head>
+<body><div class="shell">
+  <div class="top">
+    <div><h1>V32MAIN 实时研究推荐</h1>
+      <div class="sub" id="freshness">正在读取运行快照…</div></div>
+    <div class="badge">研究与虚拟持仓 · 不连接券商 · 不自动下单</div>
+  </div>
+  <section class="scan-progress" id="scanProgress">
+    <div class="scan-progress-head"><h2>当日数据扫描进度</h2><span id="scanProgressStatus">等待扫描快照…</span></div>
+    <div class="scan-timeline" aria-label="当日交易分钟扫描时间轴">
+      <div class="scan-track"><div class="scan-fill" id="scanProgressFill"></div></div>
+      <div class="scan-lunch" title="11:30–13:00 午间休市"></div>
+      <div class="scan-marker" id="scanProgressMarker"><span class="scan-marker-label" id="scanProgressMarkerLabel">—</span></div>
+      <span class="scan-axis-label first" style="left:0">09:30</span>
+      <span class="scan-axis-label" style="left:18.1818%">10:30</span>
+      <span class="scan-axis-label" style="left:36.3636%">11:30</span>
+      <span class="scan-axis-label" style="left:63.6364%">13:00</span>
+      <span class="scan-axis-label" style="left:81.8182%">14:00</span>
+      <span class="scan-axis-label last" style="left:100%">15:00</span>
+    </div>
+    <div class="scan-progress-meta"><span id="scanProgressCount">已扫描 —/— 分钟</span><span id="scanProgressCoverage">数据覆盖率 —</span></div>
+  </section>
+  <div class="metrics" id="metrics"></div>
+  <div class="grid">
+    <section class="panel">
+      <div class="panel-head"><h2>即时事件</h2><span>买入 / 卖出 / 观察状态变化</span></div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>时间</th><th>股票</th><th>动作</th><th>参考价</th><th>原因</th></tr></thead>
+        <tbody id="events"></tbody>
+      </table></div>
+    </section>
+    <section class="panel">
+      <div class="panel-head"><h2>当前虚拟持仓</h2><span>每只股票独立按100%名义仓位</span></div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>股票</th><th>入场</th><th>现价</th><th>独立收益</th><th>建议</th></tr></thead>
+        <tbody id="positions"></tbody>
+      </table></div>
+    </section>
+  </div>
+  <section class="panel settled-panel">
+    <div class="panel-head"><h2>已结算股票</h2><span>最近至少100个交易日恢复的独立事件</span></div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>股票</th><th>入场</th><th>退出</th><th>已结算收益</th><th>持有交易日</th><th>退出原因</th></tr></thead>
+      <tbody id="settled"></tbody>
+    </table></div>
+  </section>
+  <div class="readiness" id="readiness"></div>
+</div>
+<div class="modal" id="chartModal" role="dialog" aria-modal="true">
+  <div class="modal-card">
+    <div class="modal-head">
+      <div><div class="modal-title" id="chartTitle">K线图</div>
+        <div class="modal-sub" id="chartSub">正在加载…</div></div>
+      <button class="modal-close" id="chartClose">关闭</button>
+    </div>
+    <div class="chart-wrap"><svg id="kline" viewBox="0 0 1280 650"></svg></div>
+    <div class="chart-note">日K：红色为上涨、绿色为下跌；金色虚线为买入，紫色虚线为卖出。鼠标停在K线上可查看OHLCV。</div>
+    <div class="intraday-section"><h3>交易日分钟图</h3><div id="intradayCharts"></div></div>
+  </div>
+</div>
+<script>
+const esc=v=>String(v??'').replace(/[&<>"']/g,s=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[s]));
+const pct=v=>v==null?'—':(100*Number(v)).toFixed(2)+'%';
+const price=v=>v==null?'—':Number(v).toFixed(3);
+const clock=v=>v?String(v).replace('T',' ').slice(5,16):'—';
+const minuteClock=v=>v?String(v).replace('T',' ').slice(11,16):'—';
+const day=v=>v?String(v).replace('T',' ').slice(0,10):'—';
+const actionLabel={BUY:'买入推荐',BUY_FILLED:'虚拟买入',SELL:'卖出推荐',
+  SELL_FILLED:'虚拟卖出',WATCH:'观察',REJECT:'拒绝'};
+const recommendationLabel={MONITOR:'继续监控',SELL:'卖出',CLOSED:'已结算'};
+const scannerLabel={READY:'就绪',BOOTSTRAPPING:'恢复历史账本中',LIVE_RUNNING:'实时扫描中',
+  LIVE_OK:'实时扫描完成',LIVE_CAUGHT_UP:'已追平最新分钟',DATA_BLOCKED:'行情阻断',
+  WAITING_FOR_COMPLETED_MINUTE:'等待首个完整分钟',REPLAY_RUNNING:'历史回放中',
+  REPLAY_COMPLETE:'历史回放完成',REPLAY_NO_NEW_MINUTES:'历史回放已完成'};
+const readinessLabel={static_structure:'结构识别',tday_entry:'T日入场',disaster_stop:'8%灾难止损',
+  t1_recovery:'T+1恢复',tn_d4_mix_exit:'持有期退出',formal_live_sell_recommendations:'正式卖出推荐'};
+const readinessValue={READY:'就绪',BLOCKED_UNSERIALIZED_PIPELINE:'关闭：推理管线未固化',
+  BLOCKED_LIVE_FEATURE_PARITY_PENDING:'关闭：实时特征一致性待验证',BLOCKED:'关闭'};
+function metric(label,value){return `<div class="metric"><div class="k">${esc(label)}</div><div class="v">${esc(value)}</div></div>`}
+const publicChartCodes=new Set(["002033.SZ","002162.SZ","002173.SZ","002190.SZ","002251.SZ","002380.SZ","002415.SZ","002517.SZ","002532.SZ","002577.SZ","002599.SZ","002703.SZ","002870.SZ","002987.SZ","003032.SZ","600299.SH","600727.SH","600746.SH","600865.SH","600871.SH","600882.SH","600916.SH","600986.SH","601121.SH","603533.SH"]);
+function stockButton(p){
+  if(!publicChartCodes.has(String(p.code||'')))return `<b>${esc(p.code)}</b><br><span class="muted">${esc(p.name)}</span>`;
+  return `<button class="stock-link" data-code="${esc(p.code)}" data-name="${esc(p.name)}" data-event-id="${esc(p.event_id||'')}">${esc(p.code)}</button><br><span class="muted">${esc(p.name)}</span>`;
+}
+function scanTimelinePosition(value){
+  if(!value)return 0;
+  const text=minuteClock(value),parts=text.split(':').map(Number);
+  if(parts.length!==2||parts.some(v=>!Number.isFinite(v)))return 0;
+  const minute=parts[0]*60+parts[1],open=9*60+30,close=15*60;
+  return Math.max(0,Math.min(100,(minute-open)/(close-open)*100));
+}
+function renderScanProgress(data){
+  const health=data.scan_health||{},status=String(data.scanner_status||'READY');
+  const complete=Number(health.completed_session_minutes??0);
+  const expected=Number(health.expected_session_minutes??health.session_minutes_total??240);
+  const coverage=health.coverage_ratio;
+  const position=scanTimelinePosition(data.last_completed_minute);
+  const boundedMarker=Math.max(.5,Math.min(99.5,position));
+  const root=document.getElementById('scanProgress');
+  root.className='scan-progress '+status;
+  document.getElementById('scanProgressFill').style.width=position+'%';
+  const marker=document.getElementById('scanProgressMarker');
+  marker.style.left=boundedMarker+'%';
+  marker.style.display=data.last_completed_minute?'block':'none';
+  document.getElementById('scanProgressMarkerLabel').textContent=minuteClock(data.last_completed_minute);
+  const phase={PREOPEN:'盘前',MORNING:'上午盘',LUNCH:'午间休市',AFTERNOON:'下午盘',CLOSED:'已收盘'};
+  document.getElementById('scanProgressStatus').textContent=
+    `${scannerLabel[status]||status} · ${phase[health.market_phase]||health.market_phase||'未知阶段'} · 当前 ${minuteClock(data.last_completed_minute)}`;
+  document.getElementById('scanProgressCount').textContent=
+    `已扫描 ${Number.isFinite(complete)?complete:0}/${Number.isFinite(expected)&&expected>0?expected:240} 个交易分钟`;
+  document.getElementById('scanProgressCoverage').textContent=
+    `数据覆盖率 ${coverage==null?'—':pct(coverage)}`;
+}
+function render(data){
+  document.getElementById('freshness').textContent=`交易日 ${data.date} · 扫描器 ${scannerLabel[data.scanner_status]||data.scanner_status} · 最后完成分钟 ${clock(data.last_completed_minute)} · 快照 ${clock(data.updated_at)}`;
+  renderScanProgress(data);
+  const m=data.metrics||{};
+  document.getElementById('metrics').innerHTML=
+    metric('结构候选',m.prepared_candidates??0)+metric('可操作事件',m.actionable_event_rows??0)+
+    metric('当前持仓',m.open_positions??0)+metric('已结算',m.closed_positions??0)+
+    metric('结算胜率',pct(m.settled_win_rate))+metric('结算平均收益',pct(m.average_realized_return));
+  const actionable=(data.events||[]).filter(e=>e.action!=='REJECT');
+  const eventDays=[...new Set(actionable.map(e=>String(e.timestamp||'').slice(0,10)))];
+  const dayStyle=new Map(eventDays.map((date,index)=>{
+    const hue=(207+index*67)%360;
+    return [date,`--day-bg:hsl(${hue},28%,20%);--day-hover:hsl(${hue},34%,27%)`];
+  }));
+  document.getElementById('events').innerHTML=actionable.map((e,index)=>{
+    const eventDate=String(e.timestamp||'').slice(0,10);
+    const previousDate=index?String(actionable[index-1].timestamp||'').slice(0,10):'';
+    return `<tr class="${eventDate!==previousDate?'day-start':''}" style="${dayStyle.get(eventDate)||''}">
+    <td class="muted">${clock(e.timestamp)}</td><td>${stockButton(e)}</td>
+    <td><span class="action ${esc(e.action)}">${esc(actionLabel[e.action]||e.action)}</span></td>
+    <td>${price(e.reference_price)}</td><td>${esc(e.reason)}</td></tr>`;
+  }).join('')||
+    '<tr><td colspan="5" class="empty">尚无可操作事件；拒绝事件保留在审计日志</td></tr>';
+  const all=data.positions||[];
+  const open=all.filter(p=>p.status==='OPEN');
+  document.getElementById('positions').innerHTML=open.map(p=>`<tr>
+    <td>${stockButton(p)}</td><td>${price(p.entry_price)}<br><span class="muted">${clock(p.entry_time)}</span></td>
+    <td>${price(p.last_price)}</td><td class="${Number(p.return)>=0?'pos':'neg'}"><b>${pct(p.return)}</b></td>
+    <td><span class="action ${esc(p.recommendation)}">${esc(recommendationLabel[p.recommendation]||p.recommendation)}</span></td></tr>`).join('')||
+    '<tr><td colspan="5" class="empty">最近历史恢复与实时续接后，目前没有未结算持仓</td></tr>';
+  const settled=all.filter(p=>p.status==='CLOSED').sort((a,b)=>String(b.exit_time||'').localeCompare(String(a.exit_time||'')));
+  document.getElementById('settled').innerHTML=settled.map(p=>`<tr>
+    <td>${stockButton(p)}</td><td>${price(p.entry_price)}<br><span class="muted">${clock(p.entry_time)}</span></td>
+    <td>${price(p.exit_price)}<br><span class="muted">${clock(p.exit_time)}</span></td>
+    <td class="${Number(p.realized_return)>=0?'pos':'neg'}"><b>${pct(p.realized_return)}</b></td>
+    <td>${esc(p.holding_sessions??'—')}</td><td>${esc(p.exit_reason||'—')}</td></tr>`).join('')||
+    '<tr><td colspan="6" class="empty">尚无已结算股票</td></tr>';
+  const r=data.production_readiness||{},a=data.market_data_audit||{},b=data.bootstrap||{};
+  const bootstrapText=b.status?`<br><b>历史账本：</b>${esc(b.status)} · ${esc(b.start_date)} 至 ${esc(b.asof_date)} · 冻结事件 ${esc(b.frozen_events)} · 冻结已结算 ${esc(b.frozen_settled)} · 冻结未结算 ${esc(b.frozen_open)}<br><b>续接限制：</b>${esc(b.continuation_limitation||'—')}`:'';
+  document.getElementById('readiness').innerHTML='<b>行情审计：</b> '+esc(a.status||'尚无实时批次')+
+    (a.coverage==null?'':` · 覆盖率 ${pct(a.coverage)} · TDX耗时 ${Number(a.elapsed_seconds||0).toFixed(2)}秒`)+
+    bootstrapText+'<br><b>模型就绪状态：</b> '+Object.entries(r).map(([k,v])=>`${esc(readinessLabel[k]||k)}=${esc(readinessValue[v]||v)}`).join(' · ');
+}
+const modal=document.getElementById('chartModal'),svg=document.getElementById('kline');
+const intradayCharts=document.getElementById('intradayCharts');
+function closeChart(){modal.classList.remove('open');svg.innerHTML='';intradayCharts.innerHTML=''}
+document.getElementById('chartClose').addEventListener('click',closeChart);
+modal.addEventListener('click',e=>{if(e.target===modal)closeChart()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeChart()});
+document.addEventListener('click',e=>{
+  const button=e.target.closest('.stock-link');
+  if(button)openChart(button.dataset.code,button.dataset.name,button.dataset.eventId);
+});
+async function openChart(code,name,eventId){
+  modal.classList.add('open');document.getElementById('chartTitle').textContent=`${code} ${name||''}`;
+  document.getElementById('chartSub').textContent='正在加载日K线和交易日分钟图…';
+  svg.innerHTML='<text x="640" y="325" text-anchor="middle" fill="#91a1b7" font-size="18">加载中…</text>';
+  intradayCharts.innerHTML='<div class="intraday-empty">正在加载买入日/卖出日分钟数据…</div>';
+  try{
+    const response=await fetch('charts/'+encodeURIComponent(code)+'.json?ts='+Date.now(),{cache:'no-store'});
+    if(!response.ok)throw new Error('HTTP '+response.status);
+    drawChart(await response.json(),eventId);
+  }catch(err){
+    document.getElementById('chartSub').textContent='K线加载失败：'+err;
+    svg.innerHTML='<text x="640" y="325" text-anchor="middle" fill="#ff6b78" font-size="18">没有可用K线数据</text>';
+    intradayCharts.innerHTML='<div class="intraday-empty">没有可用的交易日分钟数据</div>';
+  }
+}
+function drawChart(data,eventId){
+  const bars=(data.bars||[]).slice(-120);
+  if(!bars.length)throw new Error('空K线');
+  const W=1280,H=650,L=72,R=24,T=28,PH=430,VY=500,VH=105;
+  const plotW=W-L-R,step=plotW/bars.length,cw=Math.max(2,Math.min(8,step*.58));
+  const low=Math.min(...bars.map(b=>Number(b.low))),high=Math.max(...bars.map(b=>Number(b.high)));
+  const pad=(high-low)*.06||1,minP=low-pad,maxP=high+pad,maxV=Math.max(...bars.map(b=>Number(b.volume)),1);
+  const y=p=>T+(maxP-p)/(maxP-minP)*PH,x=i=>L+(i+.5)*step;
+  let out=`<rect x="0" y="0" width="${W}" height="${H}" fill="#0a1524"/>`;
+  for(let i=0;i<=5;i++){
+    const gy=T+i*PH/5,p=maxP-i*(maxP-minP)/5;
+    out+=`<line x1="${L}" y1="${gy}" x2="${W-R}" y2="${gy}" stroke="#26364e"/><text x="${L-9}" y="${gy+4}" text-anchor="end" fill="#91a1b7" font-size="12">${p.toFixed(2)}</text>`;
+  }
+  bars.forEach((b,i)=>{
+    const up=Number(b.close)>=Number(b.open),c=up?'#ff6b78':'#41d69b',cx=x(i);
+    const top=y(Math.max(Number(b.open),Number(b.close))),bottom=y(Math.min(Number(b.open),Number(b.close)));
+    const bh=Math.max(1,bottom-top),vh=Number(b.volume)/maxV*VH;
+    out+=`<g><title>${esc(b.date)} O ${Number(b.open).toFixed(2)} H ${Number(b.high).toFixed(2)} L ${Number(b.low).toFixed(2)} C ${Number(b.close).toFixed(2)} V ${Math.round(Number(b.volume)).toLocaleString()}</title><line x1="${cx}" y1="${y(Number(b.high))}" x2="${cx}" y2="${y(Number(b.low))}" stroke="${c}" stroke-width="1.3"/><rect x="${cx-cw/2}" y="${top}" width="${cw}" height="${bh}" fill="${up?c:'#0a1524'}" stroke="${c}" stroke-width="1.2"/><rect x="${cx-cw/2}" y="${VY+VH-vh}" width="${cw}" height="${vh}" fill="${c}" opacity=".72"/></g>`;
+  });
+  const dateIndex=new Map(bars.map((b,i)=>[b.date,i]));
+  (data.markers||[]).forEach((m,mi)=>{
+    const d=String(m.time||'').slice(0,10),i=dateIndex.get(d);if(i==null)return;
+    const isEntry=m.kind==='ENTRY',c=isEntry?'#f2c45c':'#b982ff',cx=x(i);
+    const fallback=Number(bars[i].close),mp=Number(m.price),cy=y(Number.isFinite(mp)?mp:fallback);
+    out+=`<line x1="${cx}" y1="${T}" x2="${cx}" y2="${VY+VH}" stroke="${c}" stroke-width="1.4" stroke-dasharray="6 5"/><circle cx="${cx}" cy="${cy}" r="5" fill="${c}"/><text x="${cx+5}" y="${T+15+(mi%3)*16}" fill="${c}" font-size="12">${isEntry?'买入':'卖出'} ${d.slice(5)}</text>`;
+  });
+  const ticks=Math.min(8,bars.length);
+  for(let i=0;i<ticks;i++){
+    const bi=Math.round(i*(bars.length-1)/Math.max(1,ticks-1)),cx=x(bi);
+    out+=`<text x="${cx}" y="${H-18}" text-anchor="middle" fill="#91a1b7" font-size="12">${bars[bi].date.slice(5)}</text>`;
+  }
+  out+=`<text x="${L}" y="${VY-10}" fill="#91a1b7" font-size="12">成交量</text>`;
+  svg.innerHTML=out;
+  const sessions=(data.intraday_sessions||[]).filter(s=>!eventId||s.event_id===eventId);
+  drawIntraday(sessions.length?sessions:(data.intraday_sessions||[]),eventId);
+  document.getElementById('chartSub').textContent=`${bars[0].date} 至 ${bars[bars.length-1].date} · ${bars.length}根日K · ${data.markers?.length||0}个买卖标记${eventId?' · 当前交易周期 '+eventId:''}`;
+}
+function drawIntraday(sessions,eventId){
+  if(!sessions.length){
+    intradayCharts.innerHTML='<div class="intraday-empty">该股票尚未形成虚拟成交，因此没有买入日或卖出日分钟图。</div>';
+    return;
+  }
+  const ordered=[...sessions].sort((a,b)=>String(a.time).localeCompare(String(b.time)));
+  intradayCharts.innerHTML=ordered.map((session,index)=>intradayCard(session,index,eventId)).join('');
+}
+function intradayCard(session,index,eventId){
+  const bars=session.bars||[],isEntry=session.kind==='ENTRY';
+  const title=`${isEntry?'买入日':'卖出日'}分钟图 · ${esc(session.trade_date||day(session.time))}`;
+  const sourceNote=session.time_source&&session.time_source!=='frozen_exact'?'标记时间为模型推导':'标记时间为冻结结果或实时账本记录';
+  const meta=`${esc(session.event_id||'')} · ${esc(clock(session.time))} · 参考价 ${price(session.price)}${session.reason?' · '+esc(session.reason):''} · ${sourceNote}`;
+  if(!bars.length)return `<section class="intraday-card"><div class="intraday-head"><div><div class="intraday-title">${title}</div><div class="intraday-meta">${meta}</div></div><span class="intraday-badge ${esc(session.kind)}">${isEntry?'买入':'卖出'}</span></div><div class="intraday-empty">该交易日分钟数据暂不可用</div></section>`;
+  const W=1280,H=420,L=72,R=24,T=26,PH=258,VY=318,VH=72,plotW=W-L-R;
+  const base=Number(session.prior_close)>0?Number(session.prior_close):Number(bars[0].open);
+  const highR=bars.map(b=>Number(b.high)/base-1),lowR=bars.map(b=>Number(b.low)/base-1);
+  let minR=Math.min(0,...lowR),maxR=Math.max(0,...highR),span=maxR-minR;
+  const pad=span*.08||.01;minR-=pad;maxR+=pad;span=maxR-minR;
+  const x=i=>L+(i+.5)*plotW/bars.length,y=r=>T+(maxR-r)/span*PH;
+  const maxV=Math.max(...bars.map(b=>Number(b.volume)),1);
+  let out=`<rect x="0" y="0" width="${W}" height="${H}" fill="#0a1524"/>`;
+  for(let i=0;i<=4;i++){
+    const gy=T+i*PH/4,r=maxR-i*span/4;
+    out+=`<line x1="${L}" y1="${gy}" x2="${W-R}" y2="${gy}" stroke="#26364e"/><text x="${L-9}" y="${gy+4}" text-anchor="end" fill="#91a1b7" font-size="12">${(r*100).toFixed(2)}%</text>`;
+  }
+  out+=`<line x1="${L}" y1="${y(0)}" x2="${W-R}" y2="${y(0)}" stroke="#91a1b7" stroke-dasharray="5 5" opacity=".8"/>`;
+  bars.forEach((b,i)=>{
+    const up=Number(b.close)>=Number(b.open),c=up?'#ff6b78':'#41d69b',vh=Number(b.volume)/maxV*VH,cx=x(i);
+    out+=`<rect x="${cx-Math.max(1,plotW/bars.length*.31)}" y="${VY+VH-vh}" width="${Math.max(1,plotW/bars.length*.62)}" height="${vh}" fill="${c}" opacity=".7"><title>${esc(clock(b.time))} 成交量 ${Math.round(Number(b.volume)).toLocaleString()}</title></rect>`;
+  });
+  const points=bars.map((b,i)=>`${x(i)},${y(Number(b.close)/base-1)}`).join(' ');
+  out+=`<polyline points="${points}" fill="none" stroke="#e7edf7" stroke-width="1.6"/>`;
+  const target=new Date(session.time).getTime();
+  let markerIndex=0,best=Infinity;
+  bars.forEach((b,i)=>{const diff=Math.abs(new Date(b.time).getTime()-target);if(diff<best){best=diff;markerIndex=i}});
+  const markerBar=bars[markerIndex],markerPrice=Number(session.price)>0?Number(session.price):Number(markerBar.close);
+  const markerColor=isEntry?'#f2c45c':'#b982ff',mx=x(markerIndex),my=y(markerPrice/base-1);
+  out+=`<line x1="${mx}" y1="${T}" x2="${mx}" y2="${VY+VH}" stroke="${markerColor}" stroke-width="1.8" stroke-dasharray="6 5"/><circle cx="${mx}" cy="${my}" r="6" fill="${markerColor}"/><text x="${Math.min(mx+7,W-105)}" y="${T+17}" fill="${markerColor}" font-size="13">${isEntry?'买入':'卖出'} ${esc(clock(session.time).slice(6))}</text>`;
+  const ticks=Math.min(6,bars.length);
+  for(let i=0;i<ticks;i++){
+    const bi=Math.round(i*(bars.length-1)/Math.max(1,ticks-1));
+    out+=`<text x="${x(bi)}" y="${H-14}" text-anchor="middle" fill="#91a1b7" font-size="12">${esc(clock(bars[bi].time).slice(6))}</text>`;
+  }
+  out+=`<text x="${L}" y="${VY-9}" fill="#91a1b7" font-size="12">分钟成交量</text>`;
+  return `<section class="intraday-card"><div class="intraday-head"><div><div class="intraday-title">${title}</div><div class="intraday-meta">${meta}</div></div><span class="intraday-badge ${esc(session.kind)}">${isEntry?'买入':'卖出'}</span></div><svg class="intraday-svg" viewBox="0 0 ${W} ${H}">${out}</svg></section>`;
+}
+async function refresh(){
+  try{
+    const response=await fetch('snapshot.json?ts='+Date.now(),{cache:'no-store'});
+    if(!response.ok)throw new Error('HTTP '+response.status);
+    render(await response.json());
+  }catch(err){
+    document.getElementById('freshness').innerHTML='<span class="error">读取快照失败：'+esc(err)+'</span>';
+  }
+}
+refresh();setInterval(refresh,5000);
+</script></body></html>
