@@ -524,7 +524,7 @@ function intradayCard(session,index,eventId){
   out+=`<text x="${L}" y="${VY-9}" fill="#91a1b7" font-size="12">分钟成交量</text>`;
   return `<section class="intraday-card"><div class="intraday-head"><div><div class="intraday-title">${title}</div><div class="intraday-meta">${meta}</div></div><span class="intraday-badge ${esc(session.kind)}">${isEntry?'买入':'卖出'}</span></div><svg class="intraday-svg" viewBox="0 0 ${W} ${H}">${out}</svg></section>`;
 }
-let lastSnapshotVersion='';
+let lastSnapshotVersion='',lastSnapshotTimestamp=0;
 async function refresh(){
   try{
     const response=await publicSnapshotResponse();
@@ -532,6 +532,9 @@ async function refresh(){
     const data=await response.json();
     const version=[data.updated_at,data.last_completed_minute].join('|');
     if(version===lastSnapshotVersion)return;
+    const timestamp=Date.parse(data.updated_at||'');
+    if(Number.isFinite(timestamp)&&timestamp<lastSnapshotTimestamp)return;
+    if(Number.isFinite(timestamp))lastSnapshotTimestamp=timestamp;
     lastSnapshotVersion=version;render(data);publicFreshness(data);
   }catch(err){
     document.getElementById('freshness').innerHTML='<span class="error">读取快照失败：'+esc(err)+'</span>';
