@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="icon" href="data:,">
-<title>V32MAIN 实时研究推荐</title>
+<title>V34MAIN 实时研究推荐</title>
 <style>
 :root {
   color-scheme:dark;
@@ -104,7 +104,7 @@ tr:hover td{background:#142238}
 </head>
 <body><div class="shell">
   <div class="top">
-    <div><h1>V32MAIN 实时研究推荐</h1>
+    <div><h1>V34MAIN 实时研究推荐</h1>
       <div class="sub" id="freshness">正在读取运行快照…</div></div>
     <div class="badge">研究与虚拟持仓 · 不连接券商 · 不自动下单</div>
   </div>
@@ -141,10 +141,17 @@ tr:hover td{background:#142238}
     </section>
   </div>
   <section class="panel settled-panel">
-    <div class="panel-head"><h2>已结算股票</h2><span>最近至少100个交易日恢复的独立事件</span></div>
+    <div class="panel-head"><h2>已结算股票</h2><span>最近120个交易日恢复的独立事件</span></div>
     <div class="table-wrap"><table>
       <thead><tr><th>股票</th><th>入场</th><th>退出</th><th>已结算收益</th><th>持有交易日</th><th>退出原因</th></tr></thead>
       <tbody id="settled"></tbody>
+    </table></div>
+  </section>
+  <section class="panel settled-panel">
+    <div class="panel-head"><h2>研究期末估值</h2><span>H120估值仅用于研究统计，不代表卖出</span></div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>股票</th><th>入场</th><th>估值时点</th><th>估值收益</th><th>持有交易日</th><th>说明</th></tr></thead>
+      <tbody id="marked"></tbody>
     </table></div>
   </section>
   <div class="readiness" id="readiness"></div>
@@ -170,17 +177,66 @@ const minuteClock=v=>v?String(v).replace('T',' ').slice(11,16):'—';
 const day=v=>v?String(v).replace('T',' ').slice(0,10):'—';
 const actionLabel={BUY:'买入推荐',BUY_FILLED:'虚拟买入',SELL:'卖出推荐',
   SELL_FILLED:'虚拟卖出',WATCH:'观察',REJECT:'拒绝'};
-const recommendationLabel={MONITOR:'继续监控',SELL:'卖出',CLOSED:'已结算'};
+const recommendationLabel={MONITOR:'继续监控',SELL:'卖出',CLOSED:'已结算',MARKED:'研究估值'};
 const scannerLabel={READY:'就绪',BOOTSTRAPPING:'恢复历史账本中',LIVE_RUNNING:'实时扫描中',
   LIVE_OK:'实时扫描完成',LIVE_CAUGHT_UP:'已追平最新分钟',DATA_BLOCKED:'行情阻断',
   WAITING_FOR_COMPLETED_MINUTE:'等待首个完整分钟',REPLAY_RUNNING:'历史回放中',
   REPLAY_COMPLETE:'历史回放完成',REPLAY_NO_NEW_MINUTES:'历史回放已完成'};
-const readinessLabel={static_structure:'结构识别',tday_entry:'T日入场',disaster_stop:'8%灾难止损',
-  t1_recovery:'T+1恢复',tn_d4_mix_exit:'持有期退出',formal_live_sell_recommendations:'正式卖出推荐'};
+const readinessLabel={static_structure:'V32观察池',tday_entry:'14:49强势证明',disaster_stop:'2.5%收盘止损',
+  t1_recovery:'次日及以后重入',tn_d4_mix_exit:'6%证明/8%峰值回撤',formal_live_sell_recommendations:'V34卖出推荐'};
 const readinessValue={READY:'就绪',BLOCKED_UNSERIALIZED_PIPELINE:'关闭：推理管线未固化',
   BLOCKED_LIVE_FEATURE_PARITY_PENDING:'关闭：实时特征一致性待验证',BLOCKED:'关闭'};
 function metric(label,value){return `<div class="metric"><div class="k">${esc(label)}</div><div class="v">${esc(value)}</div></div>`}
-const publicChartCodes=new Set(["002033.SZ","002162.SZ","002173.SZ","002190.SZ","002251.SZ","002380.SZ","002415.SZ","002517.SZ","002532.SZ","002577.SZ","002599.SZ","002703.SZ","002870.SZ","002987.SZ","003032.SZ","600299.SH","600727.SH","600746.SH","600865.SH","600871.SH","600882.SH","600916.SH","600986.SH","601121.SH","603533.SH"]);
+const publicChartCodes=new Set(["000608.SZ","000815.SZ","000975.SZ","001258.SZ","001896.SZ","002015.SZ","002033.SZ","002162.SZ","002173.SZ","002192.SZ","002216.SZ","002245.SZ","002283.SZ","002303.SZ","002348.SZ","002364.SZ","002380.SZ","002415.SZ","002440.SZ","002517.SZ","002541.SZ","002585.SZ","002703.SZ","002745.SZ","002774.SZ","002859.SZ","002860.SZ","002903.SZ","002971.SZ","003026.SZ","003032.SZ","600160.SH","600162.SH","600299.SH","600539.SH","600552.SH","600664.SH","600667.SH","600693.SH","600707.SH","600746.SH","600865.SH","600882.SH","600916.SH","600986.SH","600988.SH","601101.SH","601208.SH","601678.SH","601699.SH","601918.SH","603065.SH","603078.SH","603110.SH","603127.SH","603203.SH","603228.SH","603269.SH","603373.SH","603399.SH","603533.SH","603580.SH","603608.SH","603679.SH","603682.SH","603738.SH","603983.SH","603989.SH","605007.SH","605198.SH","605288.SH"]);
+const publicLiveApiBase="https://stock2-consensus-live-api.chenapollo9527.workers.dev";
+let publicLiveManifest=null;
+let publicCachedVersion=null;
+let publicCachedSnapshotText=null;
+let publicDataSource='静态备用快照';
+async function publicLoadManifest(){
+  const response=await fetch(publicLiveApiBase+'/v1/latest/manifest.json?ts='+Date.now(),{cache:'no-store'});
+  if(!response.ok)throw new Error('manifest HTTP '+response.status);
+  const manifest=await response.json();
+  publicLiveManifest=manifest;publicChartCodes.clear();
+  (manifest.chart_codes||[]).forEach(code=>publicChartCodes.add(String(code)));
+  return manifest;
+}
+async function publicSnapshotResponse(){
+  try{
+    const manifest=await publicLoadManifest();
+    if(publicCachedVersion===manifest.version&&publicCachedSnapshotText!==null){
+      publicDataSource='Cloudflare 分钟快照';return new Response(publicCachedSnapshotText,{headers:{'content-type':'application/json'}});
+    }
+    const response=await fetch(publicLiveApiBase+manifest.snapshot_url+'?ts='+Date.now(),{cache:'no-store'});
+    if(!response.ok)throw new Error('snapshot HTTP '+response.status);
+    publicCachedSnapshotText=await response.text();publicCachedVersion=manifest.version;
+    publicDataSource='Cloudflare 分钟快照';return new Response(publicCachedSnapshotText,{headers:{'content-type':'application/json'}});
+  }catch(error){
+    console.warn('live snapshot unavailable',error);
+    if(publicCachedSnapshotText!==null){
+      publicDataSource='最近一次 Cloudflare 快照';return new Response(publicCachedSnapshotText,{headers:{'content-type':'application/json'}});
+    }
+    publicDataSource='静态备用快照';
+    return fetch('snapshot.json?ts='+Date.now(),{cache:'no-store'});
+  }
+}
+async function publicChartResponse(code){
+  try{
+    const manifest=publicLiveManifest||await publicLoadManifest();
+    if((manifest.chart_codes||[]).includes(String(code))){
+      const response=await fetch(publicLiveApiBase+manifest.charts_base_url+encodeURIComponent(code)+'.json?ts='+Date.now(),{cache:'no-store'});
+      if(response.ok)return response;
+    }
+  }catch(error){console.warn('live chart unavailable; using static fallback',error);}
+  return fetch('charts/'+encodeURIComponent(code)+'.json?ts='+Date.now(),{cache:'no-store'});
+}
+function publicFreshness(data){
+  const root=document.getElementById('freshness');
+  const age=Date.now()-Date.parse(data.updated_at||'');
+  const phase=String((data.scan_health||{}).market_phase||'');
+  const stale=(phase==='MORNING'||phase==='AFTERNOON')&&Number.isFinite(age)&&age>120000;
+  root.textContent+=` · 来源 ${publicDataSource}`+(stale?` · ⚠ ${Math.floor(age/60000)}分钟未更新`:'');
+}
 function stockButton(p){
   if(!publicChartCodes.has(String(p.code||'')))return `<b>${esc(p.code)}</b><br><span class="muted">${esc(p.name)}</span>`;
   return `<button class="stock-link" data-code="${esc(p.code)}" data-name="${esc(p.name)}" data-event-id="${esc(p.event_id||'')}">${esc(p.code)}</button><br><span class="muted">${esc(p.name)}</span>`;
@@ -219,7 +275,7 @@ function render(data){
   renderScanProgress(data);
   const m=data.metrics||{};
   document.getElementById('metrics').innerHTML=
-    metric('结构候选',m.prepared_candidates??0)+metric('可操作事件',m.actionable_event_rows??0)+
+    metric('活动观察事件',m.active_watches??m.prepared_candidates??0)+metric('可操作事件',m.actionable_event_rows??0)+
     metric('当前持仓',m.open_positions??0)+metric('已结算',m.closed_positions??0)+
     metric('结算胜率',pct(m.settled_win_rate))+metric('结算平均收益',pct(m.average_realized_return));
   const actionable=(data.events||[]).filter(e=>e.action!=='REJECT');
@@ -251,6 +307,13 @@ function render(data){
     <td class="${Number(p.realized_return)>=0?'pos':'neg'}"><b>${pct(p.realized_return)}</b></td>
     <td>${esc(p.holding_sessions??'—')}</td><td>${esc(p.exit_reason||'—')}</td></tr>`).join('')||
     '<tr><td colspan="6" class="empty">尚无已结算股票</td></tr>';
+  const marked=all.filter(p=>p.status==='MARKED').sort((a,b)=>String(b.exit_time||'').localeCompare(String(a.exit_time||'')));
+  document.getElementById('marked').innerHTML=marked.map(p=>`<tr>
+    <td>${stockButton(p)}</td><td>${price(p.entry_price)}<br><span class="muted">${clock(p.entry_time)}</span></td>
+    <td>${price(p.exit_price)}<br><span class="muted">${clock(p.exit_time)}</span></td>
+    <td class="${Number(p.marked_return)>=0?'pos':'neg'}"><b>${pct(p.marked_return)}</b></td>
+    <td>${esc(p.holding_sessions??'—')}</td><td>${esc(p.exit_reason||'—')}</td></tr>`).join('')||
+    '<tr><td colspan="6" class="empty">最近恢复区间没有H120研究估值事件</td></tr>';
   const r=data.production_readiness||{},a=data.market_data_audit||{},b=data.bootstrap||{};
   const bootstrapText=b.status?`<br><b>历史账本：</b>${esc(b.status)} · ${esc(b.start_date)} 至 ${esc(b.asof_date)} · 冻结事件 ${esc(b.frozen_events)} · 冻结已结算 ${esc(b.frozen_settled)} · 冻结未结算 ${esc(b.frozen_open)}<br><b>续接限制：</b>${esc(b.continuation_limitation||'—')}`:'';
   document.getElementById('readiness').innerHTML='<b>行情审计：</b> '+esc(a.status||'尚无实时批次')+
@@ -273,7 +336,7 @@ async function openChart(code,name,eventId){
   svg.innerHTML='<text x="640" y="325" text-anchor="middle" fill="#91a1b7" font-size="18">加载中…</text>';
   intradayCharts.innerHTML='<div class="intraday-empty">正在加载买入日/卖出日分钟数据…</div>';
   try{
-    const response=await fetch('charts/'+encodeURIComponent(code)+'.json?ts='+Date.now(),{cache:'no-store'});
+    const response=await publicChartResponse(code);
     if(!response.ok)throw new Error('HTTP '+response.status);
     drawChart(await response.json(),eventId);
   }catch(err){
@@ -368,12 +431,12 @@ function intradayCard(session,index,eventId){
 }
 async function refresh(){
   try{
-    const response=await fetch('snapshot.json?ts='+Date.now(),{cache:'no-store'});
+    const response=await publicSnapshotResponse();
     if(!response.ok)throw new Error('HTTP '+response.status);
-    render(await response.json());
+    const data=await response.json();render(data);publicFreshness(data);
   }catch(err){
     document.getElementById('freshness').innerHTML='<span class="error">读取快照失败：'+esc(err)+'</span>';
   }
 }
-refresh();setInterval(refresh,5000);
+refresh();setInterval(refresh,30000);
 </script></body></html>
