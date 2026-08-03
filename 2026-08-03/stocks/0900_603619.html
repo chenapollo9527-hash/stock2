@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-08-03 08:00 中曼石油 详情</title>
+  <style>
+:root {
+  color-scheme: light;
+  --bg: #f5f6f8;
+  --panel: #ffffff;
+  --text: #111827;
+  --muted: #667085;
+  --line: #d6dde8;
+  --accent: #0f5f9f;
+  --accent-soft: #e8f2fa;
+  --green: #0d7a4f;
+  --orange: #9a5b00;
+  --red: #a33a3a;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Segoe UI", "Microsoft YaHei", Arial, sans-serif;
+  line-height: 1.5;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.shell { max-width: 1180px; margin: 0 auto; padding: 24px 20px 44px; }
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 14px;
+  margin-bottom: 18px;
+}
+h1 { font-size: 28px; margin: 0 0 6px; letter-spacing: 0; }
+h2 { font-size: 20px; margin: 24px 0 10px; }
+h3 { font-size: 16px; margin: 16px 0 8px; }
+.muted { color: var(--muted); font-size: 13px; }
+.notice {
+  background: #fff8e8;
+  border: 1px solid #ead19a;
+  border-radius: 8px;
+  color: #7a4a00;
+  padding: 10px 12px;
+  margin: 12px 0 18px;
+}
+.module-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+  margin: 0 0 16px;
+}
+.module-card {
+  display: flex;
+  min-width: 0;
+  min-height: 170px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 18px;
+  color: inherit;
+}
+a.module-card:hover { text-decoration: none; border-color: var(--accent); background: #fafdff; }
+.module-card-primary { border-top: 4px solid var(--accent); }
+.module-card-research { min-height: 0; align-items: stretch; border-top: 4px solid var(--green); }
+.module-card-head { width: 100%; }
+.module-label { display: block; margin-bottom: 8px; color: var(--muted); font-size: 12px; font-weight: 700; }
+.module-title { display: block; color: var(--text); font-size: 21px; }
+.module-description { margin-top: 8px; color: var(--muted); font-size: 13px; line-height: 1.65; }
+.module-footer { display: flex; width: 100%; align-items: flex-end; justify-content: space-between; gap: 12px; }
+.module-meta { color: var(--muted); font-size: 12px; }
+.module-action { color: var(--accent); font-weight: 700; white-space: nowrap; }
+.module-card-research .module-action { color: var(--green); }
+.module-card-research .date-list { width: 100%; margin: 18px 0 0; }
+.date-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 10px;
+  padding: 0;
+  list-style: none;
+}
+.date-list a, .panel {
+  display: block;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 14px;
+}
+.stock-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.stock-table th, .stock-table td {
+  border-bottom: 1px solid var(--line);
+  padding: 10px 12px;
+  text-align: left;
+  vertical-align: middle;
+  font-size: 14px;
+}
+.stock-table th { background: var(--accent-soft); color: #24364a; }
+.stock-table tr:last-child td { border-bottom: 0; }
+.stock-name { font-weight: 700; font-size: 16px; }
+.code { color: var(--muted); font-size: 13px; margin-left: 4px; }
+.perf-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.perf-item {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 2px 7px;
+  background: #fff;
+  white-space: nowrap;
+}
+.perf-item strong { margin-left: 3px; }
+.tag {
+  display: inline-block;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 2px 8px;
+  margin: 2px 4px 2px 0;
+  font-size: 12px;
+  background: #fff;
+}
+.tag.good { color: var(--green); border-color: #b8dccd; background: #eef9f4; }
+.tag.watch { color: var(--orange); border-color: #ead19a; background: #fff8e8; }
+.tag.risk { color: var(--red); border-color: #e8b8b8; background: #fff1f1; }
+.tag.pending { color: var(--muted); border-color: var(--line); background: #f8fafc; }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+.metric {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px;
+}
+.metric strong { display: block; font-size: 20px; margin-top: 4px; }
+.slot-card {
+  display: block;
+  color: inherit;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 14px;
+}
+.slot-card:hover { text-decoration: none; border-color: var(--accent); }
+.slot-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: baseline;
+}
+.slot-title { font-size: 18px; font-weight: 700; color: var(--accent); }
+.slot-count { color: var(--muted); font-size: 13px; white-space: nowrap; }
+.boundary {
+  border-left: 4px solid var(--accent);
+  padding: 10px 12px;
+  background: #fff;
+}
+.event {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px;
+  margin: 10px 0;
+}
+.event-title { font-weight: 700; margin-bottom: 4px; }
+.source-links a { margin-right: 12px; font-size: 13px; }
+ul.compact { padding-left: 20px; margin-top: 8px; }
+ul.compact li { margin: 4px 0; }
+@media (max-width: 760px) {
+  .shell { padding: 18px 12px 34px; }
+  .topbar { display: block; }
+  h1 { font-size: 23px; }
+  .module-card { min-height: 154px; align-items: flex-start; }
+  .module-card-research { min-height: 0; }
+  .stock-table, .stock-table tbody, .stock-table tr, .stock-table td { display: block; width: 100%; }
+  .stock-table thead { display: none; }
+  .stock-table tr { border-bottom: 1px solid var(--line); }
+  .stock-table td { border: 0; padding: 8px 10px; }
+}
+</style>
+</head>
+<body>
+  <main class="shell">
+    
+    <div class="topbar">
+      <div>
+        <h1>中曼石油 <span class="code">(603619)</span></h1>
+        <div class="muted">2026-08-03 · 08:00 · 油气/油服 · 08:00研究池Top5；technical_research_score=29.37，5日均额11.83亿，量能比1.24，20日位置0.70，10日涨幅+22.55%后5日回踩-4.23%未破坏结构；外部商品与汇率中风险未直接命中油气服务。</div>
+      </div>
+      <a href="../slots/0900.html">返回该时间点</a>
+    </div>
+    <div class="notice">时间边界：08:00 前已保存过去24小时新闻预分析、事件、30日K线研究池和滚动备忘录；不得读取开盘后行情。</div>
+    <div class="grid"><div class="metric"><span class="muted">时间点</span><strong>08:00 盘前</strong></div><div class="metric"><span class="muted">信息来源</span><strong>新闻/公告/社媒清洗 + 20日备忘录</strong></div><div class="metric"><span class="muted">候选类型</span><strong>preopen_observation_pool</strong></div></div>
+    
+    <h2>候选依据</h2>
+    <div class="grid"><div class="metric"><span class="muted">候选来源</span><strong>preopen_observation_pool</strong></div><div class="metric"><span class="muted">概念</span><strong>油气/油服</strong></div><div class="metric"><span class="muted">映射</span><strong>08:00研究池Top5；technical_research_score=29.37，5日均额11.83亿，量能比1.24，20日位置0.70，10日涨幅+22.55%后5日回踩-4.23%未破坏结构；外部商品与汇率中风险未直接命中油气服务。</strong></div></div>
+    <h2>关键信息</h2>
+    <div class="panel muted">暂无相关事件。</div>
+    <h2>盘前条件</h2>
+    <div class="panel">
+      <ul class="compact">
+        <li>确认条件：强于所属概念，且时间点涨幅不高于6%，仍有板块惯性可以验证。</li>
+        <li>降级条件：板块无同步拉升、成交额不足、或龙头一字后跟风回落。</li>
+        <li>风险条件：利好已提前反映、社媒热度失真、高位兑现、涨幅已超过6%或一日游。</li>
+      </ul>
+    </div>
+    <h2>盘中验证</h2>
+    <div class="panel muted">暂无直接提及，按概念整体强弱继续观察。</div>
+    <h2>原始快照</h2>
+    <div class="panel source-links"><span class="muted">无原始快照</span></div>
+    
+  </main>
+</body>
+</html>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>2026-07-31 08:00 盘前分析</title>
+  <title>2026-08-03 14:45 尾盘推荐</title>
   <style>
 :root {
   color-scheme: light;
@@ -206,31 +206,24 @@ ul.compact li { margin: 4px 0; }
     
     <div class="topbar">
       <div>
-        <h1>2026-07-31 08:00 盘前分析</h1>
+        <h1>2026-08-03 14:45 尾盘推荐</h1>
         <div class="muted">只显示该时间点当时生成的股票；点击股票名进入该时间点详情。</div>
       </div>
       <a href="../index.html">返回时间点</a>
     </div>
-    <div class="notice">时间边界：08:00 前已保存过去24小时新闻预分析、事件、30日K线研究池和滚动备忘录；不得读取开盘后行情。</div>
-    <div class="notice">硬质量门禁剔除2只不合格候选后，剩余0只合格候选；候选数量服从质量，不补弱票。</div>
+    <div class="notice">时间边界：14:45 到点一次性保存截至14:45的全主板原生1分钟量价批次，并生成14:30/14:35/14:40/14:45决策特征；新闻固定复用08:00背景，结论用于次日开盘观察。</div>
+    <div class="notice">08:00 新闻预分析、完整日K线质量门控和主板研究池已落地，等待 API runner 完成盘前正式综合分析。</div>
     <h2>状态</h2>
     <div class="grid">
-      <div class="metric"><span class="muted">市场姿态</span><strong>mixed_external_risk_domestic_policy</strong></div>
-      <div class="metric"><span class="muted">快照生成时间</span><strong>2026-07-31T19:22:43+08:00</strong></div>
+      <div class="metric"><span class="muted">市场姿态</span><strong>待综合分析</strong></div>
+      <div class="metric"><span class="muted">快照生成时间</span><strong>2026-08-03T08:10:52+08:00</strong></div>
       <div class="metric"><span class="muted">候选数量</span><strong>0</strong></div>
     </div>
-    <h2>分析结论</h2><div class="panel muted">该时间点尚未生成分析。</div>
-    
-    <h2>API 运行信息</h2>
-    <div class="grid"><div class="metric"><span class="muted">模型</span><strong>deepseek-v4-pro</strong></div>
-<div class="metric"><span class="muted">Total tokens</span><strong>1615781</strong></div></div>
-    
-    <h2>热门概念雷达</h2><table class="stock-table"><thead><tr><th>概念</th><th>强度证据</th><th>不可买强势样本</th><th>同链低位候选</th></tr></thead><tbody><tr><td colspan="4">锂电产业链：华泰证券研报称8月电池排产环比+8.9%，国内外储能需求强劲，旺季效应持续，有望带动锂电材料环节；关注化学电池、锂矿等低位承接。</td></tr>
-<tr><td colspan="4">大消费/白酒：前日白酒、汽车板块逆势走强，古井贡酒等有量价支持，政治局会议强调扩大内需，消费复苏预期升温。</td></tr>
-<tr><td colspan="4">科技硬件/半导体（高外部风险预警）：美股苹果盘后跌超8%，存储芯片虽反弹但波动剧烈，港股芯片、光通信下挫；A股科技链需等待日内资金确认，仅作强度观察。</td></tr>
-<tr><td colspan="4">券商/金融：十多家券商中期业绩大幅预增，分红+回购提振板块情绪，但金融低弹性且受外部风险偏好压制，作为市场情绪温度计。</td></tr></tbody></table>
+    <h2>分析结论</h2><div class="panel"><ul class="compact"><li><strong>结论：</strong>08:00 新闻预分析、完整日K线质量门控和主板研究池已落地，等待 API runner 完成盘前正式综合分析。</li><li><strong>市场情绪：</strong>本地证据已落地，页面先行发布；等待 API runner 写入正式综合分析。</li><li><strong>信息背景：</strong>此 slot 为准点发布骨架，不作为正式推荐成绩。</li><li><strong>风险：</strong>若长时间停留在该状态，说明 API runner 未及时完成对应阶段。</li></ul></div>
     
     
+    <h2>行情预分析</h2><div class="panel muted">尚未生成行情预分析。</div>
+    <h2>盘面监控</h2><div class="panel muted">该窗口尚未采集高频监控快照。</div>
     <h2>主板可交易候选（偏未爆发/惯性）</h2>
     <table class="stock-table">
       <thead>
@@ -246,18 +239,36 @@ ul.compact li { margin: 4px 0; }
       </thead>
       <tbody>
     <tr>
-      <td><span class="stock-name">商品与汇率</span></td>
+      <td><span class="stock-name">待 API 综合分析</span></td>
+      <td><span class="tag risk">流程</span><span class="tag watch">中</span></td>
+      <td>08:00 新闻预分析、完整日K线质量门控和主板研究池已落地，等待 API runner 完成盘前正式综合分析。</td>
+      <td>当前页面只是本地准点发布占位，候选尚未完成正式综合分析。</td>
+      <td>等待 API runner 覆盖；盘中阶段可由本地行情兜底先行填充。</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="stock-name">日韩半导体链</span></td>
       <td><span class="tag risk">外部市场</span><span class="tag watch">中</span></td>
-      <td>美股三大指数高开高走！美元指数跳水；金价二季度跌去30% ，黄金ETF却持续吸金！基金经理给出最新判断</td>
+      <td>韩国股市熔断了！；每经热评 | 从韩股熔断到华尔街“金童”爆仓，市场更应警惕谁在“制造”杠杆</td>
       <td>外部同产业链或风险偏好走弱会传导到A股，国内利好不能自动高权重覆盖外部证伪。</td>
       <td>相关主题候选降权，等待A股全市场扫描和资金流入确认后再恢复。</td>
     </tr>
     
 
     <tr>
-      <td><span class="stock-name">港股科技映射</span></td>
+      <td><span class="stock-name">商品与汇率</span></td>
+      <td><span class="tag risk">外部市场</span><span class="tag watch">中</span></td>
+      <td>商品与汇率出现负面线索。</td>
+      <td>外部同产业链或风险偏好走弱会传导到A股，国内利好不能自动高权重覆盖外部证伪。</td>
+      <td>相关主题候选降权，等待A股全市场扫描和资金流入确认后再恢复。</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="stock-name">美股科技链</span></td>
       <td><span class="tag risk">外部市场</span><span class="tag watch">高</span></td>
-      <td>港股收评：恒生指数涨0.2% 恒生科技指数跌1.25%；港股收评：恒指涨0.2% 科指跌1.25% 教育股大涨 芯片股、光通信板块下挫 华虹宏力跌超8%</td>
+      <td>8月3日周末要闻：特朗普宣布美伊开启新一轮谈判 油价大跌 美股股指期货走高；国际油价大跳水，美油重挫超6%，美股期指、黄金白银集体上涨，特朗普取消打击伊朗，美伊3日将举行谈判</td>
       <td>外部同产业链或风险偏好走弱会传导到A股，国内利好不能自动高权重覆盖外部证伪。</td>
       <td>相关主题候选降权，等待A股全市场扫描和资金流入确认后再恢复。</td>
     </tr>
@@ -266,72 +277,27 @@ ul.compact li { margin: 4px 0; }
     <tr>
       <td><span class="stock-name">内外信号冲突</span></td>
       <td><span class="tag risk">外部市场</span><span class="tag watch">高</span></td>
-      <td>两大龙头开启新一轮涨价 算力需求引爆MLCC超级周期 融资客提前埋伏这些股</td>
+      <td>微软“点火”！AI应用暴力拉升 四巨头订单超2万亿</td>
       <td>国内利好与外部同产业链走弱冲突：科技硬件/半导体链。</td>
       <td>国内利好降权为待验证，必须等待A股资金承接确认。</td>
     </tr>
     
 
     <tr>
-      <td><span class="stock-name">内外信号冲突</span></td>
-      <td><span class="tag risk">外部市场</span><span class="tag watch">高</span></td>
-      <td>上市公司半年报｜新能源产业链“量利齐升”业绩“全面开花”</td>
-      <td>国内利好与外部同产业链走弱冲突：能源。</td>
-      <td>国内利好降权为待验证，必须等待A股资金承接确认。</td>
-    </tr>
-    
-
-    <tr>
-      <td><span class="stock-name">东方新能</span><span class="code">(002310)</span></td>
-      <td><span class="tag risk">个股</span><span class="tag watch">高</span></td>
-      <td>该样本已被本时点过滤。</td>
-      <td>逐股深研结论为 reject，汇总裁决不得越权入选。</td>
-      <td>不纳入正式候选；只作为板块强度或反面样本。</td>
-    </tr>
-    
-
-    <tr>
-      <td><span class="stock-name">中利集团</span><span class="code">(002309)</span></td>
-      <td><span class="tag risk">个股</span><span class="tag watch">高</span></td>
-      <td>该样本已被本时点过滤。</td>
-      <td>逐股深研结论为 reject，汇总裁决不得越权入选。</td>
-      <td>不纳入正式候选；只作为板块强度或反面样本。</td>
-    </tr>
-    
-
-    <tr>
-      <td><span class="stock-name">东鹏饮料</span><span class="code">(605499)</span></td>
-      <td><span class="tag risk">个股</span><span class="tag watch">高</span></td>
-      <td>该样本已被本时点过滤。</td>
-      <td>正向选股理由命中弱映射、低弹性或其他凑数特征，已从正式候选降级至观察。</td>
-      <td>不纳入正式候选；只作为板块强度或反面样本。</td>
-    </tr>
-    
-
-    <tr>
-      <td><span class="stock-name">川能动力</span><span class="code">(000155)</span></td>
-      <td><span class="tag risk">个股</span><span class="tag watch">高</span></td>
-      <td>该样本已被本时点过滤。</td>
-      <td>命中外部高风险主题且缺少可审计的例外证据，已从正式候选降级至观察。</td>
-      <td>不纳入正式候选；只作为板块强度或反面样本。</td>
-    </tr>
-    
-
-    <tr>
       <td><span class="stock-name">新闻风险线索</span></td>
       <td><span class="tag risk">新闻</span><span class="tag watch">中</span></td>
-      <td>[美股三大指数高开高走！美元指数跳水](https://www.stcn.com/article/detail/4051250.html) - stcn_stock - 美元, 美股, 跳水</td>
+      <td>[8券商遭监管问责 经纪业务、投行内控成违规核心点](https://finance.eastmoney.com/a/202608023829168233.html) - eastmoney_stock - soft</td>
       <td>公告、异常波动、杠杆或监管线索可能使相关主题从进攻转为兑现。</td>
       <td>若与候选概念重合，降低仓位假设并等待资金确认。</td>
     </tr>
     </tbody>
     </table>
     
-    <h2>剔除/仅观察</h2><div class="panel"><span class="tag risk">东方新能 002310：逐股深研结论为 reject，汇总裁决不得越权入选。</span><span class="tag risk">中利集团 002309：逐股深研结论为 reject，汇总裁决不得越权入选。</span><span class="tag risk">东鹏饮料 605499：正向选股理由命中弱映射、低弹性或其他凑数特征，已从正式候选降级至观察。</span><span class="tag risk">川能动力 000155：命中外部高风险主题且缺少可审计的例外证据，已从正式候选降级至观察。</span></div>
+    
     <h2>使用信息</h2>
-    <div class="panel"><ul class="compact"><li>docs/daily_news_YYYY-MM-DD.md</li><li>data/news_preanalysis/YYYY-MM-DD_0900_news_preanalysis.json</li><li>data/cleaned/events.jsonl</li><li>memory/rolling_20_trading_days.md</li><li>memory/bootstrap_20d_context.json</li><li>data/state/source_status.json</li></ul></div>
+    <div class="panel"><ul class="compact"><li>data/market/YYYY-MM-DD_1445_market_preanalysis.json</li><li>data/market/slot_batches/YYYY-MM-DD/1445/minute_bars.parquet</li><li>data/market/slot_batches/YYYY-MM-DD/1445/quality_manifest.json</li><li>docs/daily_news_YYYY-MM-DD.md</li><li>data/news_preanalysis/YYYY-MM-DD_0900_news_preanalysis.json</li><li>data/preopen_research/YYYY-MM-DD_preopen_research_pool.json</li><li>memory/rolling_20_trading_days.md</li></ul></div>
     <h2>原始快照</h2>
-    <div class="panel source-links"><a href="../review.html">收盘后复盘</a><a href="../sla_daily_report.md">运行审计日报（SLA） Markdown</a></div>
+    <div class="panel source-links"><span class="muted">无原始快照</span></div>
     
   </main>
 </body>
