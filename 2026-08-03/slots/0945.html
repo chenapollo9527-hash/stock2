@@ -212,24 +212,75 @@ ul.compact li { margin: 4px 0; }
       <a href="../index.html">返回时间点</a>
     </div>
     <div class="notice">时间边界：09:45 到点一次性保存截至09:45的全主板原生1分钟量价批次，并从中生成09:30前收锚点及09:35/09:40/09:45决策特征；新闻固定复用08:00背景。</div>
-    <div class="notice">08:00 新闻预分析、完整日K线质量门控和主板研究池已落地，等待 API runner 完成盘前正式综合分析。</div>
+    
     <h2>状态</h2>
     <div class="grid">
-      <div class="metric"><span class="muted">市场姿态</span><strong>待综合分析</strong></div>
-      <div class="metric"><span class="muted">快照生成时间</span><strong>2026-08-03T08:10:52+08:00</strong></div>
-      <div class="metric"><span class="muted">候选数量</span><strong>0</strong></div>
+      <div class="metric"><span class="muted">市场姿态</span><strong>mixed_rotation</strong></div>
+      <div class="metric"><span class="muted">快照生成时间</span><strong>2026-08-03T09:46:45+08:00</strong></div>
+      <div class="metric"><span class="muted">候选数量</span><strong>5</strong></div>
     </div>
-    <h2>分析结论</h2><div class="panel"><ul class="compact"><li><strong>结论：</strong>08:00 新闻预分析、完整日K线质量门控和主板研究池已落地，等待 API runner 完成盘前正式综合分析。</li><li><strong>市场情绪：</strong>本地证据已落地，页面先行发布；等待 API runner 写入正式综合分析。</li><li><strong>信息背景：</strong>此 slot 为准点发布骨架，不作为正式推荐成绩。</li><li><strong>风险：</strong>若长时间停留在该状态，说明 API runner 未及时完成对应阶段。</li></ul></div>
+    <h2>分析结论</h2><div class="panel muted">该时间点尚未生成分析。</div>
     
+    <h2>API 运行信息</h2>
+    <div class="grid"><div class="metric"><span class="muted">模型</span><strong>deepseek-v4-flash</strong></div>
+<div class="metric"><span class="muted">Total tokens</span><strong>89011</strong></div></div>
     
-    <h2>行情预分析</h2><div class="panel muted">尚未生成行情预分析。</div>
+    <h2>热门概念雷达</h2><table class="stock-table"><thead><tr><th>概念</th><th>强度证据</th><th>不可买强势样本</th><th>同链低位候选</th></tr></thead><tbody><tr><td><span class="stock-name">被动元件/MLCC（风华高科、三环集团方向）</span></td><td>全主板1分钟批次中000636风华高科09:45涨幅2.43%、成交额27.4亿元、末5分钟成交额6.09亿元、末5分钟收益+3.99%、15分钟阳性率0.67，日内振幅8.49%且从低点反弹7.53%；同源增强池显示成交额与近端斜率双确认，但2.43%涨幅未形成板块涨停梯队，且新能源/电力设备等Top30概念扩散一般，维持雷达观察。</td><td>-</td><td>-</td></tr>
+<tr><td><span class="stock-name">游戏/传媒/AI应用（巨人网络、利欧股份方向）</span></td><td>002558巨人网络09:45涨幅4.68%、成交额12.83亿元、末5分钟成交额3.94亿元、末5分钟收益+2.13%、15分钟阳性率0.60，量价结构健康但涨幅接近5%高位带；002131利欧股份成交额29.55亿元但冲高回落、日内高点回撤-3.37%，扩散分化；新闻背景中AI应用受外部美股科技链高严重度风险压制，仅作雷达。</td><td>-</td><td>-</td></tr>
+<tr><td><span class="stock-name">金融/地产/基建（华新建材公告催化）</span></td><td>600801华新建材为08:00 Top30主池内唯一金融/地产/基建成员，08:00新闻硬催化（拟收购菲律宾水泥资产约8亿美元），四帧涨幅-0.45%→+2.91%→+1.39%→-0.04%，09:45已回到平盘且末5分钟收益-1.42%、日内高点回撤-3.63%，分时承接证伪：仅一帧脉冲，不构成正式候选。</td><td>-</td><td>-</td></tr>
+<tr><td><span class="stock-name">医药/医疗</span></td><td>Top30内医药/医疗成员603259药明康德四帧0.60%→2.55%→0.94%→-0.23%冲高回落，09:45末5分钟-1.16%、日内高点回撤-3.20%；600664哈药股份09:45 -1.36%且高位放量后回撤；四帧未形成同链扩散，板块平均由正转负，仅作雷达，不入选。</td><td>-</td><td>-</td></tr></tbody></table>
+    <h2>行情预分析</h2><div class="panel"><ul class="compact"><li><strong>边界：</strong>market_only_preanalysis_from_exchange_native_one_minute_data_no_news_or_memory</li><li><strong>模式：</strong>mixed_rotation：涨跌宽度和强势数量未形成单边信号，按轮动市处理。</li><li><strong>涨停潮阈值：</strong>未触发 / 主板pct&gt;6 42，近涨停 27</li><li><strong>数据源：</strong>tdx_one_minute_batch / 行数 3042 / 帧数 4</li><li><strong>宽度：</strong>上涨 1932，下跌 978，中位涨幅 0.44%</li><li><strong>时间权重：</strong>09:45 只看开盘后已保存扫描，重点使用09:30-09:45近端帧。</li><li><strong>近端窗口：</strong>2026-08-03T09:30:00+08:00 至 2026-08-03T09:45:00+08:00 / 4帧</li><li><strong>主板6%以下活跃：</strong>利欧股份(002131) 4.72%、风华高科(000636) 2.43%、紫光股份(000938) 0.23%、利通电子(603629) 4.04%、云南锗业(002428) 2.76%</li></ul></div>
     <h2>盘面监控</h2><div class="panel muted">该窗口尚未采集高频监控快照。</div>
     <h2>主板可交易候选（偏未爆发/惯性）</h2>
     <table class="stock-table">
       <thead>
         <tr><th>股票</th><th>概念</th><th>来源/确认</th><th>涨幅</th><th>详情</th></tr>
       </thead>
-      <tbody><tr><td colspan="5" class="muted">该时间点暂无可交易候选。</td></tr></tbody>
+      <tbody>
+    <tr>
+      <td><a class="stock-name" href="../stocks/0945_603816.html">顾家家居</a><span class="code">(603816)</span></td>
+      <td>消费/家居</td>
+      <td><span class="tag good">preopen_observation_pool / 08:00 Top30主池（preopen_rank 30，score 20.34）为preopen_research_pool.risk_overheat_filtered_pool Top30成员；四帧全正且连续上行，15分钟阳性率0.73，是Top30中唯一四帧斜率持续扩张的家居消费样本；前一交易日已确认的A股扩散先验中消费/家居处于轮动修复观察线，当日四帧验证未证伪。</span></td>
+      <td><div class="perf-line"><span class="perf-item">快照涨幅<strong>2.9%</strong></span></div></td>
+      <td><a href="../stocks/0945_603816.html">查看详情</a></td>
+    </tr>
+    
+
+    <tr>
+      <td><a class="stock-name" href="../stocks/0945_600644.html">乐山电力</a><span class="code">(600644)</span></td>
+      <td>电力/新能源</td>
+      <td><span class="tag good">preopen_observation_pool / 08:00 Top30主池（preopen_rank 9，score 27.28）为preopen_research_pool.intraday_observation_plan_pool Top15成员；四帧0.75%→0.43%→0.32%→1.50%，09:35-09:40回踩不破前低、09:45重新放量加速，量额逐帧扩张且当日四帧未跌破开盘价，属于Top30内少数获得资金二次承接的电力设备样本。</span></td>
+      <td><div class="perf-line"><span class="perf-item">快照涨幅<strong>1.5%</strong></span></div></td>
+      <td><a href="../stocks/0945_600644.html">查看详情</a></td>
+    </tr>
+    
+
+    <tr>
+      <td><a class="stock-name" href="../stocks/0945_603507.html">振江股份</a><span class="code">(603507)</span></td>
+      <td>高端制造/风电钢结构</td>
+      <td><span class="tag good">preopen_observation_pool / 08:00 Top30主池（preopen_rank 21，score 23.87）为preopen_research_pool.risk_overheat_filtered_pool Top30成员；四帧0.60%→0.13%→1.49%→1.66%，09:45量额加速2.13倍为Top30四帧中最强量能变化，连续三个末5分钟收益为正且回撤可控；高端制造/军工/机器人前一日为已确认扩散先验（福田汽车），当日虽无同链涨停梯队，但样本自身四帧斜率独立验证。</span></td>
+      <td><div class="perf-line"><span class="perf-item">快照涨幅<strong>1.66%</strong></span></div></td>
+      <td><a href="../stocks/0945_603507.html">查看详情</a></td>
+    </tr>
+    
+
+    <tr>
+      <td><a class="stock-name" href="../stocks/0945_603366.html">日出东方</a><span class="code">(603366)</span></td>
+      <td>消费/家电/光伏</td>
+      <td><span class="tag good">preopen_observation_pool / 08:00 Top30主池（preopen_rank 4，score 28.72）为preopen_core_email_candidates Top5成员；四帧-0.73%→-0.29%→0.00%→+0.15%单调修复，09:45末5分钟收益+0.15%、量额加速0.65，回撤从-0.73%收敛至-0.58%，属于Top30中从水下修复最完整的样本；前一交易日金融/地产/基建与消费/家居扩散先验中家电消费属于轮动承接方向，当日四帧未证伪。</span></td>
+      <td><div class="perf-line"><span class="perf-item">快照涨幅<strong>0.15%</strong></span></div></td>
+      <td><a href="../stocks/0945_603366.html">查看详情</a></td>
+    </tr>
+    
+
+    <tr>
+      <td><a class="stock-name" href="../stocks/0945_605189.html">富春染织</a><span class="code">(605189)</span></td>
+      <td>消费/纺织染整</td>
+      <td><span class="tag good">preopen_observation_pool / 08:00 Top30主池（preopen_rank 14，score 25.96）为preopen_research_pool.intraday_observation_plan_pool Top15成员；四帧-0.94%→-1.38%→+2.69%→+0.31%，09:40出现放量异动（末5分钟+4.13%）、09:45回落至+0.31%但未破开盘价，量额从4997万→8874万→11623万持续放大；消费/纺织属于前一日消费轮动扩散先验方向，四帧虽冲高回落但仍收于正涨幅，保留观察。</span></td>
+      <td><div class="perf-line"><span class="perf-item">快照涨幅<strong>0.31%</strong></span></div></td>
+      <td><a href="../stocks/0945_605189.html">查看详情</a></td>
+    </tr>
+    </tbody>
     </table>
     
     <h2>风险提示（概念/个股）</h2>
@@ -238,15 +289,6 @@ ul.compact li { margin: 4px 0; }
         <tr><th>对象</th><th>类型</th><th>线索</th><th>风险</th><th>应对</th></tr>
       </thead>
       <tbody>
-    <tr>
-      <td><span class="stock-name">待 API 综合分析</span></td>
-      <td><span class="tag risk">流程</span><span class="tag watch">中</span></td>
-      <td>08:00 新闻预分析、完整日K线质量门控和主板研究池已落地，等待 API runner 完成盘前正式综合分析。</td>
-      <td>当前页面只是本地准点发布占位，候选尚未完成正式综合分析。</td>
-      <td>等待 API runner 覆盖；盘中阶段可由本地行情兜底先行填充。</td>
-    </tr>
-    
-
     <tr>
       <td><span class="stock-name">日韩半导体链</span></td>
       <td><span class="tag risk">外部市场</span><span class="tag watch">中</span></td>
@@ -280,6 +322,24 @@ ul.compact li { margin: 4px 0; }
       <td>微软“点火”！AI应用暴力拉升 四巨头订单超2万亿</td>
       <td>国内利好与外部同产业链走弱冲突：科技硬件/半导体链。</td>
       <td>国内利好降权为待验证，必须等待A股资金承接确认。</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="stock-name">行情数据质量</span></td>
+      <td><span class="tag risk">数据</span><span class="tag watch">高</span></td>
+      <td>全 A 最新有效行数 3042，低于完整扫描阈值。</td>
+      <td>准点行情不完整时，涨幅、宽度和资金方向不能作为正式推荐依据。</td>
+      <td>只保留观察样本；等待下一帧完整扫描或异源确认。</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="stock-name">大盘普涨遮蔽</span></td>
+      <td><span class="tag risk">大盘</span><span class="tag watch">中</span></td>
+      <td>上涨 1932/3042，中位涨幅 0.44%；涨跌宽度和强势数量未形成单边信号，按轮动市处理。</td>
+      <td>候选胜率可能主要来自市场 Beta，而不是个股自身催化或资金独立选择。</td>
+      <td>优先看相对强度、缩量回踩承接和次日是否仍强于大盘。</td>
     </tr>
     
 
