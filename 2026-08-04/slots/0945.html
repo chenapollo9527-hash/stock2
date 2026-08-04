@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-08-04 09:45 开盘验证</title>
+  <style>
+:root {
+  color-scheme: light;
+  --bg: #f5f6f8;
+  --panel: #ffffff;
+  --text: #111827;
+  --muted: #667085;
+  --line: #d6dde8;
+  --accent: #0f5f9f;
+  --accent-soft: #e8f2fa;
+  --green: #0d7a4f;
+  --orange: #9a5b00;
+  --red: #a33a3a;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Segoe UI", "Microsoft YaHei", Arial, sans-serif;
+  line-height: 1.5;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.shell { max-width: 1180px; margin: 0 auto; padding: 24px 20px 44px; }
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 14px;
+  margin-bottom: 18px;
+}
+h1 { font-size: 28px; margin: 0 0 6px; letter-spacing: 0; }
+h2 { font-size: 20px; margin: 24px 0 10px; }
+h3 { font-size: 16px; margin: 16px 0 8px; }
+.muted { color: var(--muted); font-size: 13px; }
+.notice {
+  background: #fff8e8;
+  border: 1px solid #ead19a;
+  border-radius: 8px;
+  color: #7a4a00;
+  padding: 10px 12px;
+  margin: 12px 0 18px;
+}
+.module-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+  margin: 0 0 16px;
+}
+.module-card {
+  display: flex;
+  min-width: 0;
+  min-height: 170px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 18px;
+  color: inherit;
+}
+a.module-card:hover { text-decoration: none; border-color: var(--accent); background: #fafdff; }
+.module-card-primary { border-top: 4px solid var(--accent); }
+.module-card-research { min-height: 0; align-items: stretch; border-top: 4px solid var(--green); }
+.module-card-head { width: 100%; }
+.module-label { display: block; margin-bottom: 8px; color: var(--muted); font-size: 12px; font-weight: 700; }
+.module-title { display: block; color: var(--text); font-size: 21px; }
+.module-description { margin-top: 8px; color: var(--muted); font-size: 13px; line-height: 1.65; }
+.module-footer { display: flex; width: 100%; align-items: flex-end; justify-content: space-between; gap: 12px; }
+.module-meta { color: var(--muted); font-size: 12px; }
+.module-action { color: var(--accent); font-weight: 700; white-space: nowrap; }
+.module-card-research .module-action { color: var(--green); }
+.module-card-research .date-list { width: 100%; margin: 18px 0 0; }
+.date-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 10px;
+  padding: 0;
+  list-style: none;
+}
+.date-list a, .panel {
+  display: block;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 14px;
+}
+.stock-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.stock-table th, .stock-table td {
+  border-bottom: 1px solid var(--line);
+  padding: 10px 12px;
+  text-align: left;
+  vertical-align: middle;
+  font-size: 14px;
+}
+.stock-table th { background: var(--accent-soft); color: #24364a; }
+.stock-table tr:last-child td { border-bottom: 0; }
+.stock-name { font-weight: 700; font-size: 16px; }
+.code { color: var(--muted); font-size: 13px; margin-left: 4px; }
+.perf-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.perf-item {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 2px 7px;
+  background: #fff;
+  white-space: nowrap;
+}
+.perf-item strong { margin-left: 3px; }
+.tag {
+  display: inline-block;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 2px 8px;
+  margin: 2px 4px 2px 0;
+  font-size: 12px;
+  background: #fff;
+}
+.tag.good { color: var(--green); border-color: #b8dccd; background: #eef9f4; }
+.tag.watch { color: var(--orange); border-color: #ead19a; background: #fff8e8; }
+.tag.risk { color: var(--red); border-color: #e8b8b8; background: #fff1f1; }
+.tag.pending { color: var(--muted); border-color: var(--line); background: #f8fafc; }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+.metric {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px;
+}
+.metric strong { display: block; font-size: 20px; margin-top: 4px; }
+.slot-card {
+  display: block;
+  color: inherit;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 14px;
+}
+.slot-card:hover { text-decoration: none; border-color: var(--accent); }
+.slot-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: baseline;
+}
+.slot-title { font-size: 18px; font-weight: 700; color: var(--accent); }
+.slot-count { color: var(--muted); font-size: 13px; white-space: nowrap; }
+.boundary {
+  border-left: 4px solid var(--accent);
+  padding: 10px 12px;
+  background: #fff;
+}
+.event {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px;
+  margin: 10px 0;
+}
+.event-title { font-weight: 700; margin-bottom: 4px; }
+.source-links a { margin-right: 12px; font-size: 13px; }
+ul.compact { padding-left: 20px; margin-top: 8px; }
+ul.compact li { margin: 4px 0; }
+@media (max-width: 760px) {
+  .shell { padding: 18px 12px 34px; }
+  .topbar { display: block; }
+  h1 { font-size: 23px; }
+  .module-card { min-height: 154px; align-items: flex-start; }
+  .module-card-research { min-height: 0; }
+  .stock-table, .stock-table tbody, .stock-table tr, .stock-table td { display: block; width: 100%; }
+  .stock-table thead { display: none; }
+  .stock-table tr { border-bottom: 1px solid var(--line); }
+  .stock-table td { border: 0; padding: 8px 10px; }
+}
+</style>
+</head>
+<body>
+  <main class="shell">
+    
+    <div class="topbar">
+      <div>
+        <h1>2026-08-04 09:45 开盘验证</h1>
+        <div class="muted">只显示该时间点当时生成的股票；点击股票名进入该时间点详情。</div>
+      </div>
+      <a href="../index.html">返回时间点</a>
+    </div>
+    <div class="notice">时间边界：09:45 到点一次性保存截至09:45的全主板原生1分钟量价批次，并从中生成09:30前收锚点及09:35/09:40/09:45决策特征；新闻固定复用08:00背景。</div>
+    
+    <h2>状态</h2>
+    <div class="grid">
+      <div class="metric"><span class="muted">市场姿态</span><strong>mixed_rotation</strong></div>
+      <div class="metric"><span class="muted">快照生成时间</span><strong>2026-08-04T09:46:38+08:00</strong></div>
+      <div class="metric"><span class="muted">候选数量</span><strong>1</strong></div>
+    </div>
+    <h2>分析结论</h2><div class="panel muted">该时间点尚未生成分析。</div>
+    
+    <h2>API 运行信息</h2>
+    <div class="grid"><div class="metric"><span class="muted">模型</span><strong>deepseek-v4-flash</strong></div>
+<div class="metric"><span class="muted">Total tokens</span><strong>88634</strong></div></div>
+    
+    <h2>热门概念雷达</h2><table class="stock-table"><thead><tr><th>概念</th><th>强度证据</th><th>不可买强势样本</th><th>同链低位候选</th></tr></thead><tbody><tr><td><span class="stock-name">医药/医疗</span></td><td>Top30内医药/医疗成员药明康德(603259)四帧6.9961%→10.0%涨停，09:45封涨停且连续两帧涨停价、近5分钟成交额21.97亿元；哈药股份(600664)四帧0.1669%→2.8381%→2.5042%→1.3356%，09:45成交额8.59亿元、近5分钟成交额1.75亿元但日高回撤-2.88%；均瑶健康(605388)四帧-0.1…</td><td>-</td><td>-</td></tr>
+<tr><td><span class="stock-name">科技硬件/半导体（先进封装/PCB/存储）</span></td><td>Top30内科技硬件/半导体成员603358华达科技四帧0.7498%→2.416%→5.2208%→5.193%，09:45成交额1.46亿元、近5分钟成交额4657万元、日内高点回撤-0.84%；603533掌阅科技四帧-0.0932%→1.352%→2.331%→1.352%，日高回撤-2.03%；603657春光科技小幅走强至+0.90%。板块平均…</td><td>-</td><td>-</td></tr>
+<tr><td><span class="stock-name">量价结构候选2（含化工/资源类）</span></td><td>Top30内603567珍宝岛四帧0.9901%→4.6205%→5.1155%→5.2805%，09:45成交额1.73亿元、近5分钟2810万元、日高回撤-1.54%；600722金牛化工四帧-0.6475%→-1.9426%→0.0%→1.6651%，09:45转强、近5分钟+1.67%、成交额2.03亿元；603619中曼石油+0.66%未继续走强…</td><td>-</td><td>-</td></tr>
+<tr><td><span class="stock-name">金融/地产/基建（华新建材公告）</span></td><td>600801华新建材为Top30内唯一金融/地产/基建成员，08:00新闻硬催化（拟8亿美元收购菲律宾水泥资产），但四帧0.0943%→-1.5566%→-2.5943%→-2.0755%，09:45成交额6301万元、日高回撤-2.35%、近5分钟+0.53%，分时承接证伪，板块无扩散，仅作雷达不入选。</td><td>-</td><td>-</td></tr></tbody></table>
+    <h2>行情预分析</h2><div class="panel"><ul class="compact"><li><strong>边界：</strong>market_only_preanalysis_from_exchange_native_one_minute_data_no_news_or_memory</li><li><strong>模式：</strong>mixed_rotation：涨跌宽度和强势数量未形成单边信号，按轮动市处理。</li><li><strong>涨停潮阈值：</strong>未触发 / 主板pct&gt;6 51，近涨停 26</li><li><strong>数据源：</strong>tdx_one_minute_batch / 行数 3042 / 帧数 4</li><li><strong>宽度：</strong>上涨 1522，下跌 1382，中位涨幅 0.03%</li><li><strong>时间权重：</strong>09:45 只看开盘后已保存扫描，重点使用09:30-09:45近端帧。</li><li><strong>近端窗口：</strong>2026-08-04T09:30:00+08:00 至 2026-08-04T09:45:00+08:00 / 4帧</li><li><strong>主板6%以下活跃：</strong>兆易创新(603986) 1.9%、亨通光电(600487) 3.61%、华电辽能(600396) 4.13%、工业富联(601138) 3.63%、中国巨石(600176) 2.47%</li></ul></div>
+    <h2>盘面监控</h2><div class="panel muted">该窗口尚未采集高频监控快照。</div>
+    <h2>主板可交易候选（偏未爆发/惯性）</h2>
+    <table class="stock-table">
+      <thead>
+        <tr><th>股票</th><th>概念</th><th>来源/确认</th><th>涨幅</th><th>详情</th></tr>
+      </thead>
+      <tbody>
+    <tr>
+      <td><a class="stock-name" href="../stocks/0945_600664.html">哈药股份</a><span class="code">(600664)</span></td>
+      <td>医药/医疗</td>
+      <td><span class="tag good">preopen_observation_pool / 08:00 Top30主池内医药/医疗成员，前一日已确认医药/医疗板块扩散；08:00新闻背景中药明康德半年报高增带动医药板块关注。</span></td>
+      <td><div class="perf-line"><span class="perf-item">快照涨幅<strong>1.34%</strong></span></div></td>
+      <td><a href="../stocks/0945_600664.html">查看详情</a></td>
+    </tr>
+    </tbody>
+    </table>
+    
+    <h2>风险提示（概念/个股）</h2>
+    <table class="stock-table">
+      <thead>
+        <tr><th>对象</th><th>类型</th><th>线索</th><th>风险</th><th>应对</th></tr>
+      </thead>
+      <tbody>
+    <tr>
+      <td><span class="stock-name">日韩半导体链</span></td>
+      <td><span class="tag risk">外部市场</span><span class="tag watch">高</span></td>
+      <td>日经225指数期货开盘跌0.18%；韩股一度跌逾5%！大摩：有逾四成上涨空间 “去杠杆”已过半</td>
+      <td>外部同产业链或风险偏好走弱会传导到A股，国内利好不能自动高权重覆盖外部证伪。</td>
+      <td>相关主题候选降权，等待A股全市场扫描和资金流入确认后再恢复。</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="stock-name">内外信号冲突</span></td>
+      <td><span class="tag risk">外部市场</span><span class="tag watch">高</span></td>
+      <td>300615“一字”涨停！先进封装重磅会议将举行 8只概念股业绩报喜</td>
+      <td>国内利好与外部同产业链走弱冲突：先进封装。</td>
+      <td>国内利好降权为待验证，必须等待A股资金承接确认。</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="stock-name">内外信号冲突</span></td>
+      <td><span class="tag risk">外部市场</span><span class="tag watch">高</span></td>
+      <td>业绩利好！芯片巨头预增最高超300%</td>
+      <td>国内利好与外部同产业链走弱冲突：科技硬件/半导体链。</td>
+      <td>国内利好降权为待验证，必须等待A股资金承接确认。</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="stock-name">行情数据质量</span></td>
+      <td><span class="tag risk">数据</span><span class="tag watch">高</span></td>
+      <td>全 A 最新有效行数 3042，低于完整扫描阈值。</td>
+      <td>准点行情不完整时，涨幅、宽度和资金方向不能作为正式推荐依据。</td>
+      <td>只保留观察样本；等待下一帧完整扫描或异源确认。</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="stock-name">金牛化工</span><span class="code">(600722)</span></td>
+      <td><span class="tag risk">个股</span><span class="tag watch">高</span></td>
+      <td>该样本已被本时点过滤。</td>
+      <td>命中外部高风险主题且缺少可审计的例外证据，已从正式候选降级至观察。</td>
+      <td>不纳入正式候选；只作为板块强度或反面样本。</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="stock-name">华达科技</span><span class="code">(603358)</span></td>
+      <td><span class="tag risk">个股</span><span class="tag watch">高</span></td>
+      <td>该样本已被本时点过滤。</td>
+      <td>命中外部高风险主题且缺少可审计的例外证据，已从正式候选降级至观察。</td>
+      <td>不纳入正式候选；只作为板块强度或反面样本。</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="stock-name">新闻风险线索</span></td>
+      <td><span class="tag risk">新闻</span><span class="tag watch">中</span></td>
+      <td>[韩国总统办公室政策室长金容范因“仓促引入杠杆ETF”面临刑事指控](https://finance.eastmoney.com/a/202608033829731556.html) - eastmoney_market - 政策, 韩国</td>
+      <td>公告、异常波动、杠杆或监管线索可能使相关主题从进攻转为兑现。</td>
+      <td>若与候选概念重合，降低仓位假设并等待资金确认。</td>
+    </tr>
+    </tbody>
+    </table>
+    
+    <h2>剔除/仅观察</h2><div class="panel"><span class="tag risk">金牛化工 600722：命中外部高风险主题且缺少可审计的例外证据，已从正式候选降级至观察。</span><span class="tag risk">华达科技 603358：命中外部高风险主题且缺少可审计的例外证据，已从正式候选降级至观察。</span><span class="tag risk">金牛化工 600722：命中外部高风险主题且缺少可审计的例外证据，已从正式候选降级至观察。</span></div>
+    <h2>使用信息</h2>
+    <div class="panel"><ul class="compact"><li>data/market/YYYY-MM-DD_0945_market_preanalysis.json</li><li>data/market/slot_batches/YYYY-MM-DD/0945/minute_bars.parquet</li><li>data/market/slot_batches/YYYY-MM-DD/0945/quality_manifest.json</li><li>docs/daily_news_YYYY-MM-DD.md</li><li>data/news_preanalysis/YYYY-MM-DD_0900_news_preanalysis.json</li><li>data/preopen_research/YYYY-MM-DD_preopen_research_pool.json</li><li>memory/rolling_20_trading_days.md</li></ul></div>
+    <h2>原始快照</h2>
+    <div class="panel source-links"><span class="muted">无原始快照</span></div>
+    
+  </main>
+</body>
+</html>
