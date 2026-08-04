@@ -212,24 +212,48 @@ ul.compact li { margin: 4px 0; }
       <a href="../index.html">返回时间点</a>
     </div>
     <div class="notice">时间边界：14:45 到点一次性保存截至14:45的全主板原生1分钟量价批次，并生成14:30/14:35/14:40/14:45决策特征；新闻固定复用08:00背景，结论用于次日开盘观察。</div>
-    <div class="notice">08:00 新闻预分析、完整日K线质量门控和主板研究池已落地，等待 API runner 完成盘前正式综合分析。</div>
+    
     <h2>状态</h2>
     <div class="grid">
-      <div class="metric"><span class="muted">市场姿态</span><strong>待综合分析</strong></div>
-      <div class="metric"><span class="muted">快照生成时间</span><strong>2026-08-04T08:03:12+08:00</strong></div>
-      <div class="metric"><span class="muted">候选数量</span><strong>0</strong></div>
+      <div class="metric"><span class="muted">市场姿态</span><strong>narrow_theme_strength_with_weak_breadth</strong></div>
+      <div class="metric"><span class="muted">快照生成时间</span><strong>2026-08-04T14:47:19+08:00</strong></div>
+      <div class="metric"><span class="muted">候选数量</span><strong>2</strong></div>
     </div>
-    <h2>分析结论</h2><div class="panel"><ul class="compact"><li><strong>结论：</strong>08:00 新闻预分析、完整日K线质量门控和主板研究池已落地，等待 API runner 完成盘前正式综合分析。</li><li><strong>市场情绪：</strong>本地证据已落地，页面先行发布；等待 API runner 写入正式综合分析。</li><li><strong>信息背景：</strong>此 slot 为准点发布骨架，不作为正式推荐成绩。</li><li><strong>风险：</strong>若长时间停留在该状态，说明 API runner 未及时完成对应阶段。</li></ul></div>
+    <h2>分析结论</h2><div class="panel muted">该时间点尚未生成分析。</div>
     
+    <h2>API 运行信息</h2>
+    <div class="grid"><div class="metric"><span class="muted">模型</span><strong>deepseek-v4-flash</strong></div>
+<div class="metric"><span class="muted">Total tokens</span><strong>90020</strong></div></div>
     
-    <h2>行情预分析</h2><div class="panel muted">尚未生成行情预分析。</div>
+    <h2>热门概念雷达</h2><table class="stock-table"><thead><tr><th>概念</th><th>强度证据</th><th>不可买强势样本</th><th>同链低位候选</th></tr></thead><tbody><tr><td><span class="stock-name">医药/医疗（Top30硬强度）</span></td><td>Top30内医药/医疗3只，14:45平均涨幅6.28%，其中603259药明康德四帧全部涨停封死、不可买；600664哈药股份14:40一度冲至9.52%后回落至8.51%，近涨停且涨幅&gt;6%硬过滤；605388均瑶健康仅+0.34%无承接。板块强度高但可交易低位承接缺失，除600664前期已推外无符合&lt;=6%的Top30内样本。</td><td>-</td><td>-</td></tr>
+<tr><td><span class="stock-name">液冷/服务器/算力硬件（增强池资金确认）</span></td><td>增强池中603019中科曙光pct 1.64%、四帧稳定在1.64%附近未冲高回落、14:45成交额36.12亿、末5分钟5558万、15分钟阳性率0.53、日高回撤仅-0.63%；同链002112三变科技pct 1.45%、末5分钟+2.71%、量额加速6.68倍、成交额5.97亿，但仍需确认板块扩散不收缩。受日韩半导体链外部高严重度风险压制，但A股近端…</td><td>-</td><td>603019</td></tr>
+<tr><td><span class="stock-name">造纸/轻工（尾盘资金增强）</span></td><td>增强池600793宜宾纸业pct 3.67%、末5分钟+1.24%、量额加速3.10倍、成交额2.77亿、日高回撤-0.68%，低位反弹5.68%；属纸业独立异动，同链未见其他显著扩散样本，且08:00 Top30主池无纸业成员，不构成高置信同链扩散，仅作雷达。</td><td>-</td><td>-</td></tr>
+<tr><td><span class="stock-name">新能源/电力设备（前日扩散证伪）</span></td><td>前一日1445已确认新能源/电力设备扩散，但今日Top30内600744华银电力四帧-0.68%→-0.96%→-0.82%→-1.09%持续走弱；603399永杉锂业+0.88%但量能未放大；前一日涨停的600644乐山电力今日涨停不可买；600617国新能源尾盘15分钟阳性率仅0.2。当日四帧已证伪该方向承接，不保留正式候选。</td><td>-</td><td>-</td></tr></tbody></table>
+    <h2>行情预分析</h2><div class="panel"><ul class="compact"><li><strong>边界：</strong>market_only_preanalysis_from_exchange_native_one_minute_data_no_news_or_memory</li><li><strong>模式：</strong>narrow_theme_strength：主板强势样本达到涨停潮阈值：pct_gt_6=204，limit_up_like=117。即使下跌家数占优，也应先识别热门概念和同链低位承接。</li><li><strong>涨停潮阈值：</strong>触发 / 主板pct&gt;6 204，近涨停 117</li><li><strong>数据源：</strong>tdx_one_minute_batch / 行数 3042 / 帧数 4</li><li><strong>宽度：</strong>上涨 1484，下跌 1473，中位涨幅 0%</li><li><strong>时间权重：</strong>14:45 以尾盘近端资金为最高权重，同时保留全日主线和上午背景。</li><li><strong>近端窗口：</strong>2026-08-04T14:30:00+08:00 至 2026-08-04T14:45:00+08:00 / 4帧</li><li><strong>主板6%以下活跃：</strong>兆易创新(603986) 3.86%、亨通光电(600487) 5.55%、中国巨石(600176) 5.78%、风华高科(000636) 4.21%、京东方Ａ(000725) 3.32%</li></ul></div>
     <h2>盘面监控</h2><div class="panel muted">该窗口尚未采集高频监控快照。</div>
     <h2>主板可交易候选（偏未爆发/惯性）</h2>
     <table class="stock-table">
       <thead>
         <tr><th>股票</th><th>概念</th><th>来源/确认</th><th>涨幅</th><th>详情</th></tr>
       </thead>
-      <tbody><tr><td colspan="5" class="muted">该时间点暂无可交易候选。</td></tr></tbody>
+      <tbody>
+    <tr>
+      <td><a class="stock-name" href="../stocks/1445_603019.html">中科曙光</a><span class="code">(603019)</span></td>
+      <td>算力硬件/液冷/服务器</td>
+      <td><span class="tag good">intraday_market_enhancement / intraday_market_enhancement池外补充：08:00 Top30主池未纳入该股（Top30以量价研究分/主题映射优先，中科曙光未进入风险过滤后Top30），但14:45增强池显示其四帧涨幅稳定在1.64%附近、成交额36.12亿元为Top20量级、末5分钟成交额5558万元且15分钟阳性率0.53、日高回撤仅-0.63%，已用原生1分钟序列确认承接持续性，非单帧脉冲。</span></td>
+      <td><div class="perf-line"><span class="perf-item">快照涨幅<strong>1.64%</strong></span></div></td>
+      <td><a href="../stocks/1445_603019.html">查看详情</a></td>
+    </tr>
+    
+
+    <tr>
+      <td><a class="stock-name" href="../stocks/1445_600801.html">华新建材</a><span class="code">(600801)</span></td>
+      <td>基建/水泥/并购重组</td>
+      <td><span class="tag good">preopen_observation_pool / 08:00 Top30主池内金融/地产/基建成员，Top5核心跟踪子池，08:00新闻硬催化（拟收购Holcim Philippines股权，总价或超8亿美元）。</span></td>
+      <td><div class="perf-line"><span class="perf-item">快照涨幅<strong>0.66%</strong></span></div></td>
+      <td><a href="../stocks/1445_600801.html">查看详情</a></td>
+    </tr>
+    </tbody>
     </table>
     
     <h2>风险提示（概念/个股）</h2>
@@ -238,15 +262,6 @@ ul.compact li { margin: 4px 0; }
         <tr><th>对象</th><th>类型</th><th>线索</th><th>风险</th><th>应对</th></tr>
       </thead>
       <tbody>
-    <tr>
-      <td><span class="stock-name">待 API 综合分析</span></td>
-      <td><span class="tag risk">流程</span><span class="tag watch">中</span></td>
-      <td>08:00 新闻预分析、完整日K线质量门控和主板研究池已落地，等待 API runner 完成盘前正式综合分析。</td>
-      <td>当前页面只是本地准点发布占位，候选尚未完成正式综合分析。</td>
-      <td>等待 API runner 覆盖；盘中阶段可由本地行情兜底先行填充。</td>
-    </tr>
-    
-
     <tr>
       <td><span class="stock-name">日韩半导体链</span></td>
       <td><span class="tag risk">外部市场</span><span class="tag watch">高</span></td>
@@ -275,6 +290,33 @@ ul.compact li { margin: 4px 0; }
     
 
     <tr>
+      <td><span class="stock-name">行情数据质量</span></td>
+      <td><span class="tag risk">数据</span><span class="tag watch">高</span></td>
+      <td>全 A 最新有效行数 3042，低于完整扫描阈值。</td>
+      <td>准点行情不完整时，涨幅、宽度和资金方向不能作为正式推荐依据。</td>
+      <td>只保留观察样本；等待下一帧完整扫描或异源确认。</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="stock-name">短线情绪过热</span></td>
+      <td><span class="tag risk">概念</span><span class="tag watch">中</span></td>
+      <td>全市场涨幅超过 6% 的样本约 204 只。</td>
+      <td>高涨幅样本过多时，尾盘和次日容易出现兑现，未爆发候选也可能被板块退潮拖累。</td>
+      <td>降低追涨权重，只保留未过 6% 且仍有资金流入的样本。</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="stock-name">金牛化工</span><span class="code">(600722)</span></td>
+      <td><span class="tag risk">个股</span><span class="tag watch">高</span></td>
+      <td>该样本已被本时点过滤。</td>
+      <td>命中外部高风险主题且缺少可审计的例外证据，已从正式候选降级至观察。</td>
+      <td>不纳入正式候选；只作为板块强度或反面样本。</td>
+    </tr>
+    
+
+    <tr>
       <td><span class="stock-name">新闻风险线索</span></td>
       <td><span class="tag risk">新闻</span><span class="tag watch">中</span></td>
       <td>[韩国总统办公室政策室长金容范因“仓促引入杠杆ETF”面临刑事指控](https://finance.eastmoney.com/a/202608033829731556.html) - eastmoney_market - 政策, 韩国</td>
@@ -284,7 +326,7 @@ ul.compact li { margin: 4px 0; }
     </tbody>
     </table>
     
-    
+    <h2>剔除/仅观察</h2><div class="panel"><span class="tag risk">金牛化工 600722：命中外部高风险主题且缺少可审计的例外证据，已从正式候选降级至观察。</span></div>
     <h2>使用信息</h2>
     <div class="panel"><ul class="compact"><li>data/market/YYYY-MM-DD_1445_market_preanalysis.json</li><li>data/market/slot_batches/YYYY-MM-DD/1445/minute_bars.parquet</li><li>data/market/slot_batches/YYYY-MM-DD/1445/quality_manifest.json</li><li>docs/daily_news_YYYY-MM-DD.md</li><li>data/news_preanalysis/YYYY-MM-DD_0900_news_preanalysis.json</li><li>data/preopen_research/YYYY-MM-DD_preopen_research_pool.json</li><li>memory/rolling_20_trading_days.md</li></ul></div>
     <h2>原始快照</h2>

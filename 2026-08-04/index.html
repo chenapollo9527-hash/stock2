@@ -212,7 +212,7 @@ ul.compact li { margin: 4px 0; }
       <a href="../index.html">返回日期索引</a>
     </div>
     <div class="notice">仅用于投研辅助和候选池整理；请结合确认条件和风险条件，不作为自动交易指令。</div>
-    <h2>流程健康状态</h2><div class="panel"><span class="tag good">滚动备忘录：正常</span><span class="tag good">08:00新闻与公告：正常</span><span class="tag good">08:00量价研究池 Top200=200 Top30=30：正常</span><span class="tag risk">08:00正式候选：异常</span><span class="tag good">09:45一分钟行情与预分析 3042/3045：正常</span><span class="tag good">09:45正式候选：正常</span><span class="tag good">13:15一分钟行情与预分析 3042/3045：正常</span><span class="tag good">13:15正式候选：正常</span><span class="tag pending">14:45一分钟行情与预分析：待执行</span><span class="tag pending">14:45正式候选：待执行</span><span class="tag pending">15:15收盘结果：待执行</span><span class="tag pending">回测资料包：待执行</span><span class="tag pending">运行审计日报：待执行</span><div class="muted" style="margin-top:10px">回测资料包在收盘后封存各阶段可见输入，用于无未来数据泄漏的历史重放；运行审计日报（SLA）在收盘后汇总耗时、超时/阻塞和正式邮件状态。</div><div class="muted">最近执行：0945 / ok / 2026-08-04T09:47:06+08:00</div></div>
+    <h2>流程健康状态</h2><div class="panel"><span class="tag good">滚动备忘录：正常</span><span class="tag good">08:00新闻与公告：正常</span><span class="tag good">08:00量价研究池 Top200=200 Top30=30：正常</span><span class="tag risk">08:00正式候选：异常</span><span class="tag good">09:45一分钟行情与预分析 3042/3045：正常</span><span class="tag good">09:45正式候选：正常</span><span class="tag good">13:15一分钟行情与预分析 3042/3045：正常</span><span class="tag good">13:15正式候选：正常</span><span class="tag good">14:45一分钟行情与预分析 3042/3045：正常</span><span class="tag good">14:45正式候选：正常</span><span class="tag pending">15:15收盘结果：待执行</span><span class="tag pending">回测资料包：待执行</span><span class="tag pending">运行审计日报：待执行</span><div class="muted" style="margin-top:10px">回测资料包在收盘后封存各阶段可见输入，用于无未来数据泄漏的历史重放；运行审计日报（SLA）在收盘后汇总耗时、超时/阻塞和正式邮件状态。</div><div class="muted">最近执行：1315 / ok / 2026-08-04T13:17:34+08:00</div></div>
     
         <div class="notice">
           08:00 盘前没有形成可交易候选。原因：08:00 新闻预分析、完整日K线质量门控和主板研究池已落地，等待 API runner 完成盘前正式综合分析。
@@ -256,11 +256,11 @@ ul.compact li { margin: 4px 0; }
             <a class="slot-card" href="slots/1445.html">
               <div class="slot-top">
                 <div class="slot-title">14:45</div>
-                <div class="slot-count">0 只候选</div>
+                <div class="slot-count">2 只候选</div>
               </div>
-              <strong>待综合分析</strong>
-              <div class="muted">2026-08-04T08:03:12+08:00</div>
-              <div>08:00 新闻预分析、完整日K线质量门控和主板研究池已落地，等待 API runner 完成盘前正式综合分析。</div>
+              <strong>narrow_theme_strength_with_weak_breadth</strong>
+              <div class="muted">2026-08-04T14:47:19+08:00</div>
+              <div>主板四帧上涨家数1484、1479、1490、1484，14:45中位涨幅0.0%、pct_gt_6=204、limit_up_like=117，触发窄幅强主题阈值但宽度偏弱：上涨数仅略超下跌数，中位涨幅为零，pct_ge_3=492相对前一交易日1455的596明显收缩，成交额从11056亿升至11659亿但主要由高位强势样本贡献；Top30主池内多数尾盘转弱或涨停不可买，真正低吸承接方向收缩至医药低位和尾盘放量低位样本。14:45为次日开盘观察，不以当日收盘评分。</div>
               <div class="muted">边界：14:45 到点一次性保存截至14:45的全主板原生1分钟量价批次，并生成14:30/14:35/14:40/14:45决策特征；新闻固定复用08:00背景，结论用于次日开盘观察。</div>
             </a>
             </div>
