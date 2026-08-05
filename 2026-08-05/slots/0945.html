@@ -222,7 +222,7 @@ ul.compact li { margin: 4px 0; }
     <h2>分析结论</h2><div class="panel"><ul class="compact"><li><strong>结论：</strong>08:00 新闻预分析、完整日K线质量门控和主板研究池已落地，等待 API runner 完成盘前正式综合分析。</li><li><strong>市场情绪：</strong>本地证据已落地，页面先行发布；等待 API runner 写入正式综合分析。</li><li><strong>信息背景：</strong>此 slot 为准点发布骨架，不作为正式推荐成绩。</li><li><strong>风险：</strong>若长时间停留在该状态，说明 API runner 未及时完成对应阶段。</li></ul></div>
     
     
-    <h2>行情预分析</h2><div class="panel muted">尚未生成行情预分析。</div>
+    <h2>行情预分析</h2><div class="panel"><ul class="compact"><li><strong>边界：</strong>market_only_preanalysis_from_exchange_native_one_minute_data_no_news_or_memory</li><li><strong>模式：</strong>mixed_rotation：涨跌宽度和强势数量未形成单边信号，按轮动市处理。</li><li><strong>涨停潮阈值：</strong>未触发 / 主板pct&gt;6 61，近涨停 35</li><li><strong>数据源：</strong>tdx_one_minute_batch / 行数 3044 / 帧数 4</li><li><strong>宽度：</strong>上涨 1729，下跌 1152，中位涨幅 0.25%</li><li><strong>时间权重：</strong>09:45 只看开盘后已保存扫描，重点使用09:30-09:45近端帧。</li><li><strong>近端窗口：</strong>2026-08-05T09:30:00+08:00 至 2026-08-05T09:45:00+08:00 / 4帧</li><li><strong>主板6%以下活跃：</strong>东山精密(002384) 0.45%、药明康德(603259) 4.99%、兆易创新(603986) 5.57%、亨通光电(600487) 1.51%、风华高科(000636) 2.87%</li></ul></div>
     <h2>盘面监控</h2><div class="panel muted">该窗口尚未采集高频监控快照。</div>
     <h2>主板可交易候选（偏未爆发/惯性）</h2>
     <table class="stock-table">
@@ -262,6 +262,15 @@ ul.compact li { margin: 4px 0; }
       <td>券商增持回购潮涌！并购审核关键期，东吴证券控股股东大手笔增持</td>
       <td>国内利好与外部同产业链走弱冲突：券商。</td>
       <td>国内利好降权为待验证，必须等待A股资金承接确认。</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="stock-name">行情数据质量</span></td>
+      <td><span class="tag risk">数据</span><span class="tag watch">高</span></td>
+      <td>全 A 最新有效行数 3044，低于完整扫描阈值。</td>
+      <td>准点行情不完整时，涨幅、宽度和资金方向不能作为正式推荐依据。</td>
+      <td>只保留观察样本；等待下一帧完整扫描或异源确认。</td>
     </tr>
     
 
