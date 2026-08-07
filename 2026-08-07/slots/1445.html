@@ -212,24 +212,74 @@ ul.compact li { margin: 4px 0; }
       <a href="../index.html">返回时间点</a>
     </div>
     <div class="notice">时间边界：14:45 到点一次性保存截至14:45的全主板原生1分钟量价批次，并生成14:30/14:35/14:40/14:45决策特征；新闻固定复用08:00背景，结论用于次日开盘观察。</div>
-    <div class="notice">08:00 新闻预分析、完整日K线质量门控和主板研究池已落地，等待 API runner 完成盘前正式综合分析。</div>
+    
     <h2>状态</h2>
     <div class="grid">
-      <div class="metric"><span class="muted">市场姿态</span><strong>待综合分析</strong></div>
-      <div class="metric"><span class="muted">快照生成时间</span><strong>2026-08-07T08:16:10+08:00</strong></div>
-      <div class="metric"><span class="muted">候选数量</span><strong>0</strong></div>
+      <div class="metric"><span class="muted">市场姿态</span><strong>narrow_theme_strength_weak_breadth</strong></div>
+      <div class="metric"><span class="muted">快照生成时间</span><strong>2026-08-07T14:50:00+08:00</strong></div>
+      <div class="metric"><span class="muted">候选数量</span><strong>5</strong></div>
     </div>
-    <h2>分析结论</h2><div class="panel"><ul class="compact"><li><strong>结论：</strong>08:00 新闻预分析、完整日K线质量门控和主板研究池已落地，等待 API runner 完成盘前正式综合分析。</li><li><strong>市场情绪：</strong>本地证据已落地，页面先行发布；等待 API runner 写入正式综合分析。</li><li><strong>信息背景：</strong>此 slot 为准点发布骨架，不作为正式推荐成绩。</li><li><strong>风险：</strong>若长时间停留在该状态，说明 API runner 未及时完成对应阶段。</li></ul></div>
+    <h2>分析结论</h2><div class="panel muted">该时间点尚未生成分析。</div>
     
+    <h2>API 运行信息</h2>
+    <div class="grid"><div class="metric"><span class="muted">模型</span><strong>deepseek-v4-flash</strong></div>
+<div class="metric"><span class="muted">Total tokens</span><strong>218864</strong></div></div>
     
-    <h2>行情预分析</h2><div class="panel muted">尚未生成行情预分析。</div>
+    <h2>热门概念雷达</h2><table class="stock-table"><thead><tr><th>概念</th><th>强度证据</th><th>不可买强势样本</th><th>同链低位候选</th></tr></thead><tbody><tr><td><span class="stock-name">有色金属/铜钴/黄金/钨</span></td><td>Top30内四川黄金四帧4.09→4.11→4.42→4.80连续上行（4.80%高于4.5%弱宽度阈值，仅作强度样本）；intraday_market_enhancement_pool内洛阳钼业+2.21%、紫金矿业+1.83%、厦门钨业+2.26%、中金黄金+3.58%同步放量，正分钟比分别0.733/0.667/0.8/0.667；新闻背景刚果（金）…</td><td>-</td><td>-</td></tr>
+<tr><td><span class="stock-name">科技硬件/半导体/光通信（AI算力链）</span></td><td>Top30内斯达半导+2.70%、鸿远电子+1.07%、力鼎光电+2.08%四帧承接，科技硬件/半导体概念均涨由+0.17%升至+0.72%；intraday_market_enhancement_pool内烽火通信+3.84%、华工科技+3.56%、华天科技+3.94%构成光通信/封测扩散，亨通光电+5.33%为高带强度样本；新闻背景AI算力吃高端MLC…</td><td>-</td><td>-</td></tr>
+<tr><td><span class="stock-name">医药/医疗（创新药）</span></td><td>药明康德+8.72%超6%为强势不可买样本，塞力医疗+3.02%但尾盘5分钟转负，均瑶健康量能不足；新闻创新药商业化兑现与出海共振08:00已落地，但当日四帧显示板块内部分化，扩散未放大，因此无正式候选。</td><td>-</td><td>-</td></tr></tbody></table>
+    <h2>行情预分析</h2><div class="panel"><ul class="compact"><li><strong>边界：</strong>market_only_preanalysis_from_exchange_native_one_minute_data_no_news_or_memory</li><li><strong>模式：</strong>narrow_theme_strength：主板强势样本达到涨停潮阈值：pct_gt_6=120，limit_up_like=58。即使下跌家数占优，也应先识别热门概念和同链低位承接。</li><li><strong>涨停潮阈值：</strong>触发 / 主板pct&gt;6 120，近涨停 58</li><li><strong>数据源：</strong>tdx_one_minute_batch / 行数 3046 / 帧数 4</li><li><strong>宽度：</strong>上涨 1234，下跌 1734，中位涨幅 -0.33%</li><li><strong>时间权重：</strong>14:45 以尾盘近端资金为最高权重，同时保留全日主线和上午背景。</li><li><strong>近端窗口：</strong>2026-08-07T14:30:00+08:00 至 2026-08-07T14:45:00+08:00 / 4帧</li><li><strong>主板6%以下活跃：</strong>东山精密(002384) 4.62%、长电科技(600584) 2.4%、亨通光电(600487) 5.33%、京东方Ａ(000725) 1.68%、风华高科(000636) 1.17%</li></ul></div>
     <h2>盘面监控</h2><div class="panel muted">该窗口尚未采集高频监控快照。</div>
     <h2>主板可交易候选（偏未爆发/惯性）</h2>
     <table class="stock-table">
       <thead>
         <tr><th>股票</th><th>概念</th><th>来源/确认</th><th>涨幅</th><th>详情</th></tr>
       </thead>
-      <tbody><tr><td colspan="5" class="muted">该时间点暂无可交易候选。</td></tr></tbody>
+      <tbody>
+    <tr>
+      <td><a class="stock-name" href="../stocks/1445_603290.html">斯达半导</a><span class="code">(603290)</span></td>
+      <td>科技硬件/半导体（功率半导体/IGBT）</td>
+      <td><span class="tag good">preopen_observation_pool / 08:00 preopen_research_pool.risk_overheat_filtered_pool Top30（rank 14）与 intraday_observation_plan_pool Top15 成员，candidate_source=preopen_observation_pool；Top30内科技硬件/半导体概念四帧均涨为正，斯达半导尾盘重新放量上行，5分钟成交额加速1.72倍。</span></td>
+      <td><div class="perf-line"><span class="perf-item">快照涨幅<strong>2.7%</strong></span></div></td>
+      <td><a href="../stocks/1445_603290.html">查看详情</a></td>
+    </tr>
+    
+
+    <tr>
+      <td><a class="stock-name" href="../stocks/1445_603267.html">鸿远电子</a><span class="code">(603267)</span></td>
+      <td>科技硬件/半导体（军工MLCC/电子陶瓷）</td>
+      <td><span class="tag good">preopen_observation_pool / 08:00 preopen_research_pool.risk_overheat_filtered_pool Top30（rank 6）与 intraday_observation_plan_pool Top15 成员，candidate_source=preopen_observation_pool；Top30内科技硬件/半导体概念四帧均涨为正，鸿远电子四帧连续上行，是半导体/MLCC方向低位承接样本。</span></td>
+      <td><div class="perf-line"><span class="perf-item">快照涨幅<strong>1.07%</strong></span></div></td>
+      <td><a href="../stocks/1445_603267.html">查看详情</a></td>
+    </tr>
+    
+
+    <tr>
+      <td><a class="stock-name" href="../stocks/1445_603728.html">鸣志电器</a><span class="code">(603728)</span></td>
+      <td>高端制造/机器人（步进电机/空心杯电机）</td>
+      <td><span class="tag good">preopen_observation_pool / 08:00 preopen_research_pool.risk_overheat_filtered_pool Top30（rank 22）成员，candidate_source=preopen_observation_pool；尾盘资金确认：四帧连续上行且5分钟成交额逐帧放大，属于Top30主池内机器人/自动化方向低位承接样本。</span></td>
+      <td><div class="perf-line"><span class="perf-item">快照涨幅<strong>1.38%</strong></span></div></td>
+      <td><a href="../stocks/1445_603728.html">查看详情</a></td>
+    </tr>
+    
+
+    <tr>
+      <td><a class="stock-name" href="../stocks/1445_603993.html">洛阳钼业</a><span class="code">(603993)</span></td>
+      <td>有色金属/铜钴资源（刚果金铜钴供给约束）</td>
+      <td><span class="tag good">intraday_market_enhancement / 08:00 Top30漏掉原因：08:00风险过热过滤主池资源/材料/化工桶以高位黄金/化工为主，洛阳钼业未进入Top30；盘中intraday_market_enhancement_pool以top_burst_potential第1与top_acceleration第2出现，量能加速2.42、5分钟成交额1.41亿显著扩张，且同链铜钴/黄金/钨（紫金矿业、厦门钨业、中金黄金）同步走强，1分钟序列确认非单帧脉冲。</span></td>
+      <td><div class="perf-line"><span class="perf-item">快照涨幅<strong>2.21%</strong></span></div></td>
+      <td><a href="../stocks/1445_603993.html">查看详情</a></td>
+    </tr>
+    
+
+    <tr>
+      <td><a class="stock-name" href="../stocks/1445_600498.html">烽火通信</a><span class="code">(600498)</span></td>
+      <td>科技硬件/光通信（AI算力光模块/通信设备）</td>
+      <td><span class="tag good">intraday_market_enhancement / 08:00 Top30漏掉原因：Top30科技硬件/半导体桶以半导体为主，光通信/算力方向未进入主池；盘中intraday_market_enhancement_pool中烽火通信以top_burst_potential第2出现，量能加速1.28、5分钟成交额5550万，同链亨通光电+5.33%、华工科技+3.56%、东山精密+4.62%形成光通信/算力链扩散，1分钟序列确认近端斜率与成交额连续。</span></td>
+      <td><div class="perf-line"><span class="perf-item">快照涨幅<strong>3.84%</strong></span></div></td>
+      <td><a href="../stocks/1445_600498.html">查看详情</a></td>
+    </tr>
+    </tbody>
     </table>
     
     <h2>风险提示（概念/个股）</h2>
@@ -239,20 +289,29 @@ ul.compact li { margin: 4px 0; }
       </thead>
       <tbody>
     <tr>
-      <td><span class="stock-name">待 API 综合分析</span></td>
-      <td><span class="tag risk">流程</span><span class="tag watch">中</span></td>
-      <td>08:00 新闻预分析、完整日K线质量门控和主板研究池已落地，等待 API runner 完成盘前正式综合分析。</td>
-      <td>当前页面只是本地准点发布占位，候选尚未完成正式综合分析。</td>
-      <td>等待 API runner 覆盖；盘中阶段可由本地行情兜底先行填充。</td>
-    </tr>
-    
-
-    <tr>
       <td><span class="stock-name">商品与汇率</span></td>
       <td><span class="tag risk">外部市场</span><span class="tag watch">中</span></td>
       <td>大宗商品综述：油价上涨 铜价逼近历史高位 金价微跌；港股午评：恒指跌1.75% 科指跌1.87% 科网股、保险股普跌 黄金股逆势上涨</td>
       <td>外部同产业链或风险偏好走弱会传导到A股，国内利好不能自动高权重覆盖外部证伪。</td>
       <td>相关主题候选降权，等待A股全市场扫描和资金流入确认后再恢复。</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="stock-name">行情数据质量</span></td>
+      <td><span class="tag risk">数据</span><span class="tag watch">高</span></td>
+      <td>全 A 最新有效行数 3046，低于完整扫描阈值。</td>
+      <td>准点行情不完整时，涨幅、宽度和资金方向不能作为正式推荐依据。</td>
+      <td>只保留观察样本；等待下一帧完整扫描或异源确认。</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="stock-name">短线情绪过热</span></td>
+      <td><span class="tag risk">概念</span><span class="tag watch">中</span></td>
+      <td>全市场涨幅超过 6% 的样本约 120 只。</td>
+      <td>高涨幅样本过多时，尾盘和次日容易出现兑现，未爆发候选也可能被板块退潮拖累。</td>
+      <td>降低追涨权重，只保留未过 6% 且仍有资金流入的样本。</td>
     </tr>
     
 
