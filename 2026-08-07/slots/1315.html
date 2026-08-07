@@ -212,24 +212,57 @@ ul.compact li { margin: 4px 0; }
       <a href="../index.html">返回时间点</a>
     </div>
     <div class="notice">时间边界：13:15 到点一次性保存上午120分钟及午后15分钟全主板原生1分钟量价批次，并生成13:00/13:05/13:10/13:15决策特征；新闻固定复用08:00背景。</div>
-    <div class="notice">08:00 新闻预分析、完整日K线质量门控和主板研究池已落地，等待 API runner 完成盘前正式综合分析。</div>
+    
     <h2>状态</h2>
     <div class="grid">
-      <div class="metric"><span class="muted">市场姿态</span><strong>待综合分析</strong></div>
-      <div class="metric"><span class="muted">快照生成时间</span><strong>2026-08-07T08:16:10+08:00</strong></div>
-      <div class="metric"><span class="muted">候选数量</span><strong>0</strong></div>
+      <div class="metric"><span class="muted">市场姿态</span><strong>narrow_theme_strength_weak_breadth</strong></div>
+      <div class="metric"><span class="muted">快照生成时间</span><strong>2026-08-07T13:20:53+08:00</strong></div>
+      <div class="metric"><span class="muted">候选数量</span><strong>3</strong></div>
     </div>
-    <h2>分析结论</h2><div class="panel"><ul class="compact"><li><strong>结论：</strong>08:00 新闻预分析、完整日K线质量门控和主板研究池已落地，等待 API runner 完成盘前正式综合分析。</li><li><strong>市场情绪：</strong>本地证据已落地，页面先行发布；等待 API runner 写入正式综合分析。</li><li><strong>信息背景：</strong>此 slot 为准点发布骨架，不作为正式推荐成绩。</li><li><strong>风险：</strong>若长时间停留在该状态，说明 API runner 未及时完成对应阶段。</li></ul></div>
+    <h2>分析结论</h2><div class="panel muted">该时间点尚未生成分析。</div>
     
+    <h2>API 运行信息</h2>
+    <div class="grid"><div class="metric"><span class="muted">模型</span><strong>deepseek-v4-flash</strong></div>
+<div class="metric"><span class="muted">Total tokens</span><strong>203349</strong></div></div>
     
-    <h2>行情预分析</h2><div class="panel muted">尚未生成行情预分析。</div>
+    <h2>热门概念雷达</h2><table class="stock-table"><thead><tr><th>概念</th><th>强度证据</th><th>不可买强势样本</th><th>同链低位候选</th></tr></thead><tbody><tr><td><span class="stock-name">医药/医疗（CXO/创新药）</span></td><td>Top30内医药/医疗概念四帧均涨3.39%→3.28%→3.04%→3.32%，药明康德13:10→13:15五分钟转+0.58%并放量，但13:15涨幅6.36%已超6%硬上限；塞力医疗3.25%承接但15分钟正分钟比仅0.27，均瑶健康涨幅过低。</td><td>-</td><td>-</td></tr>
+<tr><td><span class="stock-name">半导体/科技硬件（封测/PCB/自动化设备）</span></td><td>全市场科技硬件成交额核心：长电科技133.24亿、通富微电65.73亿、东山精密127.07亿；Top30内科技硬件/半导体概念均涨仅0.48%未扩大，但池外科瑞技术以15分钟正分钟比0.80、量能加速2.22形成低位确认。</td><td>-</td><td>-</td></tr>
+<tr><td><span class="stock-name">新能源/电力设备（氟化工/逆变/储能）</span></td><td>增强池多氟多74.77亿、德业股份9.66亿、正泰电源1.06亿同步加速；但Top30内新能源仅海兴电力且13:15 -6.24%破位，故以池外补充。</td><td>-</td><td>-</td></tr>
+<tr><td><span class="stock-name">资源/材料/化工（黄金/关键矿产）</span></td><td>Top30内资源/材料/化工13:15均涨由-0.41%转正至+0.01%，四川黄金四帧0.98%→1.27%→1.09%→1.64%，为Top30主池内唯一资源方向可执行样本；新闻背景为刚果禁铜钴精矿出口、特朗普政府禁钨废料/电池废料出口，但入选以行情确认为准。</td><td>-</td><td>-</td></tr></tbody></table>
+    <h2>行情预分析</h2><div class="panel"><ul class="compact"><li><strong>边界：</strong>market_only_preanalysis_from_exchange_native_one_minute_data_no_news_or_memory</li><li><strong>模式：</strong>narrow_theme_strength：主板强势样本达到涨停潮阈值：pct_gt_6=96，limit_up_like=53。即使下跌家数占优，也应先识别热门概念和同链低位承接。</li><li><strong>涨停潮阈值：</strong>触发 / 主板pct&gt;6 96，近涨停 53</li><li><strong>数据源：</strong>tdx_one_minute_batch / 行数 3046 / 帧数 4</li><li><strong>宽度：</strong>上涨 1055，下跌 1924，中位涨幅 -0.55%</li><li><strong>时间权重：</strong>13:15 必须同时考虑上午主线和午后变化；午后近端资金权重大于上午背景。</li><li><strong>近端窗口：</strong>2026-08-07T13:00:00+08:00 至 2026-08-07T13:15:00+08:00 / 4帧</li><li><strong>主板6%以下活跃：</strong>长电科技(600584) 2.21%、东山精密(002384) 5.53%、京东方Ａ(000725) 1.85%、中钨高新(000657) 5.52%、多氟多(002407) 3.88%</li></ul></div>
     <h2>盘面监控</h2><div class="panel muted">该窗口尚未采集高频监控快照。</div>
     <h2>主板可交易候选（偏未爆发/惯性）</h2>
     <table class="stock-table">
       <thead>
         <tr><th>股票</th><th>概念</th><th>来源/确认</th><th>涨幅</th><th>详情</th></tr>
       </thead>
-      <tbody><tr><td colspan="5" class="muted">该时间点暂无可交易候选。</td></tr></tbody>
+      <tbody>
+    <tr>
+      <td><a class="stock-name" href="../stocks/1315_002407.html">多氟多</a><span class="code">(002407)</span></td>
+      <td>新能源/氟化工（锂电材料/六氟磷酸锂）</td>
+      <td><span class="tag good">intraday_market_enhancement / 08:00 Top30主池内新能源/电力设备仅海兴电力且13:15 -6.24%破位，池内无可执行低位样本；market_preanalysis.intraday_market_enhancement_pool第1名，量能加速3.03、5分钟收益+2.46%，作为池外补充。</span></td>
+      <td><div class="perf-line"><span class="perf-item">快照涨幅<strong>3.88%</strong></span></div></td>
+      <td><a href="../stocks/1315_002407.html">查看详情</a></td>
+    </tr>
+    
+
+    <tr>
+      <td><a class="stock-name" href="../stocks/1315_002957.html">科瑞技术</a><span class="code">(002957)</span></td>
+      <td>科技硬件/自动化设备（消费电子/AR/机器人）</td>
+      <td><span class="tag good">intraday_market_enhancement / 08:00 Top30内科技硬件/半导体概念13:15平均涨幅仅0.48%，同链低位可执行样本不足；002957在market_preanalysis.intraday_market_enhancement_pool高爆发第3，15分钟正分钟比0.8，量能加速2.22，作为池外补充。</span></td>
+      <td><div class="perf-line"><span class="perf-item">快照涨幅<strong>4.19%</strong></span></div></td>
+      <td><a href="../stocks/1315_002957.html">查看详情</a></td>
+    </tr>
+    
+
+    <tr>
+      <td><a class="stock-name" href="../stocks/1315_001337.html">四川黄金</a><span class="code">(001337)</span></td>
+      <td>黄金/有色金属</td>
+      <td><span class="tag good">preopen_observation_pool / 08:00 preopen_research_pool.risk_overheat_filtered_pool Top30（rank 28），为Top30主池内资源/材料/化工方向四帧唯一低涨幅持续承接样本；13:15 Top30资源/材料/化工均涨转正至+0.01%，板块未被当日四帧证伪。</span></td>
+      <td><div class="perf-line"><span class="perf-item">快照涨幅<strong>1.64%</strong></span></div></td>
+      <td><a href="../stocks/1315_001337.html">查看详情</a></td>
+    </tr>
+    </tbody>
     </table>
     
     <h2>风险提示（概念/个股）</h2>
@@ -239,20 +272,29 @@ ul.compact li { margin: 4px 0; }
       </thead>
       <tbody>
     <tr>
-      <td><span class="stock-name">待 API 综合分析</span></td>
-      <td><span class="tag risk">流程</span><span class="tag watch">中</span></td>
-      <td>08:00 新闻预分析、完整日K线质量门控和主板研究池已落地，等待 API runner 完成盘前正式综合分析。</td>
-      <td>当前页面只是本地准点发布占位，候选尚未完成正式综合分析。</td>
-      <td>等待 API runner 覆盖；盘中阶段可由本地行情兜底先行填充。</td>
-    </tr>
-    
-
-    <tr>
       <td><span class="stock-name">商品与汇率</span></td>
       <td><span class="tag risk">外部市场</span><span class="tag watch">中</span></td>
       <td>大宗商品综述：油价上涨 铜价逼近历史高位 金价微跌；港股午评：恒指跌1.75% 科指跌1.87% 科网股、保险股普跌 黄金股逆势上涨</td>
       <td>外部同产业链或风险偏好走弱会传导到A股，国内利好不能自动高权重覆盖外部证伪。</td>
       <td>相关主题候选降权，等待A股全市场扫描和资金流入确认后再恢复。</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="stock-name">行情数据质量</span></td>
+      <td><span class="tag risk">数据</span><span class="tag watch">高</span></td>
+      <td>全 A 最新有效行数 3046，低于完整扫描阈值。</td>
+      <td>准点行情不完整时，涨幅、宽度和资金方向不能作为正式推荐依据。</td>
+      <td>只保留观察样本；等待下一帧完整扫描或异源确认。</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="stock-name">短线情绪过热</span></td>
+      <td><span class="tag risk">概念</span><span class="tag watch">中</span></td>
+      <td>全市场涨幅超过 6% 的样本约 96 只。</td>
+      <td>高涨幅样本过多时，尾盘和次日容易出现兑现，未爆发候选也可能被板块退潮拖累。</td>
+      <td>降低追涨权重，只保留未过 6% 且仍有资金流入的样本。</td>
     </tr>
     
 
