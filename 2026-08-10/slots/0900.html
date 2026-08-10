@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>2026-08-07 08:00 盘前分析</title>
+  <title>2026-08-10 08:00 盘前分析</title>
   <style>
 :root {
   color-scheme: light;
@@ -206,22 +206,28 @@ ul.compact li { margin: 4px 0; }
     
     <div class="topbar">
       <div>
-        <h1>2026-08-07 08:00 盘前分析</h1>
+        <h1>2026-08-10 08:00 盘前分析</h1>
         <div class="muted">只显示该时间点当时生成的股票；点击股票名进入该时间点详情。</div>
       </div>
       <a href="../index.html">返回时间点</a>
     </div>
     <div class="notice">时间边界：08:00 前已保存过去24小时新闻预分析、事件、30日K线研究池和滚动备忘录；不得读取开盘后行情。</div>
-    <div class="notice">08:00 新闻预分析、完整日K线质量门控和主板研究池已落地，等待 API runner 完成盘前正式综合分析。</div>
+    
     <h2>状态</h2>
     <div class="grid">
-      <div class="metric"><span class="muted">市场姿态</span><strong>待综合分析</strong></div>
-      <div class="metric"><span class="muted">快照生成时间</span><strong>2026-08-07T08:16:10+08:00</strong></div>
-      <div class="metric"><span class="muted">候选数量</span><strong>0</strong></div>
+      <div class="metric"><span class="muted">市场姿态</span><strong>recovery_bounce_scanning</strong></div>
+      <div class="metric"><span class="muted">快照生成时间</span><strong>2026-08-10T08:20:20+08:00</strong></div>
+      <div class="metric"><span class="muted">候选数量</span><strong>4</strong></div>
     </div>
-    <h2>分析结论</h2><div class="panel"><ul class="compact"><li><strong>结论：</strong>08:00 新闻预分析、完整日K线质量门控和主板研究池已落地，等待 API runner 完成盘前正式综合分析。</li><li><strong>市场情绪：</strong>本地证据已落地，页面先行发布；等待 API runner 写入正式综合分析。</li><li><strong>信息背景：</strong>此 slot 为准点发布骨架，不作为正式推荐成绩。</li><li><strong>风险：</strong>若长时间停留在该状态，说明 API runner 未及时完成对应阶段。</li></ul></div>
+    <h2>分析结论</h2><div class="panel muted">该时间点尚未生成分析。</div>
     
+    <h2>API 运行信息</h2>
+    <div class="grid"><div class="metric"><span class="muted">模型</span><strong>deepseek-v4-flash</strong></div>
+<div class="metric"><span class="muted">Total tokens</span><strong>1801973</strong></div></div>
     
+    <h2>热门概念雷达</h2><table class="stock-table"><thead><tr><th>概念</th><th>强度证据</th><th>不可买强势样本</th><th>同链低位候选</th></tr></thead><tbody><tr><td><span class="stock-name">医药/医疗（创新药/海外商业化兑现）</span></td><td>news_preanalysis中创新药头部企业业绩兑现、海外商业化成看点，叠加券商策略推荐创新药；前一交易日0915已确认医药方向扩散且药明康德为全市场成交额核心。</td><td>-</td><td>-</td></tr>
+<tr><td><span class="stock-name">有色/铜/贵金属（供给约束+金价反弹）</span></td><td>刚果禁铜精矿出口、特朗普禁钨/电池废料出口，金价反弹利好黄金上市公司；前一交易日四川黄金4.80%、洛阳钼业+2.21%已获A股确认，盘前研究池山金国际28.11分、洛阳钼业28.10分位列Top5。</td><td>-</td><td>-</td></tr>
+<tr><td><span class="stock-name">科技硬件/半导体/AI算力（外部中性偏高+产业趋势催化）</span></td><td>新闻聚合显示AI算力产业链催化密集（16万亿元AIDC、算力净利高增、CPO龙头吸金），日韩/美股科技链风险中性；盘前研究池嘉环科技28.65分、中贝通信27.59分、数据港27.12分在技术面Top200。</td><td>-</td><td>-</td></tr></tbody></table>
     
     
     <h2>主板可交易候选（偏未爆发/惯性）</h2>
@@ -229,7 +235,42 @@ ul.compact li { margin: 4px 0; }
       <thead>
         <tr><th>股票</th><th>概念</th><th>来源/确认</th><th>涨幅</th><th>详情</th></tr>
       </thead>
-      <tbody><tr><td colspan="5" class="muted">该时间点暂无可交易候选。</td></tr></tbody>
+      <tbody>
+    <tr>
+      <td><a class="stock-name" href="../stocks/0900_603201.html">常润股份</a><span class="code">(603201)</span></td>
+      <td>通用设备/量价结构候选（独走趋势）</td>
+      <td><span class="tag good">preopen_observation_pool / 盘前研究Top1：结构41.91、技术研究26.47、相对强度16.40；30日斜率0.08197元/日，5日/20日+8.38%/+22.29%，5日均额1.48亿且量能比1.21；无新闻催化，纯量价驱动。</span></td>
+      <td><div class="perf-line"><span class="perf-item">待收盘复盘</span></div></td>
+      <td><a href="../stocks/0900_603201.html">查看详情</a></td>
+    </tr>
+    
+
+    <tr>
+      <td><a class="stock-name" href="../stocks/0900_000975.html">山金国际</a><span class="code">(000975)</span></td>
+      <td>黄金/贵金属</td>
+      <td><span class="tag good">preopen_observation_pool / 金价反弹+黄金上市公司业绩催化；盘前研究28.11分，5日/20日+12.70%/+31.55%，5日均额16.36亿、量能比1.05，相对强度18.92。</span></td>
+      <td><div class="perf-line"><span class="perf-item">待收盘复盘</span></div></td>
+      <td><a href="../stocks/0900_000975.html">查看详情</a></td>
+    </tr>
+    
+
+    <tr>
+      <td><a class="stock-name" href="../stocks/0900_603993.html">洛阳钼业</a><span class="code">(603993)</span></td>
+      <td>铜钴/有色资源</td>
+      <td><span class="tag good">preopen_observation_pool / 刚果禁铜精矿出口强化供给约束；盘前研究28.10分，5日/20日+6.71%/+19.03%，5日均额53.65亿为超流动性核心；前一交易日13:15/14:45确认同链扩散。</span></td>
+      <td><div class="perf-line"><span class="perf-item">待收盘复盘</span></div></td>
+      <td><a href="../stocks/0900_603993.html">查看详情</a></td>
+    </tr>
+    
+
+    <tr>
+      <td><a class="stock-name" href="../stocks/0900_603206.html">嘉环科技</a><span class="code">(603206)</span></td>
+      <td>科技硬件/通信服务</td>
+      <td><span class="tag good">preopen_observation_pool / 盘前研究28.65分，5日/20日+9.87%/+4.11%，5日均额1.23亿、量能比1.39；科技硬件主题映射，外部日韩/美股科技链风险中性。</span></td>
+      <td><div class="perf-line"><span class="perf-item">待收盘复盘</span></div></td>
+      <td><a href="../stocks/0900_603206.html">查看详情</a></td>
+    </tr>
+    </tbody>
     </table>
     
     <h2>风险提示（概念/个股）</h2>
@@ -239,27 +280,18 @@ ul.compact li { margin: 4px 0; }
       </thead>
       <tbody>
     <tr>
-      <td><span class="stock-name">待 API 综合分析</span></td>
-      <td><span class="tag risk">流程</span><span class="tag watch">中</span></td>
-      <td>08:00 新闻预分析、完整日K线质量门控和主板研究池已落地，等待 API runner 完成盘前正式综合分析。</td>
-      <td>当前页面只是本地准点发布占位，候选尚未完成正式综合分析。</td>
-      <td>等待 API runner 覆盖；盘中阶段可由本地行情兜底先行填充。</td>
-    </tr>
-    
-
-    <tr>
-      <td><span class="stock-name">商品与汇率</span></td>
-      <td><span class="tag risk">外部市场</span><span class="tag watch">中</span></td>
-      <td>大宗商品综述：油价上涨 铜价逼近历史高位 金价微跌；港股午评：恒指跌1.75% 科指跌1.87% 科网股、保险股普跌 黄金股逆势上涨</td>
-      <td>外部同产业链或风险偏好走弱会传导到A股，国内利好不能自动高权重覆盖外部证伪。</td>
-      <td>相关主题候选降权，等待A股全市场扫描和资金流入确认后再恢复。</td>
+      <td><span class="stock-name">外部市场中性</span></td>
+      <td><span class="tag risk">外部市场</span><span class="tag watch">低</span></td>
+      <td>embedded_external_market_risk_from_news_titles</td>
+      <td>未发现明确外部负面线索，但仍不能让国内利好自动高权重。</td>
+      <td>继续要求盘面承接确认。</td>
     </tr>
     
 
     <tr>
       <td><span class="stock-name">新闻风险线索</span></td>
       <td><span class="tag risk">新闻</span><span class="tag watch">中</span></td>
-      <td>[不惧本土监管！韩国散户转投美国高倍杠杆ETF 分析师：更大风险酝酿中](https://finance.eastmoney.com/a/202608063833706153.html) - eastmoney_market - 监管, …</td>
+      <td>[监管对保险机构账号亮出“体检清单” 租号风波后全行业蓝V“排雷”](https://finance.eastmoney.com/a/202608093835998363.html) - eastmoney_finance - 监管, 保险</td>
       <td>公告、异常波动、杠杆或监管线索可能使相关主题从进攻转为兑现。</td>
       <td>若与候选概念重合，降低仓位假设并等待资金确认。</td>
     </tr>
@@ -270,7 +302,7 @@ ul.compact li { margin: 4px 0; }
     <h2>使用信息</h2>
     <div class="panel"><ul class="compact"><li>docs/daily_news_YYYY-MM-DD.md</li><li>data/news_preanalysis/YYYY-MM-DD_0900_news_preanalysis.json</li><li>data/cleaned/events.jsonl</li><li>memory/rolling_20_trading_days.md</li><li>memory/bootstrap_20d_context.json</li><li>data/state/source_status.json</li></ul></div>
     <h2>原始快照</h2>
-    <div class="panel source-links"><a href="../review.html">收盘后复盘</a><a href="../sla_daily_report.md">运行审计日报（SLA） Markdown</a></div>
+    <div class="panel source-links"><span class="muted">无原始快照</span></div>
     
   </main>
 </body>

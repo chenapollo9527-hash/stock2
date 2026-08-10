@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>2026-08-07 股票候选</title>
+  <title>2026-08-10 股票候选</title>
   <style>
 :root {
   color-scheme: light;
@@ -206,74 +206,61 @@ ul.compact li { margin: 4px 0; }
     
     <div class="topbar">
       <div>
-        <h1>2026-08-07 股票候选</h1>
+        <h1>2026-08-10 股票候选</h1>
         <div class="muted">先选择时间点，再查看该时间点当时生成的股票候选。</div>
       </div>
       <a href="../index.html">返回日期索引</a>
     </div>
     <div class="notice">仅用于投研辅助和候选池整理；请结合确认条件和风险条件，不作为自动交易指令。</div>
-    <h2>流程健康状态</h2><div class="panel"><span class="tag good">滚动备忘录：正常</span><span class="tag good">08:00新闻与公告：正常</span><span class="tag good">08:00量价研究池 Top200=200 Top30=30：正常</span><span class="tag risk">08:00正式候选：异常</span><span class="tag good">09:45一分钟行情与预分析 3046/3046：正常</span><span class="tag good">09:45正式候选：正常</span><span class="tag good">13:15一分钟行情与预分析 3046/3046：正常</span><span class="tag good">13:15正式候选：正常</span><span class="tag good">14:45一分钟行情与预分析 3046/3046：正常</span><span class="tag good">14:45正式候选：正常</span><span class="tag good">15:15收盘结果：正常</span><span class="tag good">回测资料包：正常</span><span class="tag watch">运行审计日报 阻塞=1 漏发=0：运行中</span><div class="muted" style="margin-top:10px">回测资料包在收盘后封存各阶段可见输入，用于无未来数据泄漏的历史重放；运行审计日报（SLA）在收盘后汇总耗时、超时/阻塞和正式邮件状态。</div><div class="muted">最近执行：close / ok / 2026-08-07T15:32:00+08:00</div></div>
+    <h2>流程健康状态</h2><div class="panel"><span class="tag good">滚动备忘录：正常</span><span class="tag good">08:00新闻与公告：正常</span><span class="tag good">08:00量价研究池 Top200=200 Top30=30：正常</span><span class="tag good">08:00正式候选：正常</span><span class="tag pending">09:45一分钟行情与预分析：待执行</span><span class="tag pending">09:45正式候选：待执行</span><span class="tag pending">13:15一分钟行情与预分析：待执行</span><span class="tag pending">13:15正式候选：待执行</span><span class="tag pending">14:45一分钟行情与预分析：待执行</span><span class="tag pending">14:45正式候选：待执行</span><span class="tag pending">15:15收盘结果：待执行</span><span class="tag pending">回测资料包：待执行</span><span class="tag pending">运行审计日报：待执行</span><div class="muted" style="margin-top:10px">回测资料包在收盘后封存各阶段可见输入，用于无未来数据泄漏的历史重放；运行审计日报（SLA）在收盘后汇总耗时、超时/阻塞和正式邮件状态。</div></div>
     
-        <div class="notice">
-          08:00 盘前没有形成可交易候选。原因：08:00 新闻预分析、完整日K线质量门控和主板研究池已落地，等待 API runner 完成盘前正式综合分析。
-        </div>
-        
     <h2>分时点推荐</h2>
     <div class="grid">
             <a class="slot-card" href="slots/0900.html">
               <div class="slot-top">
                 <div class="slot-title">08:00</div>
-                <div class="slot-count">0 只候选</div>
+                <div class="slot-count">4 只候选</div>
               </div>
-              <strong>待综合分析</strong>
-              <div class="muted">2026-08-07T08:16:10+08:00</div>
-              <div>08:00 新闻预分析、完整日K线质量门控和主板研究池已落地，等待 API runner 完成盘前正式综合分析。</div>
+              <strong>recovery_bounce_scanning</strong>
+              <div class="muted">2026-08-10T08:20:20+08:00</div>
+              <div>前一交易日1417亿元成交、pct_gt_6=120/涨停58显示局部热点强但宽度仍弱（上涨1234&lt;下跌1734、中位-0.33%）；隔夜外盘无高严重度负风险，医药/医疗在Top30内连续扩散，有色/铜钴供给约束获A股确认，盘前先按热点扩散扫描，09:45必须用四帧承接确认。</div>
               <div class="muted">边界：08:00 前已保存过去24小时新闻预分析、事件、30日K线研究池和滚动备忘录；不得读取开盘后行情。</div>
             </a>
             
             <a class="slot-card" href="slots/0945.html">
               <div class="slot-top">
                 <div class="slot-title">09:45</div>
-                <div class="slot-count">2 只候选</div>
+                <div class="slot-count">0 只候选</div>
               </div>
-              <strong>risk_off_weak_breadth_with_medicine_rotation</strong>
-              <div class="muted">2026-08-07T09:46:19+08:00</div>
-              <div>四帧演进09:30→09:45：主板上涨家数930→694→625→441，下跌家数1532→2253→2363→2555，中位涨幅由-0.02%扩大至-1.22%，成交额3148亿元，全市场risk_off特征明确；但Top30内医药/医疗概念均涨从-0.49%升至+1.53%，药明康德、塞力医疗四帧连续上行，是唯一扩散扩大的概念簇；科技硬件/半导体在Top30内均涨转负，资源/材料/化工等先验方向四帧被证伪。</div>
+              <strong>待综合分析</strong>
+              <div class="muted">2026-08-10T08:09:09+08:00</div>
+              <div>08:00 新闻预分析、完整日K线质量门控和主板研究池已落地，等待 API runner 完成盘前正式综合分析。</div>
               <div class="muted">边界：09:45 到点一次性保存截至09:45的全主板原生1分钟量价批次，并从中生成09:30前收锚点及09:35/09:40/09:45决策特征；新闻固定复用08:00背景。</div>
             </a>
             
             <a class="slot-card" href="slots/1315.html">
               <div class="slot-top">
                 <div class="slot-title">13:15</div>
-                <div class="slot-count">3 只候选</div>
+                <div class="slot-count">0 只候选</div>
               </div>
-              <strong>narrow_theme_strength_weak_breadth</strong>
-              <div class="muted">2026-08-07T13:20:53+08:00</div>
-              <div>四帧宽度整体偏弱：上涨1055→1016→966→1055，下跌1910→1967→2022→1924，13:15中位涨幅-0.55%；pct_gt_6=96、limit_up_like=53触发涨停潮阈值，但上涨家数仍显著少于下跌家数，属局部热点强、整体宽度弱的窄幅主题市；13:15成交额1043.57亿元继续放大，午后近端资金权重大于上午背景。</div>
+              <strong>待综合分析</strong>
+              <div class="muted">2026-08-10T08:09:09+08:00</div>
+              <div>08:00 新闻预分析、完整日K线质量门控和主板研究池已落地，等待 API runner 完成盘前正式综合分析。</div>
               <div class="muted">边界：13:15 到点一次性保存上午120分钟及午后15分钟全主板原生1分钟量价批次，并生成13:00/13:05/13:10/13:15决策特征；新闻固定复用08:00背景。</div>
             </a>
             
             <a class="slot-card" href="slots/1445.html">
               <div class="slot-top">
                 <div class="slot-title">14:45</div>
-                <div class="slot-count">5 只候选</div>
+                <div class="slot-count">0 只候选</div>
               </div>
-              <strong>narrow_theme_strength_weak_breadth</strong>
-              <div class="muted">2026-08-07T14:50:00+08:00</div>
-              <div>四帧宽度14:30涨1116/跌1871、14:35涨1158/跌1816、14:40涨1177/跌1785、14:45涨1234/跌1734，上涨家数持续修复但始终少于下跌家数，中位涨幅-0.33%为负；pct_gt_6=120、limit_up_like=58触发涨停潮阈值，属局部热点强、整体宽度弱。14:45按弱宽度规则要求候选低于4.5%、近端斜率/成交额扩张/同链扩散至少满足四项，并控制高位带样本。</div>
+              <strong>待综合分析</strong>
+              <div class="muted">2026-08-10T08:09:09+08:00</div>
+              <div>08:00 新闻预分析、完整日K线质量门控和主板研究池已落地，等待 API runner 完成盘前正式综合分析。</div>
               <div class="muted">边界：14:45 到点一次性保存截至14:45的全主板原生1分钟量价批次，并生成14:30/14:35/14:40/14:45决策特征；新闻固定复用08:00背景，结论用于次日开盘观察。</div>
             </a>
             </div>
     
-    
-    <h2>收盘复盘</h2>
-    <div class="grid">
-      <div class="metric"><span class="muted">复盘样本</span><strong>7</strong></div>
-      <div class="metric"><span class="muted">正增量</span><strong>4</strong></div>
-      <div class="metric"><span class="muted">教训样本</span><strong>3</strong></div>
-      <div class="metric"><span class="muted">平均节点增量</span><strong>1.19%</strong></div>
-    </div>
-    <div class="panel"><strong>最佳增量：0945 普洛药业 7.66%</strong><br><a href="review.html">查看完整逐笔复盘</a></div>
     
     <h2>分析输入</h2>
     <div class="panel">
@@ -286,7 +273,7 @@ ul.compact li { margin: 4px 0; }
     <h2>过滤/仅观察</h2>
     <div class="panel"><span class="muted">无</span></div>
     <h2>原始快照</h2>
-    <div class="panel source-links"><a href="review.html">收盘后复盘</a><a href="sla_daily_report.md">运行审计日报（SLA） Markdown</a></div>
+    <div class="panel source-links"><span class="muted">无原始快照</span></div>
     
   </main>
 </body>
