@@ -216,13 +216,17 @@ ul.compact li { margin: 4px 0; }
     <h2>状态</h2>
     <div class="grid">
       <div class="metric"><span class="muted">市场姿态</span><strong>待综合分析</strong></div>
-      <div class="metric"><span class="muted">快照生成时间</span><strong>2026-08-10T08:09:09+08:00</strong></div>
+      <div class="metric"><span class="muted">快照生成时间</span><strong>2026-08-10T09:45:59+08:00</strong></div>
       <div class="metric"><span class="muted">候选数量</span><strong>0</strong></div>
     </div>
-    <h2>分析结论</h2><div class="panel"><ul class="compact"><li><strong>结论：</strong>08:00 新闻预分析、完整日K线质量门控和主板研究池已落地，等待 API runner 完成盘前正式综合分析。</li><li><strong>市场情绪：</strong>本地证据已落地，页面先行发布；等待 API runner 写入正式综合分析。</li><li><strong>信息背景：</strong>此 slot 为准点发布骨架，不作为正式推荐成绩。</li><li><strong>风险：</strong>若长时间停留在该状态，说明 API runner 未及时完成对应阶段。</li></ul></div>
+    <h2>分析结论</h2><div class="panel muted">该时间点尚未生成分析。</div>
+    
+    <h2>API 运行信息</h2>
+    <div class="grid"><div class="metric"><span class="muted">模型</span><strong>deepseek-v4-flash</strong></div>
+<div class="metric"><span class="muted">Total tokens</span><strong>86710</strong></div></div>
     
     
-    <h2>行情预分析</h2><div class="panel muted">尚未生成行情预分析。</div>
+    <h2>行情预分析</h2><div class="panel"><ul class="compact"><li><strong>边界：</strong>market_only_preanalysis_from_exchange_native_one_minute_data_no_news_or_memory</li><li><strong>模式：</strong>broad_risk_on：上涨家数占优且中位涨幅为正，盘面偏普涨进攻。</li><li><strong>涨停潮阈值：</strong>未触发 / 主板pct&gt;6 49，近涨停 32</li><li><strong>数据源：</strong>tdx_one_minute_batch / 行数 3046 / 帧数 4</li><li><strong>宽度：</strong>上涨 2021，下跌 946，中位涨幅 0.55%</li><li><strong>时间权重：</strong>09:45 只看开盘后已保存扫描，重点使用09:30-09:45近端帧。</li><li><strong>近端窗口：</strong>2026-08-10T09:30:00+08:00 至 2026-08-10T09:45:00+08:00 / 4帧</li><li><strong>主板6%以下活跃：</strong>药明康德(603259) 3.93%、云南锗业(002428) 2.44%、工业富联(601138) 2.64%、中钨高新(000657) 2.94%、华友钴业(603799) 5.23%</li></ul></div>
     <h2>盘面监控</h2><div class="panel muted">该窗口尚未采集高频监控快照。</div>
     <h2>主板可交易候选（偏未爆发/惯性）</h2>
     <table class="stock-table">
@@ -239,20 +243,29 @@ ul.compact li { margin: 4px 0; }
       </thead>
       <tbody>
     <tr>
-      <td><span class="stock-name">待 API 综合分析</span></td>
-      <td><span class="tag risk">流程</span><span class="tag watch">中</span></td>
-      <td>08:00 新闻预分析、完整日K线质量门控和主板研究池已落地，等待 API runner 完成盘前正式综合分析。</td>
-      <td>当前页面只是本地准点发布占位，候选尚未完成正式综合分析。</td>
-      <td>等待 API runner 覆盖；盘中阶段可由本地行情兜底先行填充。</td>
-    </tr>
-    
-
-    <tr>
       <td><span class="stock-name">外部市场中性</span></td>
       <td><span class="tag risk">外部市场</span><span class="tag watch">低</span></td>
       <td>embedded_external_market_risk_from_news_titles</td>
       <td>未发现明确外部负面线索，但仍不能让国内利好自动高权重。</td>
       <td>继续要求盘面承接确认。</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="stock-name">行情数据质量</span></td>
+      <td><span class="tag risk">数据</span><span class="tag watch">高</span></td>
+      <td>全 A 最新有效行数 3046，低于完整扫描阈值。</td>
+      <td>准点行情不完整时，涨幅、宽度和资金方向不能作为正式推荐依据。</td>
+      <td>只保留观察样本；等待下一帧完整扫描或异源确认。</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="stock-name">大盘普涨遮蔽</span></td>
+      <td><span class="tag risk">大盘</span><span class="tag watch">中</span></td>
+      <td>上涨 2021/3046，中位涨幅 0.55%；上涨家数占优且中位涨幅为正，盘面偏普涨进攻。</td>
+      <td>候选胜率可能主要来自市场 Beta，而不是个股自身催化或资金独立选择。</td>
+      <td>优先看相对强度、缩量回踩承接和次日是否仍强于大盘。</td>
     </tr>
     
 
