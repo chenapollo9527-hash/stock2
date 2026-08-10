@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>2026-08-10 09:45 开盘验证</title>
+  <title>2026-08-10 收盘复盘</title>
   <style>
 :root {
   color-scheme: light;
@@ -206,84 +206,28 @@ ul.compact li { margin: 4px 0; }
     
     <div class="topbar">
       <div>
-        <h1>2026-08-10 09:45 开盘验证</h1>
-        <div class="muted">只显示该时间点当时生成的股票；点击股票名进入该时间点详情。</div>
+        <h1>2026-08-10 收盘复盘</h1>
+        <div class="muted">生成时间：2026-08-10T15:32:26+08:00</div>
       </div>
-      <a href="../index.html">返回时间点</a>
+      <a href="index.html">返回当日首页</a>
     </div>
-    <div class="notice">时间边界：09:45 到点一次性保存截至09:45的全主板原生1分钟量价批次，并从中生成09:30前收锚点及09:35/09:40/09:45决策特征；新闻固定复用08:00背景。</div>
-    <div class="notice">08:00 新闻预分析、完整日K线质量门控和主板研究池已落地，等待 API runner 完成盘前正式综合分析。</div>
-    <h2>状态</h2>
+    <div class="notice">复盘以推荐节点后的增量为主；14:45候选只在下一交易日开盘后评估，不使用当日收盘倒推。</div>
     <div class="grid">
-      <div class="metric"><span class="muted">市场姿态</span><strong>待综合分析</strong></div>
-      <div class="metric"><span class="muted">快照生成时间</span><strong>2026-08-10T09:45:59+08:00</strong></div>
-      <div class="metric"><span class="muted">候选数量</span><strong>0</strong></div>
+      <div class="metric"><span class="muted">复盘样本</span><strong>12</strong></div>
+      <div class="metric"><span class="muted">正增量</span><strong>4</strong></div>
+      <div class="metric"><span class="muted">教训样本</span><strong>8</strong></div>
+      <div class="metric"><span class="muted">平均节点增量</span><strong>-0.35%</strong></div>
     </div>
-    <h2>分析结论</h2><div class="panel muted">该时间点尚未生成分析。</div>
-    
-    <h2>API 运行信息</h2>
-    <div class="grid"><div class="metric"><span class="muted">模型</span><strong>deepseek-v4-flash</strong></div>
-<div class="metric"><span class="muted">Total tokens</span><strong>86710</strong></div></div>
-    
-    
-    <h2>行情预分析</h2><div class="panel"><ul class="compact"><li><strong>边界：</strong>market_only_preanalysis_from_exchange_native_one_minute_data_no_news_or_memory</li><li><strong>模式：</strong>broad_risk_on：上涨家数占优且中位涨幅为正，盘面偏普涨进攻。</li><li><strong>涨停潮阈值：</strong>未触发 / 主板pct&gt;6 49，近涨停 32</li><li><strong>数据源：</strong>tdx_one_minute_batch / 行数 3046 / 帧数 4</li><li><strong>宽度：</strong>上涨 2021，下跌 946，中位涨幅 0.55%</li><li><strong>时间权重：</strong>09:45 只看开盘后已保存扫描，重点使用09:30-09:45近端帧。</li><li><strong>近端窗口：</strong>2026-08-10T09:30:00+08:00 至 2026-08-10T09:45:00+08:00 / 4帧</li><li><strong>主板6%以下活跃：</strong>药明康德(603259) 3.93%、云南锗业(002428) 2.44%、工业富联(601138) 2.64%、中钨高新(000657) 2.94%、华友钴业(603799) 5.23%</li></ul></div>
-    <h2>盘面监控</h2><div class="panel muted">该窗口尚未采集高频监控快照。</div>
-    <h2>主板可交易候选（偏未爆发/惯性）</h2>
+    <h2>阶段统计</h2>
     <table class="stock-table">
-      <thead>
-        <tr><th>股票</th><th>概念</th><th>来源/确认</th><th>涨幅</th><th>详情</th></tr>
-      </thead>
-      <tbody><tr><td colspan="5" class="muted">该时间点暂无可交易候选。</td></tr></tbody>
+      <thead><tr><th>阶段</th><th>候选数</th><th>平均Exit</th><th>最高涨幅</th><th>正增量数</th></tr></thead>
+      <tbody><tr><td>08:00盘前</td><td>4</td><td>0.56%</td><td>8.39%</td><td>1</td></tr><tr><td>09:45开盘验证</td><td>0</td><td>-</td><td>-</td><td>0</td></tr><tr><td>13:15午后修正</td><td>3</td><td>4.33%</td><td>5.62%</td><td>3</td></tr><tr><td>前日14:45至今日开盘</td><td>5</td><td>0.49%</td><td>1.64%</td><td>0</td></tr></tbody>
     </table>
-    
-    <h2>风险提示（概念/个股）</h2>
+    <h2>逐笔经验与教训</h2>
     <table class="stock-table">
-      <thead>
-        <tr><th>对象</th><th>类型</th><th>线索</th><th>风险</th><th>应对</th></tr>
-      </thead>
-      <tbody>
-    <tr>
-      <td><span class="stock-name">外部市场中性</span></td>
-      <td><span class="tag risk">外部市场</span><span class="tag watch">低</span></td>
-      <td>embedded_external_market_risk_from_news_titles</td>
-      <td>未发现明确外部负面线索，但仍不能让国内利好自动高权重。</td>
-      <td>继续要求盘面承接确认。</td>
-    </tr>
-    
-
-    <tr>
-      <td><span class="stock-name">行情数据质量</span></td>
-      <td><span class="tag risk">数据</span><span class="tag watch">高</span></td>
-      <td>全 A 最新有效行数 3046，低于完整扫描阈值。</td>
-      <td>准点行情不完整时，涨幅、宽度和资金方向不能作为正式推荐依据。</td>
-      <td>只保留观察样本；等待下一帧完整扫描或异源确认。</td>
-    </tr>
-    
-
-    <tr>
-      <td><span class="stock-name">大盘普涨遮蔽</span></td>
-      <td><span class="tag risk">大盘</span><span class="tag watch">中</span></td>
-      <td>上涨 2021/3046，中位涨幅 0.55%；上涨家数占优且中位涨幅为正，盘面偏普涨进攻。</td>
-      <td>候选胜率可能主要来自市场 Beta，而不是个股自身催化或资金独立选择。</td>
-      <td>优先看相对强度、缩量回踩承接和次日是否仍强于大盘。</td>
-    </tr>
-    
-
-    <tr>
-      <td><span class="stock-name">新闻风险线索</span></td>
-      <td><span class="tag risk">新闻</span><span class="tag watch">中</span></td>
-      <td>[监管对保险机构账号亮出“体检清单” 租号风波后全行业蓝V“排雷”](https://finance.eastmoney.com/a/202608093835998363.html) - eastmoney_finance - 监管, 保险</td>
-      <td>公告、异常波动、杠杆或监管线索可能使相关主题从进攻转为兑现。</td>
-      <td>若与候选概念重合，降低仓位假设并等待资金确认。</td>
-    </tr>
-    </tbody>
+      <thead><tr><th>阶段</th><th>股票</th><th>概念</th><th>Entry</th><th>Exit</th><th>增量</th><th>结论</th><th>经验/教训</th></tr></thead>
+      <tbody><tr><td>08:00盘前</td><td><span class="stock-name">常润股份</span><span class="code">(603201)</span></td><td>通用设备/量价结构候选（独走趋势）</td><td>1.14%</td><td>0.3%</td><td>-0.84%</td><td><span class="tag risk">教训</span></td><td>通用设备/量价结构候选（独走趋势） 从开盘到收盘未跑赢 entry，盘前催化或映射不足。</td></tr><tr><td>08:00盘前</td><td><span class="stock-name">山金国际</span><span class="code">(000975)</span></td><td>黄金/贵金属</td><td>-1.33%</td><td>3%</td><td>4.33%</td><td><span class="tag good">经验</span></td><td>黄金/贵金属 从开盘到复盘出口仍有正增量，盘前催化得到价格验证。</td></tr><tr><td>08:00盘前</td><td><span class="stock-name">洛阳钼业</span><span class="code">(603993)</span></td><td>铜钴/有色资源</td><td>0.14%</td><td>-0.38%</td><td>-0.52%</td><td><span class="tag risk">教训</span></td><td>铜钴/有色资源 从开盘到收盘未跑赢 entry，盘前催化或映射不足。</td></tr><tr><td>08:00盘前</td><td><span class="stock-name">嘉环科技</span><span class="code">(603206)</span></td><td>科技硬件/通信服务</td><td>0.75%</td><td>-0.68%</td><td>-1.43%</td><td><span class="tag risk">教训</span></td><td>科技硬件/通信服务 从开盘到收盘未跑赢 entry，盘前催化或映射不足。</td></tr><tr><td>13:15午后修正</td><td><span class="stock-name">湖北宜化</span><span class="code">(000422)</span></td><td>磷化工/化工</td><td>3.11%</td><td>3.48%</td><td>0.37%</td><td><span class="tag good">经验</span></td><td>磷化工/化工 从推荐节点到收盘为正增量，近端行情确认有效。</td></tr><tr><td>13:15午后修正</td><td><span class="stock-name">澄星股份</span><span class="code">(600078)</span></td><td>磷化工/化工</td><td>3.44%</td><td>4.25%</td><td>0.81%</td><td><span class="tag good">经验</span></td><td>磷化工/化工 从推荐节点到收盘为正增量，近端行情确认有效。</td></tr><tr><td>13:15午后修正</td><td><span class="stock-name">捷昌驱动</span><span class="code">(603583)</span></td><td>机器人/线性驱动（高端制造）</td><td>3.45%</td><td>5.25%</td><td>1.8%</td><td><span class="tag good">经验</span></td><td>机器人/线性驱动（高端制造） 从推荐节点到收盘为正增量，近端行情确认有效。</td></tr><tr><td>前日14:45至今日开盘</td><td><span class="stock-name">斯达半导</span><span class="code">(603290)</span></td><td>科技硬件/半导体（功率半导体/IGBT）</td><td>2.7%</td><td>1.02%</td><td>-1.68%</td><td><span class="tag risk">教训</span></td><td>科技硬件/半导体（功率半导体/IGBT） 次日开盘无溢价，尾盘候选隔夜承接不足。</td></tr><tr><td>前日14:45至今日开盘</td><td><span class="stock-name">鸿远电子</span><span class="code">(603267)</span></td><td>科技硬件/半导体（军工MLCC/电子陶瓷）</td><td>1.07%</td><td>0.69%</td><td>-0.38%</td><td><span class="tag risk">教训</span></td><td>科技硬件/半导体（军工MLCC/电子陶瓷） 次日开盘无溢价，尾盘候选隔夜承接不足。</td></tr><tr><td>前日14:45至今日开盘</td><td><span class="stock-name">鸣志电器</span><span class="code">(603728)</span></td><td>高端制造/机器人（步进电机/空心杯电机）</td><td>1.38%</td><td>0.49%</td><td>-0.89%</td><td><span class="tag risk">教训</span></td><td>高端制造/机器人（步进电机/空心杯电机） 次日开盘无溢价，尾盘候选隔夜承接不足。</td></tr><tr><td>前日14:45至今日开盘</td><td><span class="stock-name">洛阳钼业</span><span class="code">(603993)</span></td><td>有色金属/铜钴资源（刚果金铜钴供给约束）</td><td>2.21%</td><td>0.14%</td><td>-2.07%</td><td><span class="tag risk">教训</span></td><td>有色金属/铜钴资源（刚果金铜钴供给约束） 次日开盘无溢价，尾盘候选隔夜承接不足。</td></tr><tr><td>前日14:45至今日开盘</td><td><span class="stock-name">烽火通信</span><span class="code">(600498)</span></td><td>科技硬件/光通信（AI算力光模块/通信设备）</td><td>3.84%</td><td>0.1%</td><td>-3.73%</td><td><span class="tag risk">教训</span></td><td>科技硬件/光通信（AI算力光模块/通信设备） 次日开盘无溢价，尾盘候选隔夜承接不足。</td></tr></tbody>
     </table>
-    
-    
-    <h2>使用信息</h2>
-    <div class="panel"><ul class="compact"><li>data/market/YYYY-MM-DD_0945_market_preanalysis.json</li><li>data/market/slot_batches/YYYY-MM-DD/0945/minute_bars.parquet</li><li>data/market/slot_batches/YYYY-MM-DD/0945/quality_manifest.json</li><li>docs/daily_news_YYYY-MM-DD.md</li><li>data/news_preanalysis/YYYY-MM-DD_0900_news_preanalysis.json</li><li>data/preopen_research/YYYY-MM-DD_preopen_research_pool.json</li><li>memory/rolling_20_trading_days.md</li></ul></div>
-    <h2>原始快照</h2>
-    <div class="panel source-links"><a href="../review.html">收盘后复盘</a><a href="../sla_daily_report.md">运行审计日报（SLA） Markdown</a></div>
     
   </main>
 </body>
