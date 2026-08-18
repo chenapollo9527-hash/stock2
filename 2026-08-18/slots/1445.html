@@ -222,7 +222,7 @@ ul.compact li { margin: 4px 0; }
     <h2>分析结论</h2><div class="panel"><ul class="compact"><li><strong>结论：</strong>08:00 新闻预分析、完整日K线质量门控和主板研究池已落地，等待 API runner 完成盘前正式综合分析。</li><li><strong>市场情绪：</strong>本地证据已落地，页面先行发布；等待 API runner 写入正式综合分析。</li><li><strong>信息背景：</strong>此 slot 为准点发布骨架，不作为正式推荐成绩。</li><li><strong>风险：</strong>若长时间停留在该状态，说明 API runner 未及时完成对应阶段。</li></ul></div>
     
     
-    <h2>行情预分析</h2><div class="panel muted">尚未生成行情预分析。</div>
+    <h2>行情预分析</h2><div class="panel"><ul class="compact"><li><strong>边界：</strong>market_only_preanalysis_from_exchange_native_one_minute_data_no_news_or_memory</li><li><strong>模式：</strong>narrow_theme_strength：主板强势样本达到涨停潮阈值：pct_gt_6=93，limit_up_like=64。即使下跌家数占优，也应先识别热门概念和同链低位承接。</li><li><strong>涨停潮阈值：</strong>触发 / 主板pct&gt;6 93，近涨停 64</li><li><strong>数据源：</strong>tdx_one_minute_batch / 行数 3042 / 帧数 4</li><li><strong>宽度：</strong>上涨 1140，下跌 1815，中位涨幅 -0.42%</li><li><strong>时间权重：</strong>14:45 以尾盘近端资金为最高权重，同时保留全日主线和上午背景。</li><li><strong>近端窗口：</strong>2026-08-18T14:30:00+08:00 至 2026-08-18T14:45:00+08:00 / 4帧</li><li><strong>主板6%以下活跃：</strong>京东方Ａ(000725) 5.26%、亨通光电(600487) 0.68%、通富微电(002156) 1.92%、有研新材(600206) 2.42%、德明利(001309) 0.64%</li></ul></div>
     <h2>盘面监控</h2><div class="panel muted">该窗口尚未采集高频监控快照。</div>
     <h2>主板可交易候选（偏未爆发/惯性）</h2>
     <table class="stock-table">
@@ -253,6 +253,24 @@ ul.compact li { margin: 4px 0; }
       <td>embedded_external_market_risk_from_news_titles</td>
       <td>未发现明确外部负面线索，但仍不能让国内利好自动高权重。</td>
       <td>继续要求盘面承接确认。</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="stock-name">行情数据质量</span></td>
+      <td><span class="tag risk">数据</span><span class="tag watch">高</span></td>
+      <td>全 A 最新有效行数 3042，低于完整扫描阈值。</td>
+      <td>准点行情不完整时，涨幅、宽度和资金方向不能作为正式推荐依据。</td>
+      <td>只保留观察样本；等待下一帧完整扫描或异源确认。</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="stock-name">短线情绪过热</span></td>
+      <td><span class="tag risk">概念</span><span class="tag watch">中</span></td>
+      <td>全市场涨幅超过 6% 的样本约 93 只。</td>
+      <td>高涨幅样本过多时，尾盘和次日容易出现兑现，未爆发候选也可能被板块退潮拖累。</td>
+      <td>降低追涨权重，只保留未过 6% 且仍有资金流入的样本。</td>
     </tr>
     
 
