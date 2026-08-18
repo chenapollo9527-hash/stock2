@@ -212,24 +212,48 @@ ul.compact li { margin: 4px 0; }
       <a href="../index.html">返回时间点</a>
     </div>
     <div class="notice">时间边界：09:45 到点一次性保存截至09:45的全主板原生1分钟量价批次，并从中生成09:30前收锚点及09:35/09:40/09:45决策特征；新闻固定复用08:00背景。</div>
-    <div class="notice">08:00 新闻预分析、完整日K线质量门控和主板研究池已落地，等待 API runner 完成盘前正式综合分析。</div>
+    
     <h2>状态</h2>
     <div class="grid">
-      <div class="metric"><span class="muted">市场姿态</span><strong>待综合分析</strong></div>
-      <div class="metric"><span class="muted">快照生成时间</span><strong>2026-08-18T08:03:04+08:00</strong></div>
-      <div class="metric"><span class="muted">候选数量</span><strong>0</strong></div>
+      <div class="metric"><span class="muted">市场姿态</span><strong>risk_off</strong></div>
+      <div class="metric"><span class="muted">快照生成时间</span><strong>2026-08-18T09:48:18+08:00</strong></div>
+      <div class="metric"><span class="muted">候选数量</span><strong>2</strong></div>
     </div>
-    <h2>分析结论</h2><div class="panel"><ul class="compact"><li><strong>结论：</strong>08:00 新闻预分析、完整日K线质量门控和主板研究池已落地，等待 API runner 完成盘前正式综合分析。</li><li><strong>市场情绪：</strong>本地证据已落地，页面先行发布；等待 API runner 写入正式综合分析。</li><li><strong>信息背景：</strong>此 slot 为准点发布骨架，不作为正式推荐成绩。</li><li><strong>风险：</strong>若长时间停留在该状态，说明 API runner 未及时完成对应阶段。</li></ul></div>
+    <h2>分析结论</h2><div class="panel muted">该时间点尚未生成分析。</div>
     
+    <h2>API 运行信息</h2>
+    <div class="grid"><div class="metric"><span class="muted">模型</span><strong>deepseek-v4-flash</strong></div>
+<div class="metric"><span class="muted">Total tokens</span><strong>102226</strong></div></div>
     
-    <h2>行情预分析</h2><div class="panel muted">尚未生成行情预分析。</div>
+    <h2>热门概念雷达</h2><table class="stock-table"><thead><tr><th>概念</th><th>强度证据</th><th>不可买强势样本</th><th>同链低位候选</th></tr></thead><tbody><tr><td><span class="stock-name">医药/医疗</span></td><td>Top30内医药/医疗四帧avg_pct 1.21%→2.14%→1.24%→2.05%，09:45 up_members=2/3、pct_ge_1_members=1；600216浙江医药 pct 6.52%为强度龙头且超过6%不可买；600267海正药业 pct 0.07%、近5分钟+1.48%，603259药明康德 pct -0.44%。</td><td>-</td><td>-</td></tr>
+<tr><td><span class="stock-name">光通信/光纤/算力配套</span></td><td>增强池600487亨通光电 pct 2.49%、总成交37.89亿元、正分钟比0.67、回撤-0.27%；601869长飞光纤 pct 4.35%、正分钟比0.73、last_5m +0.89%；两只同链同步放量，且前一交易日14:45已确认光通信/算力扩散，当前仍可买。</td><td>-</td><td>-</td></tr>
+<tr><td><span class="stock-name">半导体/科技硬件</span></td><td>增强池002156通富微电 pct 4.14%、成交47.91亿元、burst高；但Top30内科技硬件/半导体概念四帧avg_pct -1.05%→-2.29%→-1.58%→-2.30%持续负扩散，前一日科技硬件扩散被当日证伪。</td><td>-</td><td>-</td></tr>
+<tr><td><span class="stock-name">资源/材料/化工（含钨/有色）</span></td><td>Top30内资源/材料/化工四帧avg_pct 0.14%→0.05%→-0.64%→-1.23%；000506招金黄金从09:35的3.04%回落至0.96%，冲高回落；前一日钨/有色扩散今日未在Top30内延续。</td><td>-</td><td>-</td></tr></tbody></table>
+    <h2>行情预分析</h2><div class="panel"><ul class="compact"><li><strong>边界：</strong>market_only_preanalysis_from_exchange_native_one_minute_data_no_news_or_memory</li><li><strong>模式：</strong>risk_off：下跌家数占优，先按防御和风险收缩处理。</li><li><strong>涨停潮阈值：</strong>未触发 / 主板pct&gt;6 55，近涨停 37</li><li><strong>数据源：</strong>tdx_one_minute_batch / 行数 3042 / 帧数 4</li><li><strong>宽度：</strong>上涨 964，下跌 1919，中位涨幅 -0.37%</li><li><strong>时间权重：</strong>09:45 只看开盘后已保存扫描，重点使用09:30-09:45近端帧。</li><li><strong>近端窗口：</strong>2026-08-18T09:30:00+08:00 至 2026-08-18T09:45:00+08:00 / 4帧</li><li><strong>主板6%以下活跃：</strong>兆易创新(603986) 0.9%、京东方Ａ(000725) 3.29%、通富微电(002156) 4.14%、亨通光电(600487) 2.49%、云南锗业(002428) 0.91%</li></ul></div>
     <h2>盘面监控</h2><div class="panel muted">该窗口尚未采集高频监控快照。</div>
     <h2>主板可交易候选（偏未爆发/惯性）</h2>
     <table class="stock-table">
       <thead>
         <tr><th>股票</th><th>概念</th><th>来源/确认</th><th>涨幅</th><th>详情</th></tr>
       </thead>
-      <tbody><tr><td colspan="5" class="muted">该时间点暂无可交易候选。</td></tr></tbody>
+      <tbody>
+    <tr>
+      <td><a class="stock-name" href="../stocks/0945_600487.html">亨通光电</a><span class="code">(600487)</span></td>
+      <td>光通信/海缆/算力配套</td>
+      <td><span class="tag good">intraday_market_enhancement / 光通信/光纤链，与601869长飞光纤同链同步放量；前一交易日14:45已确认光通信/算力扩散，今日09:45同链扩散延续。</span></td>
+      <td><div class="perf-line"><span class="perf-item">快照涨幅<strong>2.49%</strong></span></div></td>
+      <td><a href="../stocks/0945_600487.html">查看详情</a></td>
+    </tr>
+    
+
+    <tr>
+      <td><a class="stock-name" href="../stocks/0945_600267.html">海正药业</a><span class="code">(600267)</span></td>
+      <td>医药/医疗（原料药/CXO产业链）</td>
+      <td><span class="tag good">preopen_observation_pool / Top30内医药/医疗板块扩散，600216浙江医药为强度龙头，海正药业为同链低位可买标的。</span></td>
+      <td><div class="perf-line"><span class="perf-item">快照涨幅<strong>0.07%</strong></span></div></td>
+      <td><a href="../stocks/0945_600267.html">查看详情</a></td>
+    </tr>
+    </tbody>
     </table>
     
     <h2>风险提示（概念/个股）</h2>
@@ -239,20 +263,29 @@ ul.compact li { margin: 4px 0; }
       </thead>
       <tbody>
     <tr>
-      <td><span class="stock-name">待 API 综合分析</span></td>
-      <td><span class="tag risk">流程</span><span class="tag watch">中</span></td>
-      <td>08:00 新闻预分析、完整日K线质量门控和主板研究池已落地，等待 API runner 完成盘前正式综合分析。</td>
-      <td>当前页面只是本地准点发布占位，候选尚未完成正式综合分析。</td>
-      <td>等待 API runner 覆盖；盘中阶段可由本地行情兜底先行填充。</td>
-    </tr>
-    
-
-    <tr>
       <td><span class="stock-name">外部市场中性</span></td>
       <td><span class="tag risk">外部市场</span><span class="tag watch">低</span></td>
       <td>embedded_external_market_risk_from_news_titles</td>
       <td>未发现明确外部负面线索，但仍不能让国内利好自动高权重。</td>
       <td>继续要求盘面承接确认。</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="stock-name">行情数据质量</span></td>
+      <td><span class="tag risk">数据</span><span class="tag watch">高</span></td>
+      <td>全 A 最新有效行数 3042，低于完整扫描阈值。</td>
+      <td>准点行情不完整时，涨幅、宽度和资金方向不能作为正式推荐依据。</td>
+      <td>只保留观察样本；等待下一帧完整扫描或异源确认。</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="stock-name">长飞光纤</span><span class="code">(601869)</span></td>
+      <td><span class="tag risk">个股</span><span class="tag watch">高</span></td>
+      <td>该样本已被本时点过滤。</td>
+      <td>正向选股理由命中弱映射、低弹性或其他凑数特征，已从正式候选降级至观察。</td>
+      <td>不纳入正式候选；只作为板块强度或反面样本。</td>
     </tr>
     
 
@@ -266,7 +299,7 @@ ul.compact li { margin: 4px 0; }
     </tbody>
     </table>
     
-    
+    <h2>剔除/仅观察</h2><div class="panel"><span class="tag risk">长飞光纤 601869：正向选股理由命中弱映射、低弹性或其他凑数特征，已从正式候选降级至观察。</span></div>
     <h2>使用信息</h2>
     <div class="panel"><ul class="compact"><li>data/market/YYYY-MM-DD_0945_market_preanalysis.json</li><li>data/market/slot_batches/YYYY-MM-DD/0945/minute_bars.parquet</li><li>data/market/slot_batches/YYYY-MM-DD/0945/quality_manifest.json</li><li>docs/daily_news_YYYY-MM-DD.md</li><li>data/news_preanalysis/YYYY-MM-DD_0900_news_preanalysis.json</li><li>data/preopen_research/YYYY-MM-DD_preopen_research_pool.json</li><li>memory/rolling_20_trading_days.md</li></ul></div>
     <h2>原始快照</h2>
