@@ -212,24 +212,54 @@ ul.compact li { margin: 4px 0; }
       <a href="../index.html">返回时间点</a>
     </div>
     <div class="notice">时间边界：14:45 到点一次性保存截至14:45的全主板原生1分钟量价批次，并生成14:30/14:35/14:40/14:45决策特征；新闻固定复用08:00背景，结论用于次日开盘观察。</div>
-    <div class="notice">08:00 新闻预分析、完整日K线质量门控和主板研究池已落地，等待 API runner 完成盘前正式综合分析。</div>
+    
     <h2>状态</h2>
     <div class="grid">
-      <div class="metric"><span class="muted">市场姿态</span><strong>待综合分析</strong></div>
-      <div class="metric"><span class="muted">快照生成时间</span><strong>2026-08-20T08:13:38+08:00</strong></div>
-      <div class="metric"><span class="muted">候选数量</span><strong>0</strong></div>
+      <div class="metric"><span class="muted">市场姿态</span><strong>narrow_theme_strength_with_risk_off_tail</strong></div>
+      <div class="metric"><span class="muted">快照生成时间</span><strong>2026-08-20T14:48:29+08:00</strong></div>
+      <div class="metric"><span class="muted">候选数量</span><strong>3</strong></div>
     </div>
-    <h2>分析结论</h2><div class="panel"><ul class="compact"><li><strong>结论：</strong>08:00 新闻预分析、完整日K线质量门控和主板研究池已落地，等待 API runner 完成盘前正式综合分析。</li><li><strong>市场情绪：</strong>本地证据已落地，页面先行发布；等待 API runner 写入正式综合分析。</li><li><strong>信息背景：</strong>此 slot 为准点发布骨架，不作为正式推荐成绩。</li><li><strong>风险：</strong>若长时间停留在该状态，说明 API runner 未及时完成对应阶段。</li></ul></div>
+    <h2>分析结论</h2><div class="panel muted">该时间点尚未生成分析。</div>
     
+    <h2>API 运行信息</h2>
+    <div class="grid"><div class="metric"><span class="muted">模型</span><strong>deepseek-v4-flash</strong></div>
+<div class="metric"><span class="muted">Total tokens</span><strong>86959</strong></div></div>
     
-    <h2>行情预分析</h2><div class="panel muted">尚未生成行情预分析。</div>
+    <h2>热门概念雷达</h2><div class="panel muted">该时间点没有可展示的有效概念雷达。</div>
+    <h2>行情预分析</h2><div class="panel"><ul class="compact"><li><strong>边界：</strong>market_only_preanalysis_from_exchange_native_one_minute_data_no_news_or_memory</li><li><strong>模式：</strong>narrow_theme_strength：主板强势样本达到涨停潮阈值：pct_gt_6=109，limit_up_like=58。即使下跌家数占优，也应先识别热门概念和同链低位承接。</li><li><strong>涨停潮阈值：</strong>触发 / 主板pct&gt;6 109，近涨停 58</li><li><strong>数据源：</strong>tdx_one_minute_batch / 行数 3041 / 帧数 4</li><li><strong>宽度：</strong>上涨 2243，下跌 750，中位涨幅 1.13%</li><li><strong>时间权重：</strong>14:45 以尾盘近端资金为最高权重，同时保留全日主线和上午背景。</li><li><strong>近端窗口：</strong>2026-08-20T14:30:00+08:00 至 2026-08-20T14:45:00+08:00 / 4帧</li><li><strong>主板6%以下活跃：</strong>药明康德(603259) 2.29%、紫金矿业(601899) 4.46%、亨通光电(600487) 4.23%、长电科技(600584) 2.7%、生益科技(600183) 0.14%</li></ul></div>
     <h2>盘面监控</h2><div class="panel muted">该窗口尚未采集高频监控快照。</div>
     <h2>主板可交易候选（偏未爆发/惯性）</h2>
     <table class="stock-table">
       <thead>
         <tr><th>股票</th><th>概念</th><th>来源/确认</th><th>涨幅</th><th>详情</th></tr>
       </thead>
-      <tbody><tr><td colspan="5" class="muted">该时间点暂无可交易候选。</td></tr></tbody>
+      <tbody>
+    <tr>
+      <td><a class="stock-name" href="../stocks/1445_603444.html">吉比特</a><span class="code">(603444)</span></td>
+      <td>网络游戏/游戏出海/高分红</td>
+      <td><span class="tag good">preopen_observation_pool / 08:00 risk_overheat_filtered_pool Top30第1/核心邮件Top5（量价结构候选3）；Top30内同概念桶三成员14:45均值+1.01%、吉比特与世运电路连续抬升，板块扩散未收缩</span></td>
+      <td><div class="perf-line"><span class="perf-item">快照涨幅<strong>2.44%</strong></span></div></td>
+      <td><a href="../stocks/1445_603444.html">查看详情</a></td>
+    </tr>
+    
+
+    <tr>
+      <td><a class="stock-name" href="../stocks/1445_603998.html">方盛制药</a><span class="code">(603998)</span></td>
+      <td>医药/医疗/创新药产业链</td>
+      <td><span class="tag good">preopen_observation_pool / 08:00 risk_overheat_filtered_pool Top30第22（医药/医疗桶）；同桶柳药集团+1.48%、五洲+2.76%，医药桶14:45均值+2.12%连续四帧未衰退，新闻创新药三重业绩拐点为背景但入选由四帧行情确认</span></td>
+      <td><div class="perf-line"><span class="perf-item">快照涨幅<strong>2.76%</strong></span></div></td>
+      <td><a href="../stocks/1445_603998.html">查看详情</a></td>
+    </tr>
+    
+
+    <tr>
+      <td><a class="stock-name" href="../stocks/1445_603920.html">世运电路</a><span class="code">(603920)</span></td>
+      <td>PCB/科技硬件/半导体</td>
+      <td><span class="tag good">preopen_observation_pool / 08:00 risk_overheat_filtered_pool Top30第7（量价结构候选3/科技硬件桶）；Top30内量价结构候选3桶三只均&lt;6%可交易、14:45均值+1.01%，PCB/科技硬件桶四帧从0.40%升至0.67%，同链扩散未收缩</span></td>
+      <td><div class="perf-line"><span class="perf-item">快照涨幅<strong>1.25%</strong></span></div></td>
+      <td><a href="../stocks/1445_603920.html">查看详情</a></td>
+    </tr>
+    </tbody>
     </table>
     
     <h2>风险提示（概念/个股）</h2>
@@ -238,15 +268,6 @@ ul.compact li { margin: 4px 0; }
         <tr><th>对象</th><th>类型</th><th>线索</th><th>风险</th><th>应对</th></tr>
       </thead>
       <tbody>
-    <tr>
-      <td><span class="stock-name">待 API 综合分析</span></td>
-      <td><span class="tag risk">流程</span><span class="tag watch">中</span></td>
-      <td>08:00 新闻预分析、完整日K线质量门控和主板研究池已落地，等待 API runner 完成盘前正式综合分析。</td>
-      <td>当前页面只是本地准点发布占位，候选尚未完成正式综合分析。</td>
-      <td>等待 API runner 覆盖；盘中阶段可由本地行情兜底先行填充。</td>
-    </tr>
-    
-
     <tr>
       <td><span class="stock-name">商品与汇率</span></td>
       <td><span class="tag risk">外部市场</span><span class="tag watch">中</span></td>
@@ -302,6 +323,51 @@ ul.compact li { margin: 4px 0; }
     
 
     <tr>
+      <td><span class="stock-name">行情数据质量</span></td>
+      <td><span class="tag risk">数据</span><span class="tag watch">高</span></td>
+      <td>全 A 最新有效行数 3041，低于完整扫描阈值。</td>
+      <td>准点行情不完整时，涨幅、宽度和资金方向不能作为正式推荐依据。</td>
+      <td>只保留观察样本；等待下一帧完整扫描或异源确认。</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="stock-name">大盘普涨遮蔽</span></td>
+      <td><span class="tag risk">大盘</span><span class="tag watch">中</span></td>
+      <td>上涨 2243/3041，中位涨幅 1.13%；主板强势样本达到涨停潮阈值：pct_gt_6=109，limit_up_like=58。即使下跌家数占优，也应先识别热门概念和同链低位承接。</td>
+      <td>候选胜率可能主要来自市场 Beta，而不是个股自身催化或资金独立选择。</td>
+      <td>优先看相对强度、缩量回踩承接和次日是否仍强于大盘。</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="stock-name">短线情绪过热</span></td>
+      <td><span class="tag risk">概念</span><span class="tag watch">中</span></td>
+      <td>全市场涨幅超过 6% 的样本约 109 只。</td>
+      <td>高涨幅样本过多时，尾盘和次日容易出现兑现，未爆发候选也可能被板块退潮拖累。</td>
+      <td>降低追涨权重，只保留未过 6% 且仍有资金流入的样本。</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="stock-name">亚翔集成</span><span class="code">(603929)</span></td>
+      <td><span class="tag risk">个股</span><span class="tag watch">高</span></td>
+      <td>该样本已被本时点过滤。</td>
+      <td>正向选股理由命中弱映射、低弹性或其他凑数特征，已从正式候选降级至观察。</td>
+      <td>不纳入正式候选；只作为板块强度或反面样本。</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="stock-name">华勤技术</span><span class="code">(603296)</span></td>
+      <td><span class="tag risk">个股</span><span class="tag watch">高</span></td>
+      <td>该样本已被本时点过滤。</td>
+      <td>正向选股理由命中弱映射、低弹性或其他凑数特征，已从正式候选降级至观察。</td>
+      <td>不纳入正式候选；只作为板块强度或反面样本。</td>
+    </tr>
+    
+
+    <tr>
       <td><span class="stock-name">新闻风险线索</span></td>
       <td><span class="tag risk">新闻</span><span class="tag watch">中</span></td>
       <td>[黑色星期三！AI产业链全线暴跌 背后发生了什么？](https://finance.eastmoney.com/a/202608193846281187.html) - eastmoney_stock - medium</td>
@@ -311,7 +377,7 @@ ul.compact li { margin: 4px 0; }
     </tbody>
     </table>
     
-    
+    <h2>剔除/仅观察</h2><div class="panel"><span class="tag risk">亚翔集成 603929：正向选股理由命中弱映射、低弹性或其他凑数特征，已从正式候选降级至观察。</span><span class="tag risk">华勤技术 603296：正向选股理由命中弱映射、低弹性或其他凑数特征，已从正式候选降级至观察。</span></div>
     <h2>使用信息</h2>
     <div class="panel"><ul class="compact"><li>data/market/YYYY-MM-DD_1445_market_preanalysis.json</li><li>data/market/slot_batches/YYYY-MM-DD/1445/minute_bars.parquet</li><li>data/market/slot_batches/YYYY-MM-DD/1445/quality_manifest.json</li><li>docs/daily_news_YYYY-MM-DD.md</li><li>data/news_preanalysis/YYYY-MM-DD_0900_news_preanalysis.json</li><li>data/preopen_research/YYYY-MM-DD_preopen_research_pool.json</li><li>memory/rolling_20_trading_days.md</li></ul></div>
     <h2>原始快照</h2>
